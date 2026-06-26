@@ -1,0 +1,4 @@
+test,age_group_pediatric,peds_lower,peds_upper,n_infant,infant_lower,infant_lower_ci_lo,infant_lower_ci_hi,infant_upper,infant_upper_ci_lo,infant_upper_ci_hi
+PT,1-18 y,8.56,10.9,1367,8.36,8.19,8.43,11.5,11.29,11.72
+aPTT,1-12 y (pediatric reference partition),24.3,35.3,1365,23.75,23.25,24.26,40.78,39.3,41.56
+Fibrinogen,1-18 y,1.89,3.79,217,1.61,1.52,1.78,3.34,2.85,3.45

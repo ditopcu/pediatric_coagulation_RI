@@ -1,0 +1,67 @@
+# =============================================================================
+# Raw, identifiable patient data -- NEVER commit
+# =============================================================================
+data/coa_results/
+data_test/
+# Any Excel sitting directly under data/ (thesis dataset etc.)
+data/*.xlsx
+data/RI*.xlsx
+# refineR fit objects -- contain raw value vectors of patient measurements
+data/processed/*.RDS
+# Intermediate per-patient Excel under data/processed (contains identifiers)
+data/processed/*.xlsx
+
+# =============================================================================
+# Manuscript working drafts -- not public until acceptance
+# =============================================================================
+manu/
+article_update/
+docs/manuscript/
+
+# =============================================================================
+# Manuscript working files & temporary docx-to-text conversions
+# =============================================================================
+article_update/manuscript_v*.txt
+article_update/tables_v*.txt
+~$*.docx
+~$*.xlsx
+
+# =============================================================================
+# R session files
+# =============================================================================
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj.user/
+
+# =============================================================================
+# Backup files and legacy archives (kept locally only)
+# =============================================================================
+*.bak
+_archive/
+_audit/
+
+# =============================================================================
+# IDE / OS scratch files
+# =============================================================================
+.Rproj.user/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# =============================================================================
+# R package cache
+# =============================================================================
+renv/library/
+renv/python/
+renv/staging/
+
+# =============================================================================
+# Memory / harness internals (not part of the project itself)
+# =============================================================================
+memory/
+.claude/

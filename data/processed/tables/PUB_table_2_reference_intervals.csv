@@ -1,0 +1,16 @@
+test,age_group,method,source,n,lower,lower_ci_lo,lower_ci_hi,upper,upper_ci_lo,upper_ci_hi
+PT,1-18 y,refineR,indirect_refineR,17000,8.56,8.54,8.58,10.9,10.7,10.9
+PT,1-18 y,Direct,direct,305,8.69,8.55,8.84,10.8,10.6,11.2
+aPTT,1-12 y,refineR,indirect_refineR,10091,24.3,23.3,24.5,35.3,34.4,35.4
+aPTT,1-12 y,Direct,direct,170,22.96,22.4,23.4,34.74,34.2,35.6
+aPTT,12-18 y,refineR,indirect_refineR,6910,23.3,22.7,23.7,33.9,33.1,34.1
+aPTT,12-18 y,Direct,direct,150,24.1,23.5,24.3,32.69,31.6,33.4
+Fibrinogen,1-18 y,refineR,indirect_refineR,3166,1.89,1.84,1.92,3.79,3.55,4.06
+Fibrinogen,1-18 y,Direct,direct,198,2.1,2.07,2.16,3.56,3.37,3.89
+PT,1-18 y,Continuous (GAMLSS),continuous_GAMLSS,NA,8.43,NA,NA,11.17,NA,NA
+aPTT,1-12 y,Continuous (GAMLSS),continuous_GAMLSS,NA,23.95,NA,NA,35.3,NA,NA
+aPTT,12-18 y,Continuous (GAMLSS),continuous_GAMLSS,NA,23.05,NA,NA,33.98,NA,NA
+Fibrinogen,1-18 y,Continuous (GAMLSS),continuous_GAMLSS,NA,1.71,NA,NA,3.97,NA,NA
+PT,All ages,Manufacturer,manufacturer,NA,8.4,NA,NA,10.6,NA,NA
+aPTT,All ages,Manufacturer,manufacturer,NA,23.6,NA,NA,30.6,NA,NA
+Fibrinogen,All ages,Manufacturer,manufacturer,NA,1.93,NA,NA,4.12,NA,NA

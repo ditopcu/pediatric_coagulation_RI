@@ -1,0 +1,7 @@
+test,level,mean,sd,cv_pct,n
+PT,Normal,10.2,0.15,1.5,20
+PT,Pathological,18.5,0.32,1.7,20
+aPTT,Normal,28.4,0.42,1.5,20
+aPTT,Pathological,55.2,1.1,2,20
+Fibrinogen,Normal,2.85,0.06,2.1,20
+Fibrinogen,Pathological,5.1,0.15,2.9,20

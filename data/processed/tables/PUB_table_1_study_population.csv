@@ -1,0 +1,5 @@
+test,n_raw,n_3sd_filtered,n_excluded,pct_excluded,n_female,n_male,pct_female,age_mean,age_sd,age_median,age_min,age_max
+Fibrinogen,3166,3111,55,1.7,1518,1593,48.8,10.3,5.3,10.7,1,17.9
+PT,17000,16907,93,0.5,7342,9565,43.4,10,5.2,10,1,17.9
+aPTT,17001,16900,101,0.6,7343,9557,43.4,10,5.2,10,1,17.9
+Total,37167,36918,249,0.7,16203,20715,43.9,10,5.2,10.1,1,17.9

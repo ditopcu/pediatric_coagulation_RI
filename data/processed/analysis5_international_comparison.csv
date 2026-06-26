@@ -1,0 +1,24 @@
+study,year,country,analyzer,method,n,age_group,test,lower,upper,percentiles,unit
+This study (refineR),2026,Turkey,Cobas t511/t711,Indirect (refineR),17000,1-18 y,PT,8.56,10.9,2.5-97.5,s
+This study (refineR),2026,Turkey,Cobas t511/t711,Indirect (refineR),10091,1-12 y,aPTT,24.3,35.3,2.5-97.5,s
+This study (refineR),2026,Turkey,Cobas t511/t711,Indirect (refineR),6910,12-18 y,aPTT,23.3,33.9,2.5-97.5,s
+This study (refineR),2026,Turkey,Cobas t511/t711,Indirect (refineR),3166,1-18 y,Fibrinogen,1.89,3.79,2.5-97.5,g/L
+This study (Direct),2026,Turkey,Cobas t511/t711,Direct (a posteriori),305,1-18 y,PT,8.69,10.8,2.5-97.5,s
+This study (Direct),2026,Turkey,Cobas t511/t711,Direct (a posteriori),170,1-12 y,aPTT,22.96,34.74,2.5-97.5,s
+This study (Direct),2026,Turkey,Cobas t511/t711,Direct (a posteriori),150,12-18 y,aPTT,24.1,32.69,2.5-97.5,s
+This study (Direct),2026,Turkey,Cobas t511/t711,Direct (a posteriori),198,1-18 y,Fibrinogen,2.1,3.56,2.5-97.5,g/L
+Guven et al.,2026,Turkey,Cobas t511,Indirect (refineR),1056,1-18 y,PT,7.8,10.7,2.5-97.5,s
+Guven et al.,2026,Turkey,Cobas t511,Indirect (refineR),1044,1-18 y,aPTT,24.3,36.2,2.5-97.5,s
+Luo et al.,2026,China,Sysmex CN-6000,Direct,500,6m-3 y,PT,10.1,12.4,2.5-97.5,s
+Luo et al.,2026,China,Sysmex CN-6000,Direct,264,3-12 y,PT,10.3,12.4,2.5-97.5,s
+Luo et al.,2026,China,Sysmex CN-6000,Direct,270,12-18 y,PT,10.4,13,2.5-97.5,s
+Luo et al.,2026,China,Sysmex CN-6000,Direct,500,6m-3 y,aPTT,23.4,32.6,2.5-97.5,s
+Luo et al.,2026,China,Sysmex CN-6000,Direct,534,3-18 y,aPTT,24.7,32.9,2.5-97.5,s
+Luo et al.,2026,China,Sysmex CN-6000,Direct,258,1-3 y,Fibrinogen,1.52,3.58,2.5-97.5,g/L
+Luo et al.,2026,China,Sysmex CN-6000,Direct,534,3-18 y,Fibrinogen,1.74,3.65,2.5-97.5,g/L
+Weidhofer et al.,2018,Austria,STA-Compact / BCS-XP,Indirect (continuous),35492,1-18 y,PT,NA,NA,2.5-97.5,% (not comparable)
+Weidhofer et al.,2018,Austria,STA-Compact / BCS-XP,Indirect (continuous),55100,1-18 y,aPTT,26,42,2.5-97.5,s
+Weidhofer et al.,2018,Austria,STA-Compact / BCS-XP,Indirect (continuous),49789,1-18 y,Fibrinogen,150,450,2.5-97.5,mg/dL
+Manufacturer (Roche),NA,NA,Cobas t511/t711,Package insert,NA,All ages,PT,8.4,10.6,NA,s
+Manufacturer (Roche),NA,NA,Cobas t511/t711,Package insert,NA,All ages,aPTT,23.6,30.6,NA,s
+Manufacturer (Roche),NA,NA,Cobas t511/t711,Package insert,NA,All ages,Fibrinogen,1.93,4.12,NA,g/L
