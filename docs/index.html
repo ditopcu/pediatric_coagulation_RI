@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pediatric Coagulation Reference Intervals</title>
+<meta name="description" content="Interactive comparison of reference interval sources for PT, aPTT and fibrinogen in children aged 1 to under 18 years.">
+<style>
+:root {
+  --bg: #ffffff; --panel: #fafaf9; --ink: #1a1a1a; --muted: #6b6b6b;
+  --line: #e0ddd8; --rule: #cfcbc4;
+  --refiner: #E67E22; --direct: #2980B9; --contin: #27AE60;
+  --mfr: #9aa0a6; --guven: #8E44AD;
+  --female: #C0392B; --male: #2980B9; --combined: #6b6b6b;
+  --in: #27AE60; --out: #C0392B;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16171a; --panel: #1e2024; --ink: #e8e6e3; --muted: #9b9894;
+    --line: #2e3136; --rule: #3a3e44; --mfr: #7d8288;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16171a; --panel: #1e2024; --ink: #e8e6e3; --muted: #9b9894;
+  --line: #2e3136; --rule: #3a3e44; --mfr: #7d8288;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.6 Georgia, "Iowan Old Style", "Times New Roman", serif;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 62rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 .4rem; font-weight: 600; letter-spacing: -.01em; }
+h2 { font-size: 1.3rem; margin: 3.2rem 0 .3rem; font-weight: 600; letter-spacing: -.005em; }
+h3 { font-size: .95rem; margin: 1.6rem 0 .5rem; font-weight: 600; }
+p { margin: .5rem 0; }
+.lede { color: var(--muted); font-size: 1.02rem; max-width: 46rem; }
+.note {
+  font-size: .82rem; color: var(--muted); border-left: 2px solid var(--rule);
+  padding: .1rem 0 .1rem .8rem; margin: 1.2rem 0; max-width: 46rem;
+}
+.sub { font-size: .85rem; color: var(--muted); margin: .2rem 0 1rem; max-width: 46rem; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
+nav { margin: 1.6rem 0 0; font-size: .85rem; }
+nav a { color: var(--muted); text-decoration: none; margin-right: 1.1rem; border-bottom: 1px solid var(--line); }
+nav a:hover { color: var(--ink); border-color: var(--ink); }
+.stats { display: flex; flex-wrap: wrap; gap: 2rem; margin: 1.4rem 0 0; }
+.stat b { display: block; font-size: 1.35rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat span { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 1.1rem 1.2rem; margin: 1rem 0; }
+.controls { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: flex-end; }
+.field { display: flex; flex-direction: column; gap: .25rem; }
+.field label { font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+select, input[type=number] {
+  font: inherit; font-size: .95rem; padding: .4rem .55rem; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; min-width: 9rem;
+}
+input[type=range] { width: 15rem; accent-color: var(--refiner); }
+.rangewrap { display: flex; align-items: center; gap: .7rem; }
+.agebadge { font-variant-numeric: tabular-nums; font-weight: 600; min-width: 4.5rem; }
+
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--line); }
+th { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.swatch { display: inline-block; width: .62rem; height: .62rem; border-radius: 2px; margin-right: .5rem; vertical-align: baseline; }
+.verdict { font-weight: 600; font-size: .84rem; letter-spacing: .02em; }
+.verdict.in { color: var(--in); }
+.verdict.out { color: var(--out); }
+.tally { margin-top: .9rem; font-size: .92rem; }
+.tally strong { font-variant-numeric: tabular-nums; }
+
+figure { margin: 1rem 0 0; }
+figcaption { font-size: .8rem; color: var(--muted); margin-top: .5rem; max-width: 46rem; }
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+svg text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; fill: var(--muted); }
+svg .axis line, svg .axis path { stroke: var(--rule); }
+svg .grid line { stroke: var(--line); }
+.legend { display: flex; flex-wrap: wrap; gap: .35rem 1.2rem; font-size: .8rem; margin: .8rem 0 0; color: var(--muted); }
+
+/* sticky section nav */
+nav.sticky {
+  position: sticky; top: 0; z-index: 20; background: var(--bg);
+  border-bottom: 1px solid var(--line); padding: .6rem 0; margin: 1.6rem 0 0;
+}
+nav a.here { color: var(--ink); border-color: var(--ink); }
+
+/* analyte tabs */
+.tabs { display: flex; gap: .2rem; margin: 1rem 0 .2rem; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.tabs button {
+  font: inherit; font-size: .88rem; color: var(--muted); background: none;
+  border: 0; border-bottom: 2px solid transparent; padding: .45rem .85rem;
+  cursor: pointer; margin-bottom: -1px;
+}
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--refiner); font-weight: 600; }
+.tabpanel[hidden] { display: none; }
+
+button.action {
+  font: inherit; font-size: .82rem; color: var(--ink); background: var(--panel);
+  border: 1px solid var(--rule); border-radius: 4px; padding: .42rem .8rem; cursor: pointer;
+}
+button.action:hover { border-color: var(--ink); }
+.actions { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin: .9rem 0 0; }
+.actions .hint { font-size: .78rem; color: var(--muted); }
+
+@media print {
+  nav, .actions, input[type=range] { display: none !important; }
+  nav.sticky { position: static; }
+  .tabs { display: none; }
+  .tabpanel[hidden] { display: block !important; }
+  body { background: #fff; color: #000; font-size: 10pt; }
+  .wrap { max-width: none; padding: 0; }
+  h2 { break-after: avoid; }
+  figure, .panel { break-inside: avoid; }
+  .panel { background: none; border: 1px solid #ccc; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; }
+}
+
+footer { margin-top: 4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: .84rem; color: var(--muted); }
+footer a { color: inherit; }
+code { font: .85em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--panel); padding: .08em .32em; border-radius: 3px; }
+@media (max-width: 40rem) {
+  .wrap { padding: 1.6rem 1rem 3rem; }
+  h1 { font-size: 1.5rem; }
+  input[type=range] { width: 11rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Pediatric coagulation reference intervals</h1>
+<p class="lede">How the choice of reference interval changes the way a routine
+PT, aPTT or fibrinogen result is classified in children aged 1 to under 18
+years. Roche Cobas t511/t711, a single tertiary centre.</p>
+
+<div class="stats" id="stats"></div>
+
+<nav class="sticky" id="nav">
+  <a href="#classify">Classify a result</a>
+  <a href="#intervals">Reference intervals</a>
+  <a href="#curves">Continuous curves</a>
+  <a href="#flagging">Out-of-RI flagging</a>
+  <a href="#partition">Partitioning</a>
+  <a href="#transfer">Transferability</a>
+  <a href="#published">Published intervals</a>
+</nav>
+
+<p class="note">This page contains aggregated results only &mdash; reference
+limits, percentile curves, flagging rates and counts. No patient-level record
+is included and no individual result can be recovered from it.</p>
+
+<h2 id="classify">Classify a result</h2>
+<p class="sub">Enter an age and a measured value. Each reference interval source
+is applied to it side by side. This is the comparison the study is about: the
+same number can be inside one interval and outside another.</p>
+
+<div class="panel">
+  <div class="controls">
+    <div class="field">
+      <label for="c-test">Analyte</label>
+      <select id="c-test"></select>
+    </div>
+    <div class="field">
+      <label for="c-age">Age</label>
+      <div class="rangewrap">
+        <input type="range" id="c-age" min="1" max="17" step="1" value="8">
+        <span class="agebadge" id="c-agelab"></span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="c-val">Result <span id="c-unit"></span></label>
+      <input type="number" id="c-val" step="0.1">
+    </div>
+  </div>
+  <div class="scroll"><table id="c-table">
+    <thead><tr><th>Reference interval source</th><th class="num">Lower</th><th class="num">Upper</th><th>Classification</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p class="tally" id="c-tally"></p>
+  <div class="actions">
+    <button class="action" id="c-copy">Copy this comparison</button>
+    <button class="action" id="c-link">Copy a link to it</button>
+    <span class="hint" id="c-hint"></span>
+  </div>
+</div>
+
+<h2 id="intervals">Reference intervals</h2>
+<p class="sub">The intervals derived in this study alongside the
+manufacturer-supplied adult interval. Bars span the 2.5th to 97.5th percentile;
+whiskers are the 90% confidence interval on each limit where one was estimated.</p>
+<div id="intervals-charts"></div>
+<div class="actions">
+  <button class="action" id="dl-limits">Download all limits as CSV</button>
+  <span class="hint">One row per analyte, single year of age and reference
+  interval source. Provided for research and reproducibility; any interval
+  requires local verification before clinical use.</span>
+</div>
+
+<h2 id="curves">Continuous curves</h2>
+<p class="sub">Age-resolved 2.5th, 50th and 97.5th percentiles from the GAMLSS
+model, with pointwise 90% confidence bands. Move across a panel to read the
+values at a single year of age.</p>
+<div id="curve-charts"></div>
+
+<h2 id="flagging">Out-of-RI flagging</h2>
+<p class="sub">The proportion of routine results falling outside the reference
+limits, by single year of age. Under a correctly specified 95% interval about 5%
+of results are expected to fall outside, marked by the dotted line.</p>
+<div id="flag-charts"></div>
+
+<h2 id="partition">Partitioning by sex and age</h2>
+<p class="sub">Why the intervals are reported the way they are. Male and female
+reference limits are shown at each single year of age with their 90% confidence
+intervals; overlapping intervals across sexes is what led to a combined-sex
+interval. Age partitioning was tested separately with the Harris&ndash;Boyd
+statistic.</p>
+<div class="panel" id="hb-box"></div>
+<div id="partition-charts"></div>
+
+<h2 id="transfer">Transferability of the published Turkish intervals</h2>
+<p class="sub">The intervals of Guven et al., derived in the same country on the
+same analyzer platform, applied to this population under a bootstrap analogue of
+the CLSI EP28-A3c 20-sample rule. A group passes when at most 2 of 20 sampled
+results fall outside the published interval; the criterion for transferability is
+a pass rate of 90% or more, marked by the dashed line.</p>
+<div id="transfer-charts"></div>
+
+<h2 id="published">Published intervals from other sources</h2>
+<p class="sub">Reference intervals reported by other pediatric studies, together
+with the manufacturer's package insert. Read them with care: the analyzer,
+reagent and source population differ in every case, and those differences may
+contribute to intervals not transferring between settings rather than being
+evidence that any one of them is wrong.</p>
+<div class="scroll"><table id="pub-table">
+  <thead><tr><th>Study</th><th>Analyzer</th><th>Method</th><th>Age group</th>
+  <th class="num">n</th><th class="num">Lower</th><th class="num">Upper</th><th>Unit</th></tr></thead>
+  <tbody></tbody>
+</table></div>
+<p class="note">Weidhofer et al. reported PT in percent activity rather than
+seconds, so no PT limits are listed for that study, and reported fibrinogen in
+mg/dL. Values were read from published figures where the study reported curves
+rather than tabulated limits.</p>
+
+<footer>
+  <p><strong>Where the numbers come from.</strong></p>
+  <div class="scroll"><table id="prov">
+    <thead><tr><th>Panel</th><th>Source file</th></tr></thead><tbody></tbody>
+  </table></div>
+  <p style="margin-top:1.2rem">Analysis code and intermediate outputs:
+  <a href="https://github.com/ditopcu/pediatric_coagulation_RI">github.com/ditopcu/pediatric_coagulation_RI</a>.
+  Individual-level data are not published. Reference limits use the 2.5th and
+  97.5th percentiles throughout. Built <span id="built"></span>.</p>
+</footer>
+
+</div>
+<script>
+const DATA = {"built":"2026-08-19","ages":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],"population":[{"test":"PT","n":17000,"unit":"seconds"},{"test":"aPTT","n":17001,"unit":"seconds"},{"test":"Fibrinogen","n":3166,"unit":"g/L"}],"intervals":[{"test":"PT","age_group":"1-18 y","method":"refineR","source":"indirect_refineR","n":17000,"lower":8.56,"lower_ci_lo":8.54,"lower_ci_hi":8.58,"upper":10.9,"upper_ci_lo":10.7,"upper_ci_hi":10.9},{"test":"PT","age_group":"1-18 y","method":"Direct","source":"direct","n":305,"lower":8.55,"lower_ci_lo":8.41,"lower_ci_hi":8.68,"upper":11.23,"upper_ci_lo":10.9,"upper_ci_hi":12},{"test":"aPTT","age_group":"1-12 y","method":"refineR","source":"indirect_refineR","n":10091,"lower":24.3,"lower_ci_lo":23.3,"lower_ci_hi":24.5,"upper":35.3,"upper_ci_lo":34.4,"upper_ci_hi":35.4},{"test":"aPTT","age_group":"1-12 y","method":"Direct","source":"direct","n":170,"lower":22.55,"lower_ci_lo":21.9,"lower_ci_hi":23.4,"upper":35.57,"upper_ci_lo":34.6,"upper_ci_hi":35.9},{"test":"aPTT","age_group":"12-18 y","method":"refineR","source":"indirect_refineR","n":6910,"lower":23.3,"lower_ci_lo":22.7,"lower_ci_hi":23.7,"upper":33.9,"upper_ci_lo":33.1,"upper_ci_hi":34.1},{"test":"aPTT","age_group":"12-18 y","method":"Direct","source":"direct","n":150,"lower":23.58,"lower_ci_lo":22.9,"lower_ci_hi":24.1,"upper":33.32,"upper_ci_lo":32.6,"upper_ci_hi":34},{"test":"Fibrinogen","age_group":"1-18 y","method":"refineR","source":"indirect_refineR","n":3166,"lower":1.89,"lower_ci_lo":1.84,"lower_ci_hi":1.92,"upper":3.79,"upper_ci_lo":3.55,"upper_ci_hi":4.06},{"test":"Fibrinogen","age_group":"1-18 y","method":"Direct","source":"direct","n":198,"lower":2.07,"lower_ci_lo":2.04,"lower_ci_hi":2.1,"upper":3.89,"upper_ci_lo":3.56,"upper_ci_hi":4.13},{"test":"PT","age_group":"1-18 y","method":"Continuous (GAMLSS)","source":"continuous_GAMLSS","n":null,"lower":8.45,"lower_ci_lo":null,"lower_ci_hi":null,"upper":11.15,"upper_ci_lo":null,"upper_ci_hi":null},{"test":"aPTT","age_group":"1-12 y","method":"Continuous (GAMLSS)","source":"continuous_GAMLSS","n":null,"lower":22.82,"lower_ci_lo":null,"lower_ci_hi":null,"upper":35.36,"upper_ci_lo":null,"upper_ci_hi":null},{"test":"aPTT","age_group":"12-18 y","method":"Continuous (GAMLSS)","source":"continuous_GAMLSS","n":null,"lower":22.93,"lower_ci_lo":null,"lower_ci_hi":null,"upper":34.23,"upper_ci_lo":null,"upper_ci_hi":null},{"test":"Fibrinogen","age_group":"1-18 y","method":"Continuous (GAMLSS)","source":"continuous_GAMLSS","n":null,"lower":1.76,"lower_ci_lo":null,"lower_ci_hi":null,"upper":3.91,"upper_ci_lo":null,"upper_ci_hi":null},{"test":"PT","age_group":"All ages","method":"Manufacturer","source":"manufacturer","n":null,"lower":8.4,"lower_ci_lo":null,"lower_ci_hi":null,"upper":10.6,"upper_ci_lo":null,"upper_ci_hi":null},{"test":"aPTT","age_group":"All ages","method":"Manufacturer","source":"manufacturer","n":null,"lower":23.6,"lower_ci_lo":null,"lower_ci_hi":null,"upper":30.6,"upper_ci_lo":null,"upper_ci_hi":null},{"test":"Fibrinogen","age_group":"All ages","method":"Manufacturer","source":"manufacturer","n":null,"lower":1.93,"lower_ci_lo":null,"lower_ci_hi":null,"upper":4.12,"upper_ci_lo":null,"upper_ci_hi":null}],"curves":[{"test":"PT","age":1,"p2_5":8.48,"p2_5_lo":8.43,"p2_5_hi":8.54,"p50":9.55,"p50_lo":9.49,"p50_hi":9.61,"p97_5":10.87,"p97_5_lo":10.76,"p97_5_hi":10.96},{"test":"PT","age":2,"p2_5":8.49,"p2_5_lo":8.46,"p2_5_hi":8.53,"p50":9.56,"p50_lo":9.53,"p50_hi":9.6,"p97_5":10.88,"p97_5_lo":10.81,"p97_5_hi":10.94},{"test":"PT","age":3,"p2_5":8.5,"p2_5_lo":8.46,"p2_5_hi":8.53,"p50":9.58,"p50_lo":9.53,"p50_hi":9.61,"p97_5":10.9,"p97_5_lo":10.82,"p97_5_hi":10.95},{"test":"PT","age":4,"p2_5":8.53,"p2_5_lo":8.49,"p2_5_hi":8.55,"p50":9.61,"p50_lo":9.55,"p50_hi":9.63,"p97_5":10.93,"p97_5_lo":10.85,"p97_5_hi":10.99},{"test":"PT","age":5,"p2_5":8.57,"p2_5_lo":8.53,"p2_5_hi":8.59,"p50":9.65,"p50_lo":9.6,"p50_hi":9.67,"p97_5":10.98,"p97_5_lo":10.9,"p97_5_hi":11.04},{"test":"PT","age":6,"p2_5":8.6,"p2_5_lo":8.56,"p2_5_hi":8.64,"p50":9.69,"p50_lo":9.62,"p50_hi":9.73,"p97_5":11.03,"p97_5_lo":10.93,"p97_5_hi":11.09},{"test":"PT","age":7,"p2_5":8.61,"p2_5_lo":8.55,"p2_5_hi":8.65,"p50":9.7,"p50_lo":9.63,"p50_hi":9.73,"p97_5":11.04,"p97_5_lo":10.93,"p97_5_hi":11.09},{"test":"PT","age":8,"p2_5":8.61,"p2_5_lo":8.55,"p2_5_hi":8.63,"p50":9.7,"p50_lo":9.62,"p50_hi":9.71,"p97_5":11.03,"p97_5_lo":10.93,"p97_5_hi":11.07},{"test":"PT","age":9,"p2_5":8.61,"p2_5_lo":8.59,"p2_5_hi":8.66,"p50":9.7,"p50_lo":9.67,"p50_hi":9.75,"p97_5":11.04,"p97_5_lo":10.98,"p97_5_hi":11.11},{"test":"PT","age":10,"p2_5":8.61,"p2_5_lo":8.58,"p2_5_hi":8.64,"p50":9.7,"p50_lo":9.67,"p50_hi":9.73,"p97_5":11.03,"p97_5_lo":10.97,"p97_5_hi":11.08},{"test":"PT","age":11,"p2_5":8.62,"p2_5_lo":8.58,"p2_5_hi":8.64,"p50":9.71,"p50_lo":9.65,"p50_hi":9.72,"p97_5":11.04,"p97_5_lo":10.97,"p97_5_hi":11.07},{"test":"PT","age":12,"p2_5":8.66,"p2_5_lo":8.63,"p2_5_hi":8.7,"p50":9.76,"p50_lo":9.72,"p50_hi":9.79,"p97_5":11.1,"p97_5_lo":11.04,"p97_5_hi":11.15},{"test":"PT","age":13,"p2_5":8.7,"p2_5_lo":8.66,"p2_5_hi":8.75,"p50":9.8,"p50_lo":9.76,"p50_hi":9.85,"p97_5":11.15,"p97_5_lo":11.09,"p97_5_hi":11.23},{"test":"PT","age":14,"p2_5":8.7,"p2_5_lo":8.65,"p2_5_hi":8.74,"p50":9.8,"p50_lo":9.74,"p50_hi":9.84,"p97_5":11.15,"p97_5_lo":11.05,"p97_5_hi":11.22},{"test":"PT","age":15,"p2_5":8.68,"p2_5_lo":8.64,"p2_5_hi":8.72,"p50":9.78,"p50_lo":9.73,"p50_hi":9.83,"p97_5":11.12,"p97_5_lo":11.05,"p97_5_hi":11.2},{"test":"PT","age":16,"p2_5":8.62,"p2_5_lo":8.56,"p2_5_hi":8.66,"p50":9.71,"p50_lo":9.64,"p50_hi":9.75,"p97_5":11.05,"p97_5_lo":10.94,"p97_5_hi":11.12},{"test":"PT","age":17,"p2_5":8.54,"p2_5_lo":8.52,"p2_5_hi":8.6,"p50":9.62,"p50_lo":9.6,"p50_hi":9.67,"p97_5":10.94,"p97_5_lo":10.91,"p97_5_hi":11.03},{"test":"aPTT","age":1,"p2_5":22.83,"p2_5_lo":22.48,"p2_5_hi":23.84,"p50":28.85,"p50_lo":28.74,"p50_hi":29.29,"p97_5":35.36,"p97_5_lo":34.85,"p97_5_hi":35.95},{"test":"aPTT","age":2,"p2_5":22.82,"p2_5_lo":22.1,"p2_5_hi":23.36,"p50":28.64,"p50_lo":28.46,"p50_hi":28.95,"p97_5":34.91,"p97_5_lo":34.68,"p97_5_hi":35.69},{"test":"aPTT","age":3,"p2_5":23.06,"p2_5_lo":22.7,"p2_5_hi":24.11,"p50":28.71,"p50_lo":28.57,"p50_hi":29.13,"p97_5":34.81,"p97_5_lo":34.38,"p97_5_hi":35.24},{"test":"aPTT","age":4,"p2_5":23.46,"p2_5_lo":23.17,"p2_5_hi":24.15,"p50":29,"p50_lo":28.85,"p50_hi":29.3,"p97_5":34.95,"p97_5_lo":34.16,"p97_5_hi":35.24},{"test":"aPTT","age":5,"p2_5":23.87,"p2_5_lo":23.64,"p2_5_hi":24.61,"p50":29.32,"p50_lo":29.11,"p50_hi":29.6,"p97_5":35.16,"p97_5_lo":33.98,"p97_5_hi":35.44},{"test":"aPTT","age":6,"p2_5":24.13,"p2_5_lo":23.87,"p2_5_hi":24.96,"p50":29.5,"p50_lo":29.36,"p50_hi":29.69,"p97_5":35.26,"p97_5_lo":34.41,"p97_5_hi":35.45},{"test":"aPTT","age":7,"p2_5":24.17,"p2_5_lo":23.72,"p2_5_hi":24.73,"p50":29.48,"p50_lo":29.25,"p50_hi":29.61,"p97_5":35.15,"p97_5_lo":34.68,"p97_5_hi":35.53},{"test":"aPTT","age":8,"p2_5":24.13,"p2_5_lo":23.82,"p2_5_hi":24.55,"p50":29.39,"p50_lo":29.21,"p50_hi":29.54,"p97_5":35.02,"p97_5_lo":34.55,"p97_5_hi":35.34},{"test":"aPTT","age":9,"p2_5":24.04,"p2_5_lo":23.69,"p2_5_hi":24.49,"p50":29.29,"p50_lo":29.14,"p50_hi":29.46,"p97_5":34.91,"p97_5_lo":34.55,"p97_5_hi":35.31},{"test":"aPTT","age":10,"p2_5":23.91,"p2_5_lo":23.45,"p2_5_hi":24.49,"p50":29.15,"p50_lo":28.92,"p50_hi":29.28,"p97_5":34.76,"p97_5_lo":33.96,"p97_5_hi":35.1},{"test":"aPTT","age":11,"p2_5":23.76,"p2_5_lo":23.22,"p2_5_hi":24.15,"p50":28.97,"p50_lo":28.71,"p50_hi":29.09,"p97_5":34.54,"p97_5_lo":33.87,"p97_5_hi":34.98},{"test":"aPTT","age":12,"p2_5":23.56,"p2_5_lo":23.26,"p2_5_hi":24.1,"p50":28.72,"p50_lo":28.54,"p50_hi":28.9,"p97_5":34.23,"p97_5_lo":33.61,"p97_5_hi":34.65},{"test":"aPTT","age":13,"p2_5":23.39,"p2_5_lo":23.21,"p2_5_hi":24.01,"p50":28.49,"p50_lo":28.4,"p50_hi":28.77,"p97_5":33.95,"p97_5_lo":33.53,"p97_5_hi":34.44},{"test":"aPTT","age":14,"p2_5":23.22,"p2_5_lo":22.9,"p2_5_hi":23.81,"p50":28.3,"p50_lo":28.19,"p50_hi":28.57,"p97_5":33.72,"p97_5_lo":33.09,"p97_5_hi":34.24},{"test":"aPTT","age":15,"p2_5":23.06,"p2_5_lo":22.63,"p2_5_hi":23.92,"p50":28.12,"p50_lo":27.82,"p50_hi":28.19,"p97_5":33.53,"p97_5_lo":32.27,"p97_5_hi":33.71},{"test":"aPTT","age":16,"p2_5":22.94,"p2_5_lo":22.52,"p2_5_hi":23.21,"p50":28,"p50_lo":27.46,"p50_hi":28.01,"p97_5":33.41,"p97_5_lo":32.28,"p97_5_hi":33.55},{"test":"aPTT","age":17,"p2_5":22.93,"p2_5_lo":22.66,"p2_5_hi":24.01,"p50":28.01,"p50_lo":27.86,"p50_hi":28.4,"p97_5":33.44,"p97_5_lo":32.93,"p97_5_hi":33.66},{"test":"Fibrinogen","age":1,"p2_5":1.76,"p2_5_lo":1.68,"p2_5_hi":1.82,"p50":2.52,"p50_lo":2.42,"p50_hi":2.62,"p97_5":3.61,"p97_5_lo":3.31,"p97_5_hi":4.01},{"test":"Fibrinogen","age":2,"p2_5":1.79,"p2_5_lo":1.73,"p2_5_hi":1.85,"p50":2.56,"p50_lo":2.47,"p50_hi":2.65,"p97_5":3.66,"p97_5_lo":3.38,"p97_5_hi":3.99},{"test":"Fibrinogen","age":3,"p2_5":1.82,"p2_5_lo":1.78,"p2_5_hi":1.88,"p50":2.6,"p50_lo":2.53,"p50_hi":2.69,"p97_5":3.71,"p97_5_lo":3.47,"p97_5_hi":3.98},{"test":"Fibrinogen","age":4,"p2_5":1.85,"p2_5_lo":1.81,"p2_5_hi":1.91,"p50":2.63,"p50_lo":2.58,"p50_hi":2.72,"p97_5":3.75,"p97_5_lo":3.56,"p97_5_hi":3.98},{"test":"Fibrinogen","age":5,"p2_5":1.87,"p2_5_lo":1.86,"p2_5_hi":1.93,"p50":2.66,"p50_lo":2.61,"p50_hi":2.73,"p97_5":3.79,"p97_5_lo":3.58,"p97_5_hi":3.98},{"test":"Fibrinogen","age":6,"p2_5":1.89,"p2_5_lo":1.88,"p2_5_hi":1.96,"p50":2.69,"p50_lo":2.64,"p50_hi":2.75,"p97_5":3.81,"p97_5_lo":3.62,"p97_5_hi":3.94},{"test":"Fibrinogen","age":7,"p2_5":1.91,"p2_5_lo":1.89,"p2_5_hi":1.97,"p50":2.7,"p50_lo":2.66,"p50_hi":2.76,"p97_5":3.83,"p97_5_lo":3.64,"p97_5_hi":3.96},{"test":"Fibrinogen","age":8,"p2_5":1.92,"p2_5_lo":1.9,"p2_5_hi":1.98,"p50":2.72,"p50_lo":2.65,"p50_hi":2.76,"p97_5":3.84,"p97_5_lo":3.65,"p97_5_hi":3.96},{"test":"Fibrinogen","age":9,"p2_5":1.94,"p2_5_lo":1.92,"p2_5_hi":1.99,"p50":2.74,"p50_lo":2.68,"p50_hi":2.78,"p97_5":3.86,"p97_5_lo":3.65,"p97_5_hi":3.97},{"test":"Fibrinogen","age":10,"p2_5":1.96,"p2_5_lo":1.94,"p2_5_hi":2.02,"p50":2.76,"p50_lo":2.72,"p50_hi":2.81,"p97_5":3.89,"p97_5_lo":3.7,"p97_5_hi":4.01},{"test":"Fibrinogen","age":11,"p2_5":1.98,"p2_5_lo":1.95,"p2_5_hi":2.06,"p50":2.78,"p50_lo":2.73,"p50_hi":2.84,"p97_5":3.91,"p97_5_lo":3.71,"p97_5_hi":4.04},{"test":"Fibrinogen","age":12,"p2_5":1.98,"p2_5_lo":1.94,"p2_5_hi":2.02,"p50":2.79,"p50_lo":2.74,"p50_hi":2.83,"p97_5":3.91,"p97_5_lo":3.78,"p97_5_hi":4.07},{"test":"Fibrinogen","age":13,"p2_5":1.98,"p2_5_lo":1.92,"p2_5_hi":1.99,"p50":2.78,"p50_lo":2.71,"p50_hi":2.85,"p97_5":3.89,"p97_5_lo":3.78,"p97_5_hi":4.19},{"test":"Fibrinogen","age":14,"p2_5":1.97,"p2_5_lo":1.87,"p2_5_hi":1.97,"p50":2.76,"p50_lo":2.7,"p50_hi":2.89,"p97_5":3.86,"p97_5_lo":3.75,"p97_5_hi":4.48},{"test":"Fibrinogen","age":15,"p2_5":1.95,"p2_5_lo":1.85,"p2_5_hi":1.97,"p50":2.72,"p50_lo":2.69,"p50_hi":2.97,"p97_5":3.8,"p97_5_lo":3.77,"p97_5_hi":4.71},{"test":"Fibrinogen","age":16,"p2_5":1.92,"p2_5_lo":1.84,"p2_5_hi":1.98,"p50":2.68,"p50_lo":2.65,"p50_hi":3.08,"p97_5":3.73,"p97_5_lo":3.64,"p97_5_hi":4.95},{"test":"Fibrinogen","age":17,"p2_5":1.9,"p2_5_lo":1.84,"p2_5_hi":1.99,"p50":2.64,"p50_lo":2.62,"p50_hi":3.22,"p97_5":3.67,"p97_5_lo":3.59,"p97_5_hi":5.24}],"flagAge":[{"test":"Fibrinogen","age":1,"n":208,"ri_source":"Manufacturer","fp_rate":18.75},{"test":"Fibrinogen","age":1,"n":208,"ri_source":"refineR","fp_rate":18.75},{"test":"Fibrinogen","age":1,"n":208,"ri_source":"Continuous (GAMLSS)","fp_rate":18.269231},{"test":"Fibrinogen","age":1,"n":208,"ri_source":"Direct (a posteriori)","fp_rate":25},{"test":"Fibrinogen","age":2,"n":167,"ri_source":"Manufacturer","fp_rate":16.766467},{"test":"Fibrinogen","age":2,"n":167,"ri_source":"refineR","fp_rate":18.562874},{"test":"Fibrinogen","age":2,"n":167,"ri_source":"Continuous (GAMLSS)","fp_rate":16.766467},{"test":"Fibrinogen","age":2,"n":167,"ri_source":"Direct (a posteriori)","fp_rate":25.748503},{"test":"Fibrinogen","age":3,"n":138,"ri_source":"Manufacturer","fp_rate":16.666667},{"test":"Fibrinogen","age":3,"n":138,"ri_source":"refineR","fp_rate":19.565217},{"test":"Fibrinogen","age":3,"n":138,"ri_source":"Continuous (GAMLSS)","fp_rate":18.84058},{"test":"Fibrinogen","age":3,"n":138,"ri_source":"Direct (a posteriori)","fp_rate":22.463768},{"test":"Fibrinogen","age":4,"n":148,"ri_source":"Manufacturer","fp_rate":14.864865},{"test":"Fibrinogen","age":4,"n":148,"ri_source":"refineR","fp_rate":22.972973},{"test":"Fibrinogen","age":4,"n":148,"ri_source":"Continuous (GAMLSS)","fp_rate":22.297297},{"test":"Fibrinogen","age":4,"n":148,"ri_source":"Direct (a posteriori)","fp_rate":20.27027},{"test":"Fibrinogen","age":5,"n":172,"ri_source":"Manufacturer","fp_rate":12.209302},{"test":"Fibrinogen","age":5,"n":172,"ri_source":"refineR","fp_rate":14.534884},{"test":"Fibrinogen","age":5,"n":172,"ri_source":"Continuous (GAMLSS)","fp_rate":13.953488},{"test":"Fibrinogen","age":5,"n":172,"ri_source":"Direct (a posteriori)","fp_rate":18.604651},{"test":"Fibrinogen","age":6,"n":171,"ri_source":"Manufacturer","fp_rate":11.695906},{"test":"Fibrinogen","age":6,"n":171,"ri_source":"refineR","fp_rate":15.789474},{"test":"Fibrinogen","age":6,"n":171,"ri_source":"Continuous (GAMLSS)","fp_rate":16.374269},{"test":"Fibrinogen","age":6,"n":171,"ri_source":"Direct (a posteriori)","fp_rate":18.128655},{"test":"Fibrinogen","age":7,"n":165,"ri_source":"Manufacturer","fp_rate":13.939394},{"test":"Fibrinogen","age":7,"n":165,"ri_source":"refineR","fp_rate":20},{"test":"Fibrinogen","age":7,"n":165,"ri_source":"Continuous (GAMLSS)","fp_rate":19.393939},{"test":"Fibrinogen","age":7,"n":165,"ri_source":"Direct (a posteriori)","fp_rate":18.181818},{"test":"Fibrinogen","age":8,"n":155,"ri_source":"Manufacturer","fp_rate":14.83871},{"test":"Fibrinogen","age":8,"n":155,"ri_source":"refineR","fp_rate":15.483871},{"test":"Fibrinogen","age":8,"n":155,"ri_source":"Continuous (GAMLSS)","fp_rate":17.419355},{"test":"Fibrinogen","age":8,"n":155,"ri_source":"Direct (a posteriori)","fp_rate":18.709677},{"test":"Fibrinogen","age":9,"n":148,"ri_source":"Manufacturer","fp_rate":13.513514},{"test":"Fibrinogen","age":9,"n":148,"ri_source":"refineR","fp_rate":18.918919},{"test":"Fibrinogen","age":9,"n":148,"ri_source":"Continuous (GAMLSS)","fp_rate":18.243243},{"test":"Fibrinogen","age":9,"n":148,"ri_source":"Direct (a posteriori)","fp_rate":20.945946},{"test":"Fibrinogen","age":10,"n":164,"ri_source":"Manufacturer","fp_rate":14.634146},{"test":"Fibrinogen","age":10,"n":164,"ri_source":"refineR","fp_rate":21.341463},{"test":"Fibrinogen","age":10,"n":164,"ri_source":"Continuous (GAMLSS)","fp_rate":20.121951},{"test":"Fibrinogen","age":10,"n":164,"ri_source":"Direct (a posteriori)","fp_rate":20.731707},{"test":"Fibrinogen","age":11,"n":137,"ri_source":"Manufacturer","fp_rate":8.759124},{"test":"Fibrinogen","age":11,"n":137,"ri_source":"refineR","fp_rate":15.328467},{"test":"Fibrinogen","age":11,"n":137,"ri_source":"Continuous (GAMLSS)","fp_rate":14.59854},{"test":"Fibrinogen","age":11,"n":137,"ri_source":"Direct (a posteriori)","fp_rate":15.328467},{"test":"Fibrinogen","age":12,"n":146,"ri_source":"Manufacturer","fp_rate":16.438356},{"test":"Fibrinogen","age":12,"n":146,"ri_source":"refineR","fp_rate":21.917808},{"test":"Fibrinogen","age":12,"n":146,"ri_source":"Continuous (GAMLSS)","fp_rate":20.547945},{"test":"Fibrinogen","age":12,"n":146,"ri_source":"Direct (a posteriori)","fp_rate":21.232877},{"test":"Fibrinogen","age":13,"n":166,"ri_source":"Manufacturer","fp_rate":12.650602},{"test":"Fibrinogen","age":13,"n":166,"ri_source":"refineR","fp_rate":19.879518},{"test":"Fibrinogen","age":13,"n":166,"ri_source":"Continuous (GAMLSS)","fp_rate":18.674699},{"test":"Fibrinogen","age":13,"n":166,"ri_source":"Direct (a posteriori)","fp_rate":19.277108},{"test":"Fibrinogen","age":14,"n":188,"ri_source":"Manufacturer","fp_rate":17.021277},{"test":"Fibrinogen","age":14,"n":188,"ri_source":"refineR","fp_rate":21.276596},{"test":"Fibrinogen","age":14,"n":188,"ri_source":"Continuous (GAMLSS)","fp_rate":21.808511},{"test":"Fibrinogen","age":14,"n":188,"ri_source":"Direct (a posteriori)","fp_rate":22.87234},{"test":"Fibrinogen","age":15,"n":240,"ri_source":"Manufacturer","fp_rate":15.833333},{"test":"Fibrinogen","age":15,"n":240,"ri_source":"refineR","fp_rate":22.083333},{"test":"Fibrinogen","age":15,"n":240,"ri_source":"Continuous (GAMLSS)","fp_rate":22.5},{"test":"Fibrinogen","age":15,"n":240,"ri_source":"Direct (a posteriori)","fp_rate":22.916667},{"test":"Fibrinogen","age":16,"n":278,"ri_source":"Manufacturer","fp_rate":17.985612},{"test":"Fibrinogen","age":16,"n":278,"ri_source":"refineR","fp_rate":23.021583},{"test":"Fibrinogen","age":16,"n":278,"ri_source":"Continuous (GAMLSS)","fp_rate":24.460432},{"test":"Fibrinogen","age":16,"n":278,"ri_source":"Direct (a posteriori)","fp_rate":25.179856},{"test":"Fibrinogen","age":17,"n":375,"ri_source":"Manufacturer","fp_rate":21.333333},{"test":"Fibrinogen","age":17,"n":375,"ri_source":"refineR","fp_rate":29.6},{"test":"Fibrinogen","age":17,"n":375,"ri_source":"Continuous (GAMLSS)","fp_rate":32},{"test":"Fibrinogen","age":17,"n":375,"ri_source":"Direct (a posteriori)","fp_rate":28.8},{"test":"PT","age":1,"n":1155,"ri_source":"Manufacturer","fp_rate":17.748918},{"test":"PT","age":1,"n":1155,"ri_source":"refineR","fp_rate":15.584416},{"test":"PT","age":1,"n":1155,"ri_source":"Continuous (GAMLSS)","fp_rate":15.757576},{"test":"PT","age":1,"n":1155,"ri_source":"Guven et al.","fp_rate":22.770563},{"test":"PT","age":1,"n":1155,"ri_source":"Direct (a posteriori)","fp_rate":12.294372},{"test":"PT","age":2,"n":880,"ri_source":"Manufacturer","fp_rate":18.181818},{"test":"PT","age":2,"n":880,"ri_source":"refineR","fp_rate":15.795455},{"test":"PT","age":2,"n":880,"ri_source":"Continuous (GAMLSS)","fp_rate":15.568182},{"test":"PT","age":2,"n":880,"ri_source":"Guven et al.","fp_rate":30.113636},{"test":"PT","age":2,"n":880,"ri_source":"Direct (a posteriori)","fp_rate":12.386364},{"test":"PT","age":3,"n":750,"ri_source":"Manufacturer","fp_rate":17.066667},{"test":"PT","age":3,"n":750,"ri_source":"refineR","fp_rate":14.666667},{"test":"PT","age":3,"n":750,"ri_source":"Continuous (GAMLSS)","fp_rate":13.866667},{"test":"PT","age":3,"n":750,"ri_source":"Guven et al.","fp_rate":30.933333},{"test":"PT","age":3,"n":750,"ri_source":"Direct (a posteriori)","fp_rate":11.866667},{"test":"PT","age":4,"n":825,"ri_source":"Manufacturer","fp_rate":15.272727},{"test":"PT","age":4,"n":825,"ri_source":"refineR","fp_rate":11.878788},{"test":"PT","age":4,"n":825,"ri_source":"Continuous (GAMLSS)","fp_rate":11.636364},{"test":"PT","age":4,"n":825,"ri_source":"Guven et al.","fp_rate":31.393939},{"test":"PT","age":4,"n":825,"ri_source":"Direct (a posteriori)","fp_rate":8.727273},{"test":"PT","age":5,"n":978,"ri_source":"Manufacturer","fp_rate":15.746421},{"test":"PT","age":5,"n":978,"ri_source":"refineR","fp_rate":12.167689},{"test":"PT","age":5,"n":978,"ri_source":"Continuous (GAMLSS)","fp_rate":12.269939},{"test":"PT","age":5,"n":978,"ri_source":"Guven et al.","fp_rate":30.777096},{"test":"PT","age":5,"n":978,"ri_source":"Direct (a posteriori)","fp_rate":9.202454},{"test":"PT","age":6,"n":1038,"ri_source":"Manufacturer","fp_rate":16.184971},{"test":"PT","age":6,"n":1038,"ri_source":"refineR","fp_rate":11.753372},{"test":"PT","age":6,"n":1038,"ri_source":"Continuous (GAMLSS)","fp_rate":10.982659},{"test":"PT","age":6,"n":1038,"ri_source":"Guven et al.","fp_rate":30.732177},{"test":"PT","age":6,"n":1038,"ri_source":"Direct (a posteriori)","fp_rate":8.959538},{"test":"PT","age":7,"n":1026,"ri_source":"Manufacturer","fp_rate":16.764133},{"test":"PT","age":7,"n":1026,"ri_source":"refineR","fp_rate":14.327485},{"test":"PT","age":7,"n":1026,"ri_source":"Continuous (GAMLSS)","fp_rate":13.645224},{"test":"PT","age":7,"n":1026,"ri_source":"Guven et al.","fp_rate":27.680312},{"test":"PT","age":7,"n":1026,"ri_source":"Direct (a posteriori)","fp_rate":9.551657},{"test":"PT","age":8,"n":942,"ri_source":"Manufacturer","fp_rate":14.225053},{"test":"PT","age":8,"n":942,"ri_source":"refineR","fp_rate":11.464968},{"test":"PT","age":8,"n":942,"ri_source":"Continuous (GAMLSS)","fp_rate":11.252654},{"test":"PT","age":8,"n":942,"ri_source":"Guven et al.","fp_rate":22.717622},{"test":"PT","age":8,"n":942,"ri_source":"Direct (a posteriori)","fp_rate":8.704883},{"test":"PT","age":9,"n":881,"ri_source":"Manufacturer","fp_rate":18.047673},{"test":"PT","age":9,"n":881,"ri_source":"refineR","fp_rate":12.826334},{"test":"PT","age":9,"n":881,"ri_source":"Continuous (GAMLSS)","fp_rate":11.918275},{"test":"PT","age":9,"n":881,"ri_source":"Guven et al.","fp_rate":31.441544},{"test":"PT","age":9,"n":881,"ri_source":"Direct (a posteriori)","fp_rate":9.875142},{"test":"PT","age":10,"n":841,"ri_source":"Manufacturer","fp_rate":14.982164},{"test":"PT","age":10,"n":841,"ri_source":"refineR","fp_rate":11.058264},{"test":"PT","age":10,"n":841,"ri_source":"Continuous (GAMLSS)","fp_rate":10.701546},{"test":"PT","age":10,"n":841,"ri_source":"Guven et al.","fp_rate":30.20214},{"test":"PT","age":10,"n":841,"ri_source":"Direct (a posteriori)","fp_rate":8.204518},{"test":"PT","age":11,"n":775,"ri_source":"Manufacturer","fp_rate":14.322581},{"test":"PT","age":11,"n":775,"ri_source":"refineR","fp_rate":10.064516},{"test":"PT","age":11,"n":775,"ri_source":"Continuous (GAMLSS)","fp_rate":9.290323},{"test":"PT","age":11,"n":775,"ri_source":"Guven et al.","fp_rate":32.645161},{"test":"PT","age":11,"n":775,"ri_source":"Direct (a posteriori)","fp_rate":7.483871},{"test":"PT","age":12,"n":793,"ri_source":"Manufacturer","fp_rate":17.78058},{"test":"PT","age":12,"n":793,"ri_source":"refineR","fp_rate":11.727617},{"test":"PT","age":12,"n":793,"ri_source":"Continuous (GAMLSS)","fp_rate":10.718789},{"test":"PT","age":12,"n":793,"ri_source":"Guven et al.","fp_rate":39.092055},{"test":"PT","age":12,"n":793,"ri_source":"Direct (a posteriori)","fp_rate":7.692308},{"test":"PT","age":13,"n":901,"ri_source":"Manufacturer","fp_rate":17.980022},{"test":"PT","age":13,"n":901,"ri_source":"refineR","fp_rate":12.763596},{"test":"PT","age":13,"n":901,"ri_source":"Continuous (GAMLSS)","fp_rate":11.098779},{"test":"PT","age":13,"n":901,"ri_source":"Guven et al.","fp_rate":40.066593},{"test":"PT","age":13,"n":901,"ri_source":"Direct (a posteriori)","fp_rate":8.768036},{"test":"PT","age":14,"n":964,"ri_source":"Manufacturer","fp_rate":18.983402},{"test":"PT","age":14,"n":964,"ri_source":"refineR","fp_rate":14.522822},{"test":"PT","age":14,"n":964,"ri_source":"Continuous (GAMLSS)","fp_rate":14.419087},{"test":"PT","age":14,"n":964,"ri_source":"Guven et al.","fp_rate":37.136929},{"test":"PT","age":14,"n":964,"ri_source":"Direct (a posteriori)","fp_rate":11.20332},{"test":"PT","age":15,"n":1227,"ri_source":"Manufacturer","fp_rate":19.315403},{"test":"PT","age":15,"n":1227,"ri_source":"refineR","fp_rate":15.158924},{"test":"PT","age":15,"n":1227,"ri_source":"Continuous (GAMLSS)","fp_rate":13.121434},{"test":"PT","age":15,"n":1227,"ri_source":"Guven et al.","fp_rate":31.784841},{"test":"PT","age":15,"n":1227,"ri_source":"Direct (a posteriori)","fp_rate":11.083945},{"test":"PT","age":16,"n":1395,"ri_source":"Manufacturer","fp_rate":20.860215},{"test":"PT","age":16,"n":1395,"ri_source":"refineR","fp_rate":16.415771},{"test":"PT","age":16,"n":1395,"ri_source":"Continuous (GAMLSS)","fp_rate":14.910394},{"test":"PT","age":16,"n":1395,"ri_source":"Guven et al.","fp_rate":27.741935},{"test":"PT","age":16,"n":1395,"ri_source":"Direct (a posteriori)","fp_rate":11.899642},{"test":"PT","age":17,"n":1629,"ri_source":"Manufacturer","fp_rate":18.661756},{"test":"PT","age":17,"n":1629,"ri_source":"refineR","fp_rate":15.039902},{"test":"PT","age":17,"n":1629,"ri_source":"Continuous (GAMLSS)","fp_rate":14.671578},{"test":"PT","age":17,"n":1629,"ri_source":"Guven et al.","fp_rate":20.073665},{"test":"PT","age":17,"n":1629,"ri_source":"Direct (a posteriori)","fp_rate":10.988336},{"test":"aPTT","age":1,"n":1172,"ri_source":"Manufacturer","fp_rate":39.761092},{"test":"aPTT","age":1,"n":1172,"ri_source":"refineR","fp_rate":16.808874},{"test":"aPTT","age":1,"n":1172,"ri_source":"Continuous (GAMLSS)","fp_rate":12.457338},{"test":"aPTT","age":1,"n":1172,"ri_source":"Guven et al.","fp_rate":19.709898},{"test":"aPTT","age":1,"n":1172,"ri_source":"Direct (a posteriori)","fp_rate":11.006826},{"test":"aPTT","age":2,"n":888,"ri_source":"Manufacturer","fp_rate":37.5},{"test":"aPTT","age":2,"n":888,"ri_source":"refineR","fp_rate":17.22973},{"test":"aPTT","age":2,"n":888,"ri_source":"Continuous (GAMLSS)","fp_rate":13.175676},{"test":"aPTT","age":2,"n":888,"ri_source":"Guven et al.","fp_rate":19.594595},{"test":"aPTT","age":2,"n":888,"ri_source":"Direct (a posteriori)","fp_rate":11.261261},{"test":"aPTT","age":3,"n":742,"ri_source":"Manufacturer","fp_rate":35.040431},{"test":"aPTT","age":3,"n":742,"ri_source":"refineR","fp_rate":12.12938},{"test":"aPTT","age":3,"n":742,"ri_source":"Continuous (GAMLSS)","fp_rate":9.16442},{"test":"aPTT","age":3,"n":742,"ri_source":"Guven et al.","fp_rate":12.938005},{"test":"aPTT","age":3,"n":742,"ri_source":"Direct (a posteriori)","fp_rate":7.008086},{"test":"aPTT","age":4,"n":821,"ri_source":"Manufacturer","fp_rate":33.373934},{"test":"aPTT","age":4,"n":821,"ri_source":"refineR","fp_rate":10.962241},{"test":"aPTT","age":4,"n":821,"ri_source":"Continuous (GAMLSS)","fp_rate":9.500609},{"test":"aPTT","age":4,"n":821,"ri_source":"Guven et al.","fp_rate":12.423873},{"test":"aPTT","age":4,"n":821,"ri_source":"Direct (a posteriori)","fp_rate":6.455542},{"test":"aPTT","age":5,"n":971,"ri_source":"Manufacturer","fp_rate":36.560247},{"test":"aPTT","age":5,"n":971,"ri_source":"refineR","fp_rate":11.225541},{"test":"aPTT","age":5,"n":971,"ri_source":"Continuous (GAMLSS)","fp_rate":10.401648},{"test":"aPTT","age":5,"n":971,"ri_source":"Guven et al.","fp_rate":12.46138},{"test":"aPTT","age":5,"n":971,"ri_source":"Direct (a posteriori)","fp_rate":6.69413},{"test":"aPTT","age":6,"n":1018,"ri_source":"Manufacturer","fp_rate":39.587426},{"test":"aPTT","age":6,"n":1018,"ri_source":"refineR","fp_rate":11.100196},{"test":"aPTT","age":6,"n":1018,"ri_source":"Continuous (GAMLSS)","fp_rate":10.510806},{"test":"aPTT","age":6,"n":1018,"ri_source":"Guven et al.","fp_rate":12.671906},{"test":"aPTT","age":6,"n":1018,"ri_source":"Direct (a posteriori)","fp_rate":6.876228},{"test":"aPTT","age":7,"n":1033,"ri_source":"Manufacturer","fp_rate":36.302033},{"test":"aPTT","age":7,"n":1033,"ri_source":"refineR","fp_rate":11.42304},{"test":"aPTT","age":7,"n":1033,"ri_source":"Continuous (GAMLSS)","fp_rate":11.519845},{"test":"aPTT","age":7,"n":1033,"ri_source":"Guven et al.","fp_rate":14.520813},{"test":"aPTT","age":7,"n":1033,"ri_source":"Direct (a posteriori)","fp_rate":7.357212},{"test":"aPTT","age":8,"n":937,"ri_source":"Manufacturer","fp_rate":36.926361},{"test":"aPTT","age":8,"n":937,"ri_source":"refineR","fp_rate":10.138741},{"test":"aPTT","age":8,"n":937,"ri_source":"Continuous (GAMLSS)","fp_rate":10.779082},{"test":"aPTT","age":8,"n":937,"ri_source":"Guven et al.","fp_rate":14.727855},{"test":"aPTT","age":8,"n":937,"ri_source":"Direct (a posteriori)","fp_rate":6.083244},{"test":"aPTT","age":9,"n":885,"ri_source":"Manufacturer","fp_rate":37.175141},{"test":"aPTT","age":9,"n":885,"ri_source":"refineR","fp_rate":12.768362},{"test":"aPTT","age":9,"n":885,"ri_source":"Continuous (GAMLSS)","fp_rate":12.881356},{"test":"aPTT","age":9,"n":885,"ri_source":"Guven et al.","fp_rate":14.576271},{"test":"aPTT","age":9,"n":885,"ri_source":"Direct (a posteriori)","fp_rate":7.909605},{"test":"aPTT","age":10,"n":843,"ri_source":"Manufacturer","fp_rate":32.62159},{"test":"aPTT","age":10,"n":843,"ri_source":"refineR","fp_rate":10.557533},{"test":"aPTT","age":10,"n":843,"ri_source":"Continuous (GAMLSS)","fp_rate":10.320285},{"test":"aPTT","age":10,"n":843,"ri_source":"Guven et al.","fp_rate":12.692764},{"test":"aPTT","age":10,"n":843,"ri_source":"Direct (a posteriori)","fp_rate":5.338078},{"test":"aPTT","age":11,"n":781,"ri_source":"Manufacturer","fp_rate":33.162612},{"test":"aPTT","age":11,"n":781,"ri_source":"refineR","fp_rate":10.243278},{"test":"aPTT","age":11,"n":781,"ri_source":"Continuous (GAMLSS)","fp_rate":9.859155},{"test":"aPTT","age":11,"n":781,"ri_source":"Guven et al.","fp_rate":12.035851},{"test":"aPTT","age":11,"n":781,"ri_source":"Direct (a posteriori)","fp_rate":5.24968},{"test":"aPTT","age":12,"n":789,"ri_source":"Manufacturer","fp_rate":31.178707},{"test":"aPTT","age":12,"n":789,"ri_source":"refineR","fp_rate":10.899873},{"test":"aPTT","age":12,"n":789,"ri_source":"Continuous (GAMLSS)","fp_rate":10.26616},{"test":"aPTT","age":12,"n":789,"ri_source":"Guven et al.","fp_rate":13.307985},{"test":"aPTT","age":12,"n":789,"ri_source":"Direct (a posteriori)","fp_rate":13.054499},{"test":"aPTT","age":13,"n":885,"ri_source":"Manufacturer","fp_rate":28.813559},{"test":"aPTT","age":13,"n":885,"ri_source":"refineR","fp_rate":10.282486},{"test":"aPTT","age":13,"n":885,"ri_source":"Continuous (GAMLSS)","fp_rate":10.847458},{"test":"aPTT","age":13,"n":885,"ri_source":"Guven et al.","fp_rate":13.672316},{"test":"aPTT","age":13,"n":885,"ri_source":"Direct (a posteriori)","fp_rate":12.768362},{"test":"aPTT","age":14,"n":963,"ri_source":"Manufacturer","fp_rate":28.971963},{"test":"aPTT","age":14,"n":963,"ri_source":"refineR","fp_rate":11.838006},{"test":"aPTT","age":14,"n":963,"ri_source":"Continuous (GAMLSS)","fp_rate":12.357217},{"test":"aPTT","age":14,"n":963,"ri_source":"Guven et al.","fp_rate":16.510903},{"test":"aPTT","age":14,"n":963,"ri_source":"Direct (a posteriori)","fp_rate":13.811007},{"test":"aPTT","age":15,"n":1194,"ri_source":"Manufacturer","fp_rate":24.455611},{"test":"aPTT","age":15,"n":1194,"ri_source":"refineR","fp_rate":9.128978},{"test":"aPTT","age":15,"n":1194,"ri_source":"Continuous (GAMLSS)","fp_rate":8.961474},{"test":"aPTT","age":15,"n":1194,"ri_source":"Guven et al.","fp_rate":15.326633},{"test":"aPTT","age":15,"n":1194,"ri_source":"Direct (a posteriori)","fp_rate":10.80402},{"test":"aPTT","age":16,"n":1393,"ri_source":"Manufacturer","fp_rate":24.838478},{"test":"aPTT","age":16,"n":1393,"ri_source":"refineR","fp_rate":10.050251},{"test":"aPTT","age":16,"n":1393,"ri_source":"Continuous (GAMLSS)","fp_rate":9.691314},{"test":"aPTT","age":16,"n":1393,"ri_source":"Guven et al.","fp_rate":18.090452},{"test":"aPTT","age":16,"n":1393,"ri_source":"Direct (a posteriori)","fp_rate":11.916726},{"test":"aPTT","age":17,"n":1686,"ri_source":"Manufacturer","fp_rate":23.902728},{"test":"aPTT","age":17,"n":1686,"ri_source":"refineR","fp_rate":9.727165},{"test":"aPTT","age":17,"n":1686,"ri_source":"Continuous (GAMLSS)","fp_rate":9.905101},{"test":"aPTT","age":17,"n":1686,"ri_source":"Guven et al.","fp_rate":19.632266},{"test":"aPTT","age":17,"n":1686,"ri_source":"Direct (a posteriori)","fp_rate":11.269276}],"flagOverall":[{"test":"PT","ri_source":"Manufacturer","fp_mean":17.424912,"fp_ci_lo":16.852794,"fp_ci_hi":17.970588,"fp_label":"17.4 (16.9-18.0)"},{"test":"aPTT","ri_source":"Manufacturer","fp_mean":32.31187,"fp_ci_lo":31.603876,"fp_ci_hi":33.033498,"fp_label":"32.3 (31.6-33.0)"},{"test":"Fibrinogen","ri_source":"Manufacturer","fp_mean":15.823247,"fp_ci_lo":14.592546,"fp_ci_hi":17.087808,"fp_label":"15.8 (14.6-17.1)"},{"test":"PT","ri_source":"refineR","fp_mean":13.618682,"fp_ci_lo":13.123529,"fp_ci_hi":14.147206,"fp_label":"13.6 (13.1-14.1)"},{"test":"Fibrinogen","ri_source":"refineR","fp_mean":20.744852,"fp_ci_lo":19.2988,"fp_ci_hi":22.173089,"fp_label":"20.7 (19.3-22.2)"},{"test":"aPTT","ri_source":"refineR","fp_mean":11.468925,"fp_ci_lo":11.005235,"fp_ci_hi":11.940621,"fp_label":"11.5 (11.0-11.9)"},{"test":"PT","ri_source":"Continuous","fp_mean":12.934165,"fp_ci_lo":12.423382,"fp_ci_hi":13.417794,"fp_label":"12.9 (12.4-13.4)"},{"test":"aPTT","ri_source":"Continuous","fp_mean":10.702753,"fp_ci_lo":10.234692,"fp_ci_hi":11.199488,"fp_label":"10.7 (10.2-11.2)"},{"test":"Fibrinogen","ri_source":"Continuous","fp_mean":20.790556,"fp_ci_lo":19.456728,"fp_ci_hi":22.23705,"fp_label":"20.8 (19.5-22.2)"},{"test":"PT","ri_source":"Guven","fp_mean":29.710494,"fp_ci_lo":29.041029,"fp_ci_hi":30.370735,"fp_label":"29.7 (29.0-30.4)"},{"test":"aPTT","ri_source":"Guven","fp_mean":15.416034,"fp_ci_lo":14.898682,"fp_ci_hi":15.952003,"fp_label":"15.4 (14.9-16.0)"},{"test":"PT","ri_source":"Direct","fp_mean":10.098194,"fp_ci_lo":9.611618,"fp_ci_hi":10.576618,"fp_label":"10.1 (9.6-10.6)"},{"test":"Fibrinogen","ri_source":"Direct","fp_mean":22.15019,"fp_ci_lo":20.688566,"fp_ci_hi":23.689198,"fp_label":"22.2 (20.7-23.7)"},{"test":"aPTT","ri_source":"Direct","fp_mean":9.37059,"fp_ci_lo":8.917123,"fp_ci_hi":9.799424,"fp_label":"9.4 (8.9-9.8)"}],"flagCounts":[{"test":"Fibrinogen","ri_source":"Manufacturer","n_total":3166,"rate":15.792798,"count":500},{"test":"Fibrinogen","ri_source":"refineR","n_total":3166,"rate":20.751737,"count":657},{"test":"Fibrinogen","ri_source":"Continuous","n_total":3166,"rate":20.846494,"count":660},{"test":"Fibrinogen","ri_source":"Direct","n_total":3166,"rate":22.204675,"count":703},{"test":"PT","ri_source":"Manufacturer","n_total":17000,"rate":17.417647,"count":2961},{"test":"PT","ri_source":"refineR","n_total":17000,"rate":13.617647,"count":2315},{"test":"PT","ri_source":"Continuous","n_total":17000,"rate":12.929412,"count":2198},{"test":"PT","ri_source":"Guven","n_total":17000,"rate":29.729412,"count":5054},{"test":"PT","ri_source":"Direct","n_total":17000,"rate":10.105882,"count":1718},{"test":"aPTT","ri_source":"Manufacturer","n_total":17001,"rate":32.32751,"count":5496},{"test":"aPTT","ri_source":"refineR","n_total":17001,"rate":11.475796,"count":1951},{"test":"aPTT","ri_source":"Continuous","n_total":17001,"rate":10.705253,"count":1820},{"test":"aPTT","ri_source":"Guven","n_total":17001,"rate":15.422622,"count":2622},{"test":"aPTT","ri_source":"Direct","n_total":17001,"rate":9.364155,"count":1592}],"limits":[{"test":"Fibrinogen","age":1,"method":"Continuous (GAMLSS)","lower":1.76,"upper":3.61},{"test":"Fibrinogen","age":1,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":1,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":1,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":2,"method":"Continuous (GAMLSS)","lower":1.79,"upper":3.66},{"test":"Fibrinogen","age":2,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":2,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":2,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":3,"method":"Continuous (GAMLSS)","lower":1.82,"upper":3.71},{"test":"Fibrinogen","age":3,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":3,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":3,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":4,"method":"Continuous (GAMLSS)","lower":1.85,"upper":3.75},{"test":"Fibrinogen","age":4,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":4,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":4,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":5,"method":"Continuous (GAMLSS)","lower":1.87,"upper":3.79},{"test":"Fibrinogen","age":5,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":5,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":5,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":6,"method":"Continuous (GAMLSS)","lower":1.89,"upper":3.81},{"test":"Fibrinogen","age":6,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":6,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":6,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":7,"method":"Continuous (GAMLSS)","lower":1.91,"upper":3.83},{"test":"Fibrinogen","age":7,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":7,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":7,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":8,"method":"Continuous (GAMLSS)","lower":1.92,"upper":3.84},{"test":"Fibrinogen","age":8,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":8,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":8,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":9,"method":"Continuous (GAMLSS)","lower":1.94,"upper":3.86},{"test":"Fibrinogen","age":9,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":9,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":9,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":10,"method":"Continuous (GAMLSS)","lower":1.96,"upper":3.89},{"test":"Fibrinogen","age":10,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":10,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":10,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":11,"method":"Continuous (GAMLSS)","lower":1.98,"upper":3.91},{"test":"Fibrinogen","age":11,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":11,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":11,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":12,"method":"Continuous (GAMLSS)","lower":1.98,"upper":3.91},{"test":"Fibrinogen","age":12,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":12,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":12,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":13,"method":"Continuous (GAMLSS)","lower":1.98,"upper":3.89},{"test":"Fibrinogen","age":13,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":13,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":13,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":14,"method":"Continuous (GAMLSS)","lower":1.97,"upper":3.86},{"test":"Fibrinogen","age":14,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":14,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":14,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":15,"method":"Continuous (GAMLSS)","lower":1.95,"upper":3.8},{"test":"Fibrinogen","age":15,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":15,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":15,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":16,"method":"Continuous (GAMLSS)","lower":1.92,"upper":3.73},{"test":"Fibrinogen","age":16,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":16,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":16,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"Fibrinogen","age":17,"method":"Continuous (GAMLSS)","lower":1.9,"upper":3.67},{"test":"Fibrinogen","age":17,"method":"Direct (a posteriori)","lower":2.07,"upper":3.89},{"test":"Fibrinogen","age":17,"method":"Indirect (refineR)","lower":1.89,"upper":3.79},{"test":"Fibrinogen","age":17,"method":"Manufacturer","lower":1.93,"upper":4.12},{"test":"PT","age":1,"method":"Continuous (GAMLSS)","lower":8.48,"upper":10.87},{"test":"PT","age":1,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":1,"method":"Guven et al.","lower":7.8,"upper":10.3},{"test":"PT","age":1,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":1,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":2,"method":"Continuous (GAMLSS)","lower":8.49,"upper":10.88},{"test":"PT","age":2,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":2,"method":"Guven et al.","lower":7.8,"upper":10.1},{"test":"PT","age":2,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":2,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":3,"method":"Continuous (GAMLSS)","lower":8.5,"upper":10.9},{"test":"PT","age":3,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":3,"method":"Guven et al.","lower":7.8,"upper":10},{"test":"PT","age":3,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":3,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":4,"method":"Continuous (GAMLSS)","lower":8.53,"upper":10.93},{"test":"PT","age":4,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":4,"method":"Guven et al.","lower":7.9,"upper":10},{"test":"PT","age":4,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":4,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":5,"method":"Continuous (GAMLSS)","lower":8.57,"upper":10.98},{"test":"PT","age":5,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":5,"method":"Guven et al.","lower":8,"upper":10},{"test":"PT","age":5,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":5,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":6,"method":"Continuous (GAMLSS)","lower":8.6,"upper":11.03},{"test":"PT","age":6,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":6,"method":"Guven et al.","lower":8,"upper":10.1},{"test":"PT","age":6,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":6,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":7,"method":"Continuous (GAMLSS)","lower":8.61,"upper":11.04},{"test":"PT","age":7,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":7,"method":"Guven et al.","lower":8,"upper":10.2},{"test":"PT","age":7,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":7,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":8,"method":"Continuous (GAMLSS)","lower":8.61,"upper":11.03},{"test":"PT","age":8,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":8,"method":"Guven et al.","lower":8.1,"upper":10.3},{"test":"PT","age":8,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":8,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":9,"method":"Continuous (GAMLSS)","lower":8.61,"upper":11.04},{"test":"PT","age":9,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":9,"method":"Guven et al.","lower":7.9,"upper":10.1},{"test":"PT","age":9,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":9,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":10,"method":"Continuous (GAMLSS)","lower":8.61,"upper":11.03},{"test":"PT","age":10,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":10,"method":"Guven et al.","lower":7.9,"upper":10.1},{"test":"PT","age":10,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":10,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":11,"method":"Continuous (GAMLSS)","lower":8.62,"upper":11.04},{"test":"PT","age":11,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":11,"method":"Guven et al.","lower":7.9,"upper":10},{"test":"PT","age":11,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":11,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":12,"method":"Continuous (GAMLSS)","lower":8.66,"upper":11.1},{"test":"PT","age":12,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":12,"method":"Guven et al.","lower":8,"upper":10},{"test":"PT","age":12,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":12,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":13,"method":"Continuous (GAMLSS)","lower":8.7,"upper":11.15},{"test":"PT","age":13,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":13,"method":"Guven et al.","lower":8,"upper":10},{"test":"PT","age":13,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":13,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":14,"method":"Continuous (GAMLSS)","lower":8.7,"upper":11.15},{"test":"PT","age":14,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":14,"method":"Guven et al.","lower":8.1,"upper":10.1},{"test":"PT","age":14,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":14,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":15,"method":"Continuous (GAMLSS)","lower":8.68,"upper":11.12},{"test":"PT","age":15,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":15,"method":"Guven et al.","lower":8.1,"upper":10.2},{"test":"PT","age":15,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":15,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":16,"method":"Continuous (GAMLSS)","lower":8.62,"upper":11.05},{"test":"PT","age":16,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":16,"method":"Guven et al.","lower":8.1,"upper":10.3},{"test":"PT","age":16,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":16,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"PT","age":17,"method":"Continuous (GAMLSS)","lower":8.54,"upper":10.94},{"test":"PT","age":17,"method":"Direct (a posteriori)","lower":8.55,"upper":11.23},{"test":"PT","age":17,"method":"Guven et al.","lower":8.2,"upper":10.5},{"test":"PT","age":17,"method":"Indirect (refineR)","lower":8.56,"upper":10.9},{"test":"PT","age":17,"method":"Manufacturer","lower":8.4,"upper":10.6},{"test":"aPTT","age":1,"method":"Continuous (GAMLSS)","lower":22.83,"upper":35.36},{"test":"aPTT","age":1,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":1,"method":"Guven et al.","lower":25.2,"upper":35.6},{"test":"aPTT","age":1,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":1,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":2,"method":"Continuous (GAMLSS)","lower":22.82,"upper":34.91},{"test":"aPTT","age":2,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":2,"method":"Guven et al.","lower":24.6,"upper":34.9},{"test":"aPTT","age":2,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":2,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":3,"method":"Continuous (GAMLSS)","lower":23.06,"upper":34.81},{"test":"aPTT","age":3,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":3,"method":"Guven et al.","lower":24.3,"upper":34.5},{"test":"aPTT","age":3,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":3,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":4,"method":"Continuous (GAMLSS)","lower":23.46,"upper":34.95},{"test":"aPTT","age":4,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":4,"method":"Guven et al.","lower":24.3,"upper":34.4},{"test":"aPTT","age":4,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":4,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":5,"method":"Continuous (GAMLSS)","lower":23.87,"upper":35.16},{"test":"aPTT","age":5,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":5,"method":"Guven et al.","lower":24.5,"upper":34.6},{"test":"aPTT","age":5,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":5,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":6,"method":"Continuous (GAMLSS)","lower":24.13,"upper":35.26},{"test":"aPTT","age":6,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":6,"method":"Guven et al.","lower":24.8,"upper":34.8},{"test":"aPTT","age":6,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":6,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":7,"method":"Continuous (GAMLSS)","lower":24.17,"upper":35.15},{"test":"aPTT","age":7,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":7,"method":"Guven et al.","lower":25.1,"upper":34.9},{"test":"aPTT","age":7,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":7,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":8,"method":"Continuous (GAMLSS)","lower":24.13,"upper":35.02},{"test":"aPTT","age":8,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":8,"method":"Guven et al.","lower":25.2,"upper":35.1},{"test":"aPTT","age":8,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":8,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":9,"method":"Continuous (GAMLSS)","lower":24.04,"upper":34.91},{"test":"aPTT","age":9,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":9,"method":"Guven et al.","lower":25.2,"upper":36.2},{"test":"aPTT","age":9,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":9,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":10,"method":"Continuous (GAMLSS)","lower":23.91,"upper":34.76},{"test":"aPTT","age":10,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":10,"method":"Guven et al.","lower":24.9,"upper":35.2},{"test":"aPTT","age":10,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":10,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":11,"method":"Continuous (GAMLSS)","lower":23.76,"upper":34.54},{"test":"aPTT","age":11,"method":"Direct (a posteriori)","lower":22.55,"upper":35.57},{"test":"aPTT","age":11,"method":"Guven et al.","lower":24.6,"upper":34.4},{"test":"aPTT","age":11,"method":"Indirect (refineR)","lower":24.3,"upper":35.3},{"test":"aPTT","age":11,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":12,"method":"Continuous (GAMLSS)","lower":23.56,"upper":34.23},{"test":"aPTT","age":12,"method":"Direct (a posteriori)","lower":23.58,"upper":33.32},{"test":"aPTT","age":12,"method":"Guven et al.","lower":24.4,"upper":33.9},{"test":"aPTT","age":12,"method":"Indirect (refineR)","lower":23.3,"upper":33.9},{"test":"aPTT","age":12,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":13,"method":"Continuous (GAMLSS)","lower":23.39,"upper":33.95},{"test":"aPTT","age":13,"method":"Direct (a posteriori)","lower":23.58,"upper":33.32},{"test":"aPTT","age":13,"method":"Guven et al.","lower":24.3,"upper":33.6},{"test":"aPTT","age":13,"method":"Indirect (refineR)","lower":23.3,"upper":33.9},{"test":"aPTT","age":13,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":14,"method":"Continuous (GAMLSS)","lower":23.22,"upper":33.72},{"test":"aPTT","age":14,"method":"Direct (a posteriori)","lower":23.58,"upper":33.32},{"test":"aPTT","age":14,"method":"Guven et al.","lower":24.4,"upper":33.5},{"test":"aPTT","age":14,"method":"Indirect (refineR)","lower":23.3,"upper":33.9},{"test":"aPTT","age":14,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":15,"method":"Continuous (GAMLSS)","lower":23.06,"upper":33.53},{"test":"aPTT","age":15,"method":"Direct (a posteriori)","lower":23.58,"upper":33.32},{"test":"aPTT","age":15,"method":"Guven et al.","lower":24.6,"upper":33.7},{"test":"aPTT","age":15,"method":"Indirect (refineR)","lower":23.3,"upper":33.9},{"test":"aPTT","age":15,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":16,"method":"Continuous (GAMLSS)","lower":22.94,"upper":33.41},{"test":"aPTT","age":16,"method":"Direct (a posteriori)","lower":23.58,"upper":33.32},{"test":"aPTT","age":16,"method":"Guven et al.","lower":24.9,"upper":34.3},{"test":"aPTT","age":16,"method":"Indirect (refineR)","lower":23.3,"upper":33.9},{"test":"aPTT","age":16,"method":"Manufacturer","lower":23.6,"upper":30.6},{"test":"aPTT","age":17,"method":"Continuous (GAMLSS)","lower":22.93,"upper":33.44},{"test":"aPTT","age":17,"method":"Direct (a posteriori)","lower":23.58,"upper":33.32},{"test":"aPTT","age":17,"method":"Guven et al.","lower":25.4,"upper":35.1},{"test":"aPTT","age":17,"method":"Indirect (refineR)","lower":23.3,"upper":33.9},{"test":"aPTT","age":17,"method":"Manufacturer","lower":23.6,"upper":30.6}],"sexLimits":[{"test":"PT","age":1,"sex":"Male","n":770,"lower":8.42,"lower_lo":8.24,"lower_hi":8.51,"upper":10.63,"upper_lo":10.39,"upper_hi":11.05},{"test":"PT","age":1,"sex":"Female","n":385,"lower":8.31,"lower_lo":8.04,"lower_hi":8.54,"upper":11.3,"upper_lo":10.75,"upper_hi":11.6},{"test":"PT","age":2,"sex":"Male","n":497,"lower":8.33,"lower_lo":8.19,"lower_hi":8.91,"upper":10.97,"upper_lo":10.38,"upper_hi":11.18},{"test":"PT","age":2,"sex":"Female","n":383,"lower":8.49,"lower_lo":8.32,"lower_hi":8.84,"upper":10.58,"upper_lo":10.08,"upper_hi":11.15},{"test":"PT","age":3,"sex":"Male","n":437,"lower":8.36,"lower_lo":8.2,"lower_hi":8.99,"upper":10.77,"upper_lo":9.88,"upper_hi":10.96},{"test":"PT","age":3,"sex":"Female","n":313,"lower":8.59,"lower_lo":8.39,"lower_hi":8.9,"upper":10.59,"upper_lo":10.23,"upper_hi":11.07},{"test":"PT","age":4,"sex":"Male","n":475,"lower":8.37,"lower_lo":8.25,"lower_hi":8.84,"upper":10.89,"upper_lo":10.62,"upper_hi":11.21},{"test":"PT","age":4,"sex":"Female","n":350,"lower":8.82,"lower_lo":8.38,"lower_hi":9.13,"upper":10.67,"upper_lo":10,"upper_hi":10.98},{"test":"PT","age":5,"sex":"Male","n":595,"lower":8.51,"lower_lo":8.36,"lower_hi":8.8,"upper":10.81,"upper_lo":10.28,"upper_hi":11.02},{"test":"PT","age":5,"sex":"Female","n":383,"lower":8.54,"lower_lo":8.45,"lower_hi":8.87,"upper":10.83,"upper_lo":10.39,"upper_hi":10.99},{"test":"PT","age":6,"sex":"Male","n":665,"lower":8.63,"lower_lo":8.48,"lower_hi":8.71,"upper":10.86,"upper_lo":10.51,"upper_hi":11.07},{"test":"PT","age":6,"sex":"Female","n":373,"lower":8.58,"lower_lo":8.13,"lower_hi":8.88,"upper":11.06,"upper_lo":10.61,"upper_hi":11.56},{"test":"PT","age":7,"sex":"Male","n":631,"lower":8.54,"lower_lo":8.37,"lower_hi":8.64,"upper":10.93,"upper_lo":10.74,"upper_hi":11.13},{"test":"PT","age":7,"sex":"Female","n":395,"lower":8.46,"lower_lo":8.18,"lower_hi":8.68,"upper":11.04,"upper_lo":10.83,"upper_hi":11.57},{"test":"PT","age":8,"sex":"Male","n":586,"lower":8.51,"lower_lo":8.36,"lower_hi":9.21,"upper":10.85,"upper_lo":10.02,"upper_hi":11.05},{"test":"PT","age":8,"sex":"Female","n":356,"lower":8.58,"lower_lo":8.33,"lower_hi":8.72,"upper":10.93,"upper_lo":10.63,"upper_hi":11.3},{"test":"PT","age":9,"sex":"Male","n":540,"lower":8.63,"lower_lo":8.53,"lower_hi":8.86,"upper":10.99,"upper_lo":10.57,"upper_hi":11.13},{"test":"PT","age":9,"sex":"Female","n":341,"lower":8.77,"lower_lo":8.64,"lower_hi":8.98,"upper":10.7,"upper_lo":10.47,"upper_hi":10.88},{"test":"PT","age":10,"sex":"Male","n":480,"lower":8.61,"lower_lo":8.48,"lower_hi":8.79,"upper":10.85,"upper_lo":10.46,"upper_hi":11.11},{"test":"PT","age":10,"sex":"Female","n":361,"lower":8.58,"lower_lo":8.47,"lower_hi":9.16,"upper":10.86,"upper_lo":10.17,"upper_hi":11.08},{"test":"PT","age":11,"sex":"Male","n":423,"lower":8.5,"lower_lo":8.39,"lower_hi":9.03,"upper":10.93,"upper_lo":10.36,"upper_hi":11.16},{"test":"PT","age":11,"sex":"Female","n":352,"lower":8.97,"lower_lo":8.71,"lower_hi":9.38,"upper":10.34,"upper_lo":9.94,"upper_hi":10.59},{"test":"PT","age":12,"sex":"Male","n":430,"lower":8.63,"lower_lo":8.49,"lower_hi":9.17,"upper":11.04,"upper_lo":10.5,"upper_hi":11.28},{"test":"PT","age":12,"sex":"Female","n":363,"lower":8.73,"lower_lo":8.56,"lower_hi":9.09,"upper":10.86,"upper_lo":10.37,"upper_hi":10.91},{"test":"PT","age":13,"sex":"Male","n":488,"lower":8.76,"lower_lo":8.59,"lower_hi":9.18,"upper":11.19,"upper_lo":10.69,"upper_hi":11.56},{"test":"PT","age":13,"sex":"Female","n":413,"lower":8.55,"lower_lo":8.4,"lower_hi":9.12,"upper":10.91,"upper_lo":10.26,"upper_hi":11.03},{"test":"PT","age":14,"sex":"Male","n":495,"lower":8.75,"lower_lo":8.6,"lower_hi":9.06,"upper":11.41,"upper_lo":11.03,"upper_hi":11.51},{"test":"PT","age":14,"sex":"Female","n":469,"lower":8.47,"lower_lo":8.34,"lower_hi":8.81,"upper":10.75,"upper_lo":10.39,"upper_hi":11.09},{"test":"PT","age":15,"sex":"Male","n":640,"lower":8.8,"lower_lo":8.67,"lower_hi":8.97,"upper":11.13,"upper_lo":10.86,"upper_hi":11.56},{"test":"PT","age":15,"sex":"Female","n":587,"lower":8.52,"lower_lo":8.33,"lower_hi":8.72,"upper":10.6,"upper_lo":10.08,"upper_hi":10.91},{"test":"PT","age":16,"sex":"Male","n":688,"lower":8.75,"lower_lo":8.5,"lower_hi":9,"upper":11.26,"upper_lo":10.98,"upper_hi":11.57},{"test":"PT","age":16,"sex":"Female","n":707,"lower":8.56,"lower_lo":8.49,"lower_hi":8.79,"upper":10.55,"upper_lo":10.26,"upper_hi":10.71},{"test":"PT","age":17,"sex":"Male","n":778,"lower":8.74,"lower_lo":8.55,"lower_hi":8.8,"upper":10.98,"upper_lo":10.79,"upper_hi":11.3},{"test":"PT","age":17,"sex":"Female","n":851,"lower":8.35,"lower_lo":8.28,"lower_hi":8.74,"upper":10.73,"upper_lo":10.39,"upper_hi":10.82},{"test":"aPTT","age":1,"sex":"Male","n":782,"lower":22.8,"lower_lo":22.3,"lower_hi":24.25,"upper":35.06,"upper_lo":34.31,"upper_hi":36.29},{"test":"aPTT","age":1,"sex":"Female","n":390,"lower":22.99,"lower_lo":22.46,"lower_hi":26.34,"upper":35.08,"upper_lo":33.72,"upper_hi":35.67},{"test":"aPTT","age":2,"sex":"Male","n":498,"lower":21.6,"lower_lo":21.41,"lower_hi":26.37,"upper":35.61,"upper_lo":33.41,"upper_hi":36.07},{"test":"aPTT","age":2,"sex":"Female","n":390,"lower":22.11,"lower_lo":21.7,"lower_hi":25.19,"upper":34.72,"upper_lo":32.6,"upper_hi":35.86},{"test":"aPTT","age":3,"sex":"Male","n":437,"lower":22.99,"lower_lo":22.5,"lower_hi":24.88,"upper":35.09,"upper_lo":33.17,"upper_hi":35.85},{"test":"aPTT","age":3,"sex":"Female","n":305,"lower":23.65,"lower_lo":22.61,"lower_hi":25.89,"upper":34.9,"upper_lo":31.56,"upper_hi":35.48},{"test":"aPTT","age":4,"sex":"Male","n":468,"lower":24.67,"lower_lo":23.7,"lower_hi":26.52,"upper":34.48,"upper_lo":33.01,"upper_hi":34.83},{"test":"aPTT","age":4,"sex":"Female","n":353,"lower":22.86,"lower_lo":22.86,"lower_hi":26.08,"upper":34.81,"upper_lo":32.1,"upper_hi":35.05},{"test":"aPTT","age":5,"sex":"Male","n":594,"lower":24.5,"lower_lo":23.66,"lower_hi":25.37,"upper":34.04,"upper_lo":32.71,"upper_hi":35.7},{"test":"aPTT","age":5,"sex":"Female","n":377,"lower":23.56,"lower_lo":23.4,"lower_hi":26.32,"upper":34.79,"upper_lo":32.66,"upper_hi":35.24},{"test":"aPTT","age":6,"sex":"Male","n":648,"lower":24.99,"lower_lo":23.97,"lower_hi":26.07,"upper":35.44,"upper_lo":34.01,"upper_hi":35.7},{"test":"aPTT","age":6,"sex":"Female","n":370,"lower":23.78,"lower_lo":23.47,"lower_hi":26.09,"upper":35.31,"upper_lo":31.61,"upper_hi":35.8},{"test":"aPTT","age":7,"sex":"Male","n":641,"lower":24.39,"lower_lo":23.65,"lower_hi":25.67,"upper":35.63,"upper_lo":33.4,"upper_hi":35.9},{"test":"aPTT","age":7,"sex":"Female","n":392,"lower":23.19,"lower_lo":22.99,"lower_hi":25.53,"upper":35.01,"upper_lo":32.35,"upper_hi":35.78},{"test":"aPTT","age":8,"sex":"Male","n":581,"lower":24.68,"lower_lo":23.8,"lower_hi":26.57,"upper":34.23,"upper_lo":32.43,"upper_hi":35.01},{"test":"aPTT","age":8,"sex":"Female","n":356,"lower":24.41,"lower_lo":23.76,"lower_hi":27.13,"upper":34.27,"upper_lo":32.62,"upper_hi":35.26},{"test":"aPTT","age":9,"sex":"Male","n":549,"lower":23.95,"lower_lo":23.62,"lower_hi":25.29,"upper":34.91,"upper_lo":33.94,"upper_hi":35.67},{"test":"aPTT","age":9,"sex":"Female","n":336,"lower":23.84,"lower_lo":23.65,"lower_hi":27.44,"upper":34.36,"upper_lo":30.42,"upper_hi":34.7},{"test":"aPTT","age":10,"sex":"Male","n":479,"lower":23.79,"lower_lo":22.58,"lower_hi":25.71,"upper":35.35,"upper_lo":33.03,"upper_hi":35.78},{"test":"aPTT","age":10,"sex":"Female","n":364,"lower":24.11,"lower_lo":23.86,"lower_hi":25.78,"upper":34.71,"upper_lo":31.61,"upper_hi":34.61},{"test":"aPTT","age":11,"sex":"Male","n":429,"lower":24.55,"lower_lo":24,"lower_hi":25.64,"upper":32.56,"upper_lo":31.49,"upper_hi":34.09},{"test":"aPTT","age":11,"sex":"Female","n":352,"lower":25.87,"lower_lo":23.5,"lower_hi":27.42,"upper":33.61,"upper_lo":31.97,"upper_hi":34.62},{"test":"aPTT","age":12,"sex":"Male","n":427,"lower":23.18,"lower_lo":22.49,"lower_hi":25.05,"upper":34.87,"upper_lo":32.07,"upper_hi":35.09},{"test":"aPTT","age":12,"sex":"Female","n":362,"lower":24.05,"lower_lo":23.81,"lower_hi":26.44,"upper":33.85,"upper_lo":32.05,"upper_hi":34.42},{"test":"aPTT","age":13,"sex":"Male","n":476,"lower":23.86,"lower_lo":23.39,"lower_hi":25.43,"upper":34.53,"upper_lo":31.9,"upper_hi":34.61},{"test":"aPTT","age":13,"sex":"Female","n":409,"lower":23.55,"lower_lo":23.21,"lower_hi":25.08,"upper":33.81,"upper_lo":31.2,"upper_hi":34.24},{"test":"aPTT","age":14,"sex":"Male","n":495,"lower":23.3,"lower_lo":23.08,"lower_hi":25.28,"upper":34.29,"upper_lo":32.41,"upper_hi":34.74},{"test":"aPTT","age":14,"sex":"Female","n":468,"lower":22.77,"lower_lo":22.41,"lower_hi":24.91,"upper":33.34,"upper_lo":31.47,"upper_hi":33.8},{"test":"aPTT","age":15,"sex":"Male","n":622,"lower":23.72,"lower_lo":23.02,"lower_hi":24.65,"upper":33.71,"upper_lo":30.92,"upper_hi":34.04},{"test":"aPTT","age":15,"sex":"Female","n":572,"lower":22.34,"lower_lo":22.22,"lower_hi":25.12,"upper":33.39,"upper_lo":31.74,"upper_hi":33.63},{"test":"aPTT","age":16,"sex":"Male","n":688,"lower":21.73,"lower_lo":21.46,"lower_hi":23.37,"upper":33.29,"upper_lo":31.83,"upper_hi":33.99},{"test":"aPTT","age":16,"sex":"Female","n":705,"lower":23.42,"lower_lo":22.68,"lower_hi":24.21,"upper":33.54,"upper_lo":30.63,"upper_hi":33.73},{"test":"aPTT","age":17,"sex":"Male","n":807,"lower":23.69,"lower_lo":22.62,"lower_hi":24.78,"upper":32.85,"upper_lo":32.34,"upper_hi":33.69},{"test":"aPTT","age":17,"sex":"Female","n":879,"lower":23.19,"lower_lo":22.9,"lower_hi":24.54,"upper":33.4,"upper_lo":32.35,"upper_hi":33.86},{"test":"Fibrinogen","age":1,"sex":"Combined","n":208,"lower":1.78,"lower_lo":1.7,"lower_hi":1.87,"upper":3.2,"upper_lo":2.97,"upper_hi":3.45},{"test":"Fibrinogen","age":2,"sex":"Combined","n":167,"lower":1.75,"lower_lo":1.69,"lower_hi":1.97,"upper":3.67,"upper_lo":3.15,"upper_hi":3.89},{"test":"Fibrinogen","age":3,"sex":"Combined","n":138,"lower":1.88,"lower_lo":1.59,"lower_hi":2.16,"upper":2.93,"upper_lo":2.61,"upper_hi":4.35},{"test":"Fibrinogen","age":4,"sex":"Combined","n":148,"lower":1.9,"lower_lo":1.81,"lower_hi":2.57,"upper":3.48,"upper_lo":2.72,"upper_hi":4.03},{"test":"Fibrinogen","age":5,"sex":"Combined","n":172,"lower":1.9,"lower_lo":1.71,"lower_hi":2.19,"upper":3.29,"upper_lo":3.07,"upper_hi":4},{"test":"Fibrinogen","age":6,"sex":"Combined","n":171,"lower":1.94,"lower_lo":1.73,"lower_hi":2.54,"upper":3.59,"upper_lo":2.57,"upper_hi":3.98},{"test":"Fibrinogen","age":7,"sex":"Combined","n":165,"lower":2.03,"lower_lo":1.96,"lower_hi":2.1,"upper":3.59,"upper_lo":3.39,"upper_hi":3.83},{"test":"Fibrinogen","age":8,"sex":"Combined","n":155,"lower":1.85,"lower_lo":1.77,"lower_hi":2.03,"upper":4.01,"upper_lo":3.19,"upper_hi":4.13},{"test":"Fibrinogen","age":9,"sex":"Combined","n":148,"lower":2.05,"lower_lo":1.85,"lower_hi":2.25,"upper":3.4,"upper_lo":2.98,"upper_hi":3.67},{"test":"Fibrinogen","age":10,"sex":"Combined","n":164,"lower":2.03,"lower_lo":1.91,"lower_hi":2.53,"upper":3.83,"upper_lo":2.91,"upper_hi":4.14},{"test":"Fibrinogen","age":11,"sex":"Combined","n":137,"lower":2.21,"lower_lo":1.98,"lower_hi":2.49,"upper":3.75,"upper_lo":3.36,"upper_hi":3.95},{"test":"Fibrinogen","age":12,"sex":"Combined","n":146,"lower":2.08,"lower_lo":1.95,"lower_hi":2.57,"upper":3.39,"upper_lo":2.71,"upper_hi":3.67},{"test":"Fibrinogen","age":13,"sex":"Combined","n":166,"lower":1.96,"lower_lo":1.83,"lower_hi":2.09,"upper":3.8,"upper_lo":3.42,"upper_hi":4.06},{"test":"Fibrinogen","age":14,"sex":"Combined","n":188,"lower":1.87,"lower_lo":1.79,"lower_hi":2.05,"upper":4.1,"upper_lo":3.33,"upper_hi":4.39},{"test":"Fibrinogen","age":15,"sex":"Combined","n":240,"lower":1.66,"lower_lo":1.63,"lower_hi":2.08,"upper":4.49,"upper_lo":4.05,"upper_hi":4.76},{"test":"Fibrinogen","age":16,"sex":"Combined","n":278,"lower":1.63,"lower_lo":1.47,"lower_hi":2,"upper":3.78,"upper_lo":3.16,"upper_hi":4.62},{"test":"Fibrinogen","age":17,"sex":"Combined","n":375,"lower":1.77,"lower_lo":1.72,"lower_hi":2.03,"upper":4.36,"upper_lo":3.42,"upper_hi":4.42}],"bands":[{"test":"PT","age_group":"1-18 y","age_start":1,"age_end":17,"lower":8.56,"lower_lo":8.54,"lower_hi":8.58,"upper":10.9,"upper_lo":10.7,"upper_hi":10.9},{"test":"aPTT","age_group":"1-12 y","age_start":1,"age_end":11,"lower":24.3,"lower_lo":23.3,"lower_hi":24.5,"upper":35.3,"upper_lo":34.4,"upper_hi":35.4},{"test":"aPTT","age_group":"12-18 y","age_start":12,"age_end":17,"lower":23.3,"lower_lo":22.7,"lower_hi":23.7,"upper":33.9,"upper_lo":33.1,"upper_hi":34.1},{"test":"Fibrinogen","age_group":"1-18 y","age_start":1,"age_end":17,"lower":1.89,"lower_lo":1.84,"lower_hi":1.92,"upper":3.79,"upper_lo":3.55,"upper_hi":4.06}],"harrisBoyd":[{"test":"aPTT","cutpoint":12,"n_young":10091,"n_old":6910,"z_score":15.163173,"justified":true},{"test":"PT","cutpoint":12,"n_young":10091,"n_old":6909,"z_score":0.632511,"justified":false}],"transfer":[{"test":"PT","age":1,"n_total":1155,"pass_rate":12.5,"prop_outside":22.770563,"transferable":"No"},{"test":"PT","age":2,"n_total":880,"pass_rate":2.5,"prop_outside":30.113636,"transferable":"No"},{"test":"PT","age":3,"n_total":750,"pass_rate":2,"prop_outside":30.933333,"transferable":"No"},{"test":"PT","age":4,"n_total":825,"pass_rate":2.5,"prop_outside":31.393939,"transferable":"No"},{"test":"PT","age":5,"n_total":978,"pass_rate":2.5,"prop_outside":30.777096,"transferable":"No"},{"test":"PT","age":6,"n_total":1038,"pass_rate":3,"prop_outside":30.732177,"transferable":"No"},{"test":"PT","age":7,"n_total":1026,"pass_rate":6.5,"prop_outside":27.680312,"transferable":"No"},{"test":"PT","age":8,"n_total":942,"pass_rate":13.5,"prop_outside":22.717622,"transferable":"No"},{"test":"PT","age":9,"n_total":881,"pass_rate":2.5,"prop_outside":31.441544,"transferable":"No"},{"test":"PT","age":10,"n_total":841,"pass_rate":3.5,"prop_outside":30.20214,"transferable":"No"},{"test":"PT","age":11,"n_total":775,"pass_rate":1.5,"prop_outside":32.645161,"transferable":"No"},{"test":"PT","age":12,"n_total":793,"pass_rate":0,"prop_outside":39.092055,"transferable":"No"},{"test":"PT","age":13,"n_total":901,"pass_rate":0.5,"prop_outside":40.066593,"transferable":"No"},{"test":"PT","age":14,"n_total":964,"pass_rate":0,"prop_outside":37.136929,"transferable":"No"},{"test":"PT","age":15,"n_total":1227,"pass_rate":1,"prop_outside":31.784841,"transferable":"No"},{"test":"PT","age":16,"n_total":1395,"pass_rate":3,"prop_outside":27.741935,"transferable":"No"},{"test":"PT","age":17,"n_total":1629,"pass_rate":26,"prop_outside":20.073665,"transferable":"No"},{"test":"aPTT","age":1,"n_total":1172,"pass_rate":28.5,"prop_outside":19.709898,"transferable":"No"},{"test":"aPTT","age":2,"n_total":888,"pass_rate":24,"prop_outside":19.594595,"transferable":"No"},{"test":"aPTT","age":3,"n_total":742,"pass_rate":52,"prop_outside":12.938005,"transferable":"No"},{"test":"aPTT","age":4,"n_total":821,"pass_rate":57.5,"prop_outside":12.423873,"transferable":"No"},{"test":"aPTT","age":5,"n_total":971,"pass_rate":54,"prop_outside":12.46138,"transferable":"No"},{"test":"aPTT","age":6,"n_total":1018,"pass_rate":49.5,"prop_outside":12.671906,"transferable":"No"},{"test":"aPTT","age":7,"n_total":1033,"pass_rate":44.5,"prop_outside":14.520813,"transferable":"No"},{"test":"aPTT","age":8,"n_total":937,"pass_rate":41.5,"prop_outside":14.727855,"transferable":"No"},{"test":"aPTT","age":9,"n_total":885,"pass_rate":33.5,"prop_outside":14.576271,"transferable":"No"},{"test":"aPTT","age":10,"n_total":843,"pass_rate":51.5,"prop_outside":12.692764,"transferable":"No"},{"test":"aPTT","age":11,"n_total":781,"pass_rate":54,"prop_outside":12.035851,"transferable":"No"},{"test":"aPTT","age":12,"n_total":789,"pass_rate":50.5,"prop_outside":13.307985,"transferable":"No"},{"test":"aPTT","age":13,"n_total":885,"pass_rate":43.5,"prop_outside":13.672316,"transferable":"No"},{"test":"aPTT","age":14,"n_total":963,"pass_rate":34.5,"prop_outside":16.510903,"transferable":"No"},{"test":"aPTT","age":15,"n_total":1194,"pass_rate":42.5,"prop_outside":15.326633,"transferable":"No"},{"test":"aPTT","age":16,"n_total":1393,"pass_rate":23,"prop_outside":18.090452,"transferable":"No"},{"test":"aPTT","age":17,"n_total":1686,"pass_rate":25,"prop_outside":19.632266,"transferable":"No"}],"sampleSize":[{"test":"Fibrinogen","age":1,"n":208},{"test":"Fibrinogen","age":2,"n":167},{"test":"Fibrinogen","age":3,"n":138},{"test":"Fibrinogen","age":4,"n":148},{"test":"Fibrinogen","age":5,"n":172},{"test":"Fibrinogen","age":6,"n":171},{"test":"Fibrinogen","age":7,"n":165},{"test":"Fibrinogen","age":8,"n":155},{"test":"Fibrinogen","age":9,"n":148},{"test":"Fibrinogen","age":10,"n":164},{"test":"Fibrinogen","age":11,"n":137},{"test":"Fibrinogen","age":12,"n":146},{"test":"Fibrinogen","age":13,"n":166},{"test":"Fibrinogen","age":14,"n":188},{"test":"Fibrinogen","age":15,"n":240},{"test":"Fibrinogen","age":16,"n":278},{"test":"Fibrinogen","age":17,"n":375},{"test":"PT","age":1,"n":1155},{"test":"PT","age":2,"n":880},{"test":"PT","age":3,"n":750},{"test":"PT","age":4,"n":825},{"test":"PT","age":5,"n":978},{"test":"PT","age":6,"n":1038},{"test":"PT","age":7,"n":1026},{"test":"PT","age":8,"n":942},{"test":"PT","age":9,"n":881},{"test":"PT","age":10,"n":841},{"test":"PT","age":11,"n":775},{"test":"PT","age":12,"n":793},{"test":"PT","age":13,"n":901},{"test":"PT","age":14,"n":964},{"test":"PT","age":15,"n":1227},{"test":"PT","age":16,"n":1395},{"test":"PT","age":17,"n":1629},{"test":"aPTT","age":1,"n":1172},{"test":"aPTT","age":2,"n":888},{"test":"aPTT","age":3,"n":742},{"test":"aPTT","age":4,"n":821},{"test":"aPTT","age":5,"n":971},{"test":"aPTT","age":6,"n":1018},{"test":"aPTT","age":7,"n":1033},{"test":"aPTT","age":8,"n":937},{"test":"aPTT","age":9,"n":885},{"test":"aPTT","age":10,"n":843},{"test":"aPTT","age":11,"n":781},{"test":"aPTT","age":12,"n":789},{"test":"aPTT","age":13,"n":885},{"test":"aPTT","age":14,"n":963},{"test":"aPTT","age":15,"n":1194},{"test":"aPTT","age":16,"n":1393},{"test":"aPTT","age":17,"n":1686}],"published":[{"study":"Guven et al.","year":2026,"country":"Turkey","analyzer":"Cobas t511","method":"Direct","n":1065,"age_group":"0-18 y","test":"PT","lower":7.8,"upper":10.7,"unit":"s"},{"study":"Guven et al.","year":2026,"country":"Turkey","analyzer":"Cobas t511","method":"Direct","n":1044,"age_group":"0-18 y","test":"aPTT","lower":24.3,"upper":36.2,"unit":"s"},{"study":"Luo et al.","year":2026,"country":"China","analyzer":"Sysmex CN-6000","method":"Direct","n":500,"age_group":"6m-3 y","test":"PT","lower":10.1,"upper":12.4,"unit":"s"},{"study":"Luo et al.","year":2026,"country":"China","analyzer":"Sysmex CN-6000","method":"Direct","n":264,"age_group":"3-12 y","test":"PT","lower":10.3,"upper":12.4,"unit":"s"},{"study":"Luo et al.","year":2026,"country":"China","analyzer":"Sysmex CN-6000","method":"Direct","n":270,"age_group":"12-18 y","test":"PT","lower":10.4,"upper":13,"unit":"s"},{"study":"Luo et al.","year":2026,"country":"China","analyzer":"Sysmex CN-6000","method":"Direct","n":500,"age_group":"6m-3 y","test":"aPTT","lower":23.4,"upper":32.6,"unit":"s"},{"study":"Luo et al.","year":2026,"country":"China","analyzer":"Sysmex CN-6000","method":"Direct","n":534,"age_group":"3-18 y","test":"aPTT","lower":24.7,"upper":32.9,"unit":"s"},{"study":"Luo et al.","year":2026,"country":"China","analyzer":"Sysmex CN-6000","method":"Direct","n":258,"age_group":"1-3 y","test":"Fibrinogen","lower":1.52,"upper":3.58,"unit":"g/L"},{"study":"Luo et al.","year":2026,"country":"China","analyzer":"Sysmex CN-6000","method":"Direct","n":534,"age_group":"3-18 y","test":"Fibrinogen","lower":1.74,"upper":3.65,"unit":"g/L"},{"study":"Weidhofer et al.","year":2018,"country":"Austria","analyzer":"STA-Compact / BCS-XP","method":"Indirect (continuous)","n":55100,"age_group":"1-18 y","test":"aPTT","lower":26,"upper":42,"unit":"s"},{"study":"Weidhofer et al.","year":2018,"country":"Austria","analyzer":"STA-Compact / BCS-XP","method":"Indirect (continuous)","n":49789,"age_group":"1-18 y","test":"Fibrinogen","lower":150,"upper":450,"unit":"mg/dL"},{"study":"Manufacturer (Roche)","year":null,"country":null,"analyzer":"Cobas t511/t711","method":"Package insert","n":null,"age_group":"Adult (18-50 y)","test":"PT","lower":8.4,"upper":10.6,"unit":"s"},{"study":"Manufacturer (Roche)","year":null,"country":null,"analyzer":"Cobas t511/t711","method":"Package insert","n":null,"age_group":"Adult (18-50 y)","test":"aPTT","lower":23.6,"upper":30.6,"unit":"s"},{"study":"Manufacturer (Roche)","year":null,"country":null,"analyzer":"Cobas t511/t711","method":"Package insert","n":null,"age_group":"Adult (18-50 y)","test":"Fibrinogen","lower":1.93,"upper":4.12,"unit":"g/L"}],"provenance":[{"panel":"Result classifier","file":"PUB_table_2_reference_intervals.csv, PUB_table_S3_continuous_RI_values.csv, guven_ri in src/common.R"},{"panel":"Reference intervals","file":"PUB_table_2_reference_intervals.csv"},{"panel":"Continuous curves","file":"PUB_table_S3_continuous_RI_values.csv"},{"panel":"Out-of-RI flagging","file":"analysis3_fp_curves_data_RAW.csv, analysis6_fp_bootstrap_ci_RAW.csv, analysis1_fp_summary_RAW.csv"},{"panel":"Partitioning","file":"PUB_table_S2_refineR_all_by_age_sex.csv, PUB_table_6_harris_boyd.csv"},{"panel":"Transferability","file":"analysis2_guven_transferability_RAW.csv"},{"panel":"Sample size by age","file":"analysis1_fp_by_age_RAW.csv"},{"panel":"Published comparison","file":"PUB_table_5_international_comparison.csv"}]};
+
+const COLORS = {
+  "Indirect (refineR)":    getVar("--refiner"),
+  "Direct (a posteriori)": getVar("--direct"),
+  "Continuous (GAMLSS)":   getVar("--contin"),
+  "Manufacturer":          getVar("--mfr"),
+  "Guven et al.":          getVar("--guven"),
+  "Female":                getVar("--female"),
+  "Male":                  getVar("--male"),
+  "Combined":              getVar("--combined")
+};
+// The stored analysis files label the sources more tersely than the page does.
+const ALIAS = {
+  "refineR": "Indirect (refineR)",
+  "Direct (a posteriori)": "Direct (a posteriori)",
+  "Direct": "Direct (a posteriori)",
+  "Continuous (GAMLSS)": "Continuous (GAMLSS)",
+  "Continuous": "Continuous (GAMLSS)",
+  "Manufacturer": "Manufacturer",
+  "Guven et al.": "Guven et al.",
+  "Guven": "Guven et al."
+};
+const ORDER = ["Manufacturer", "Indirect (refineR)", "Direct (a posteriori)",
+               "Continuous (GAMLSS)", "Guven et al."];
+const TESTS = ["PT", "aPTT", "Fibrinogen"];
+const SVGNS = "http://www.w3.org/2000/svg";
+
+function getVar(n) {
+  return getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+}
+function label(s) { return ALIAS[s] || s; }
+function unitOf(t) {
+  const row = DATA.population.find(p => p.test === t);
+  return row ? row.unit : "";
+}
+function fmt(v) { return (v === null || v === undefined) ? "—" : v.toFixed(2); }
+function num(v) { return v.toLocaleString("en-US"); }
+function el(tag, attrs, text) {
+  const n = document.createElementNS(SVGNS, tag);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+function tag(name, cls, text) {
+  const n = document.createElement(name);
+  if (cls) n.className = cls;
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+function nice(lo, hi) {
+  const span = hi - lo, step = Math.pow(10, Math.floor(Math.log10(span / 4)));
+  const mults = [1, 2, 2.5, 5, 10];
+  let s = step;
+  for (const m of mults) { if (span / (step * m) <= 6) { s = step * m; break; } }
+  const ticks = [];
+  for (let v = Math.ceil(lo / s) * s; v <= hi + 1e-9; v += s) ticks.push(+v.toFixed(6));
+  return ticks;
+}
+// Analyte tabs: one panel per analyte, only the selected one shown.
+function tabbed(host, tests, render) {
+  const bar = tag("div", "tabs");
+  bar.setAttribute("role", "tablist");
+  const buttons = [], panels = [];
+  tests.forEach((t, i) => {
+    const b = tag("button"); b.type = "button"; b.textContent = t;
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    bar.appendChild(b); buttons.push(b);
+    const p = tag("div", "tabpanel");
+    p.setAttribute("role", "tabpanel");
+    if (i > 0) p.hidden = true;
+    render(p, t);
+    panels.push(p);
+  });
+  buttons.forEach((b, i) => b.addEventListener("click", () => {
+    buttons.forEach((x, j) => x.setAttribute("aria-selected", j === i ? "true" : "false"));
+    panels.forEach((p, j) => { p.hidden = j !== i; });
+  }));
+  host.appendChild(bar);
+  panels.forEach(p => host.appendChild(p));
+}
+function figure(panel, svg, captionText, extra) {
+  const fig = tag("figure");
+  fig.appendChild(svg);
+  if (extra) fig.appendChild(extra);
+  fig.appendChild(tag("figcaption", null, captionText));
+  panel.appendChild(fig);
+}
+function axisLabels(svg, ages, x, yBase, W, padL, padR) {
+  for (const a of ages) {
+    if (a % 2 === 1 || a === ages[ages.length - 1])
+      svg.appendChild(el("text", { x: x(a), y: yBase + 16, "text-anchor": "middle",
+                                   "font-size": 11 }, a));
+  }
+  svg.appendChild(el("text", { x: (padL + W - padR) / 2, y: yBase + 34,
+                               "text-anchor": "middle", "font-size": 11 }, "Age, years"));
+}
+
+/* ---------- header, provenance ---------- */
+(function head() {
+  const box = document.getElementById("stats");
+  const total = DATA.population.reduce((a, p) => a + p.n, 0);
+  const items = DATA.population.map(p => [num(p.n), p.test]);
+  items.push([num(total), "results in total"]);
+  items.push(["1 to <18", "years of age"]);
+  for (const [v, k] of items) {
+    const d = tag("div", "stat");
+    d.appendChild(tag("b", null, v));
+    d.appendChild(tag("span", null, k));
+    box.appendChild(d);
+  }
+  document.getElementById("built").textContent = DATA.built;
+  const tb = document.querySelector("#prov tbody");
+  for (const r of DATA.provenance) {
+    const tr = tag("tr");
+    tr.appendChild(tag("td", null, r.panel));
+    const td = tag("td"); td.appendChild(tag("code", null, r.file));
+    tr.appendChild(td); tb.appendChild(tr);
+  }
+})();
+
+/* ---------- 1. classifier ---------- */
+(function classifier() {
+  const selTest = document.getElementById("c-test");
+  const age = document.getElementById("c-age");
+  const ageLab = document.getElementById("c-agelab");
+  const val = document.getElementById("c-val");
+  const unit = document.getElementById("c-unit");
+  const body = document.querySelector("#c-table tbody");
+  const tally = document.getElementById("c-tally");
+  const hint = document.getElementById("c-hint");
+
+  for (const t of TESTS) {
+    const o = tag("option", null, t); o.value = t; selTest.appendChild(o);
+  }
+  // A starting value near the middle of the observed range for each analyte.
+  const SEED = { PT: 10.5, aPTT: 32, Fibrinogen: 3.2 };
+  let lastRows = [];
+
+  function seedValue() {
+    const t = selTest.value;
+    unit.textContent = "(" + unitOf(t) + ")";
+    val.step = t === "Fibrinogen" ? 0.05 : 0.1;
+    val.value = SEED[t];
+  }
+
+  function render(pushState) {
+    const t = selTest.value, a = +age.value, v = parseFloat(val.value);
+    ageLab.textContent = a + (a === 1 ? " year" : " years");
+    const rows = DATA.limits.filter(r => r.test === t && r.age === a)
+      .sort((x, y) => ORDER.indexOf(label(x.method)) - ORDER.indexOf(label(y.method)));
+    lastRows = rows;
+    body.textContent = "";
+    let outside = 0, total = 0;
+    for (const r of rows) {
+      const nm = label(r.method);
+      const tr = tag("tr");
+      const c1 = tag("td");
+      const sw = tag("span", "swatch");
+      sw.style.background = COLORS[nm] || "var(--muted)";
+      c1.appendChild(sw); c1.appendChild(document.createTextNode(nm));
+      const c2 = tag("td", "num", fmt(r.lower));
+      const c3 = tag("td", "num", fmt(r.upper));
+      const c4 = tag("td");
+      if (Number.isFinite(v)) {
+        const out = v < r.lower || v > r.upper;
+        const s = tag("span", "verdict " + (out ? "out" : "in"),
+          out ? (v < r.lower ? "Below reference limit" : "Above reference limit")
+              : "Within reference limits");
+        c4.appendChild(s);
+        outside += out ? 1 : 0; total++;
+      } else {
+        c4.textContent = "—";
+      }
+      tr.appendChild(c1); tr.appendChild(c2); tr.appendChild(c3); tr.appendChild(c4);
+      body.appendChild(tr);
+    }
+    if (!Number.isFinite(v)) {
+      tally.textContent = "Enter a value to compare the sources.";
+    } else {
+      const vs = fmt(v) + " " + unitOf(t) + " at " + a + (a === 1 ? " year" : " years");
+      if (outside === 0)
+        tally.textContent = vs + " is within all " + total + " reference intervals.";
+      else if (outside === total)
+        tally.textContent = vs + " is outside all " + total + " reference intervals.";
+      else
+        tally.textContent = vs + " is flagged by " + outside + " of " + total +
+          " reference interval sources and not by the other " + (total - outside) + ".";
+    }
+    if (pushState !== false && window.history && history.replaceState) {
+      const p = new URLSearchParams({ test: t, age: String(a), value: val.value });
+      history.replaceState(null, "", "?" + p.toString() + location.hash);
+    }
+  }
+
+  function asText() {
+    const t = selTest.value, a = +age.value, v = parseFloat(val.value);
+    const lines = [`${t} ${fmt(v)} ${unitOf(t)} at age ${a}`, ""];
+    for (const r of lastRows) {
+      const out = v < r.lower || v > r.upper;
+      lines.push(`${label(r.method).padEnd(24)} ${fmt(r.lower)} - ${fmt(r.upper)}   ` +
+                 (out ? "OUTSIDE" : "within"));
+    }
+    lines.push("", tally.textContent);
+    return lines.join("\n");
+  }
+  function flash(msg) {
+    hint.textContent = msg;
+    setTimeout(() => { hint.textContent = ""; }, 2500);
+  }
+  function copy(text, msg) {
+    if (navigator.clipboard && navigator.clipboard.writeText)
+      navigator.clipboard.writeText(text).then(() => flash(msg),
+                                               () => flash("Copy blocked by the browser."));
+    else flash("Copying is not available in this browser.");
+  }
+
+  // restore state from the address bar
+  const q = new URLSearchParams(location.search);
+  selTest.value = TESTS.includes(q.get("test")) ? q.get("test") : "PT";
+  seedValue();
+  const qa = parseInt(q.get("age"), 10);
+  if (Number.isFinite(qa) && qa >= 1 && qa <= 17) age.value = String(qa);
+  const qv = parseFloat(q.get("value"));
+  if (Number.isFinite(qv)) val.value = String(qv);
+
+  selTest.addEventListener("change", () => { seedValue(); render(); });
+  age.addEventListener("input", () => render());
+  val.addEventListener("input", () => render());
+  document.getElementById("c-copy").addEventListener("click",
+    () => copy(asText(), "Comparison copied."));
+  document.getElementById("c-link").addEventListener("click",
+    () => { render(); copy(location.href, "Link copied."); });
+  render(false);
+})();
+
+/* ---------- 2. reference intervals ---------- */
+(function intervals() {
+  tabbed(document.getElementById("intervals-charts"), TESTS, (panel, t) => {
+    const rows = DATA.intervals.filter(r => r.test === t)
+      .sort((x, y) => ORDER.indexOf(label(x.method)) - ORDER.indexOf(label(y.method)));
+    const W = 760, rowH = 34, padT = 26, padB = 34, padL = 168, padR = 22;
+    const H = padT + rows.length * rowH + padB;
+    let lo = Infinity, hi = -Infinity;
+    for (const r of rows) {
+      lo = Math.min(lo, r.lower_ci_lo === null || r.lower_ci_lo === undefined ? r.lower : r.lower_ci_lo);
+      hi = Math.max(hi, r.upper_ci_hi === null || r.upper_ci_hi === undefined ? r.upper : r.upper_ci_hi);
+    }
+    const pad = (hi - lo) * 0.06; lo -= pad; hi += pad;
+    const x = v => padL + (v - lo) / (hi - lo) * (W - padL - padR);
+
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img",
+                            "aria-label": t + " reference intervals by source" });
+    const g = el("g", { class: "grid" });
+    for (const v of nice(lo, hi)) {
+      g.appendChild(el("line", { x1: x(v), x2: x(v), y1: padT - 8, y2: H - padB }));
+      svg.appendChild(el("text", { x: x(v), y: H - padB + 16, "text-anchor": "middle",
+                                   "font-size": 11 }, v));
+    }
+    svg.appendChild(g);
+    svg.appendChild(el("text", { x: (padL + W - padR) / 2, y: H - 4,
+                                 "text-anchor": "middle", "font-size": 11 },
+                       t + ", " + unitOf(t)));
+    rows.forEach((r, i) => {
+      const y = padT + i * rowH + rowH / 2;
+      const nm = label(r.method);
+      const col = COLORS[nm] || "var(--muted)";
+      const name = nm + (r.age_group && r.age_group !== "All ages" ? "  " + r.age_group : "");
+      svg.appendChild(el("text", { x: padL - 12, y: y + 4, "text-anchor": "end",
+                                   "font-size": 12 }, name));
+      svg.appendChild(el("rect", { x: x(r.lower), y: y - 7,
+                                   width: Math.max(1, x(r.upper) - x(r.lower)),
+                                   height: 14, rx: 2, fill: col, opacity: .82 }));
+      for (const [a, b] of [[r.lower_ci_lo, r.lower_ci_hi], [r.upper_ci_lo, r.upper_ci_hi]]) {
+        if (a === null || a === undefined || b === null || b === undefined) continue;
+        svg.appendChild(el("line", { x1: x(a), x2: x(b), y1: y, y2: y,
+                                     stroke: "var(--ink)", "stroke-width": 1.2 }));
+        for (const e of [a, b])
+          svg.appendChild(el("line", { x1: x(e), x2: x(e), y1: y - 4, y2: y + 4,
+                                       stroke: "var(--ink)", "stroke-width": 1.2 }));
+      }
+      if (r.n) svg.appendChild(el("text", { x: W - padR, y: y - 10, "text-anchor": "end",
+                                            "font-size": 10 }, "n = " + num(r.n)));
+    });
+    figure(panel, svg,
+      "Whiskers show the 90% confidence interval on each reference limit. The " +
+      "manufacturer interval is an adult interval supplied in the package insert and " +
+      "carries no confidence interval; the continuous row is the envelope of the " +
+      "age-resolved curves over the ages the partition covers.");
+  });
+
+  document.getElementById("dl-limits").addEventListener("click", () => {
+    const head = ["test", "age_years", "source", "lower", "upper", "unit"];
+    const lines = [head.join(",")];
+    for (const r of DATA.limits)
+      lines.push([r.test, r.age, '"' + label(r.method) + '"', r.lower, r.upper,
+                  unitOf(r.test)].join(","));
+    const blob = new Blob([lines.join("\n") + "\n"], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = tag("a");
+    a.href = url; a.download = "pediatric_coagulation_reference_limits.csv";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+})();
+
+/* ---------- 3. continuous curves, with the sample size beneath ---------- */
+(function curves() {
+  tabbed(document.getElementById("curve-charts"), TESTS, (panel, t) => {
+    const rows = DATA.curves.filter(r => r.test === t).sort((a, b) => a.age - b.age);
+    const W = 760, H = 300, padT = 16, padB = 42, padL = 54, padR = 74;
+    let lo = Infinity, hi = -Infinity;
+    for (const r of rows) { lo = Math.min(lo, r.p2_5_lo); hi = Math.max(hi, r.p97_5_hi); }
+    const pad = (hi - lo) * 0.08; lo -= pad; hi += pad;
+    const ages = DATA.ages;
+    const x = a => padL + (a - ages[0]) / (ages[ages.length - 1] - ages[0]) * (W - padL - padR);
+    const y = v => H - padB - (v - lo) / (hi - lo) * (H - padT - padB);
+
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img",
+                            "aria-label": t + " continuous reference interval curves" });
+    const grid = el("g", { class: "grid" });
+    for (const v of nice(lo, hi)) {
+      grid.appendChild(el("line", { x1: padL, x2: W - padR, y1: y(v), y2: y(v) }));
+      svg.appendChild(el("text", { x: padL - 8, y: y(v) + 4, "text-anchor": "end", "font-size": 11 }, v));
+    }
+    svg.appendChild(grid);
+    axisLabels(svg, ages, x, H - padB, W, padL, padR);
+    svg.appendChild(el("text", { x: 14, y: (padT + H - padB) / 2, "font-size": 11,
+                                 "text-anchor": "middle",
+                                 transform: `rotate(-90 14 ${(padT + H - padB) / 2})` },
+                       t + ", " + unitOf(t)));
+
+    const col = COLORS["Continuous (GAMLSS)"];
+    const series = [["p2_5", "p2_5_lo", "p2_5_hi", "2.5th", 1.6],
+                    ["p50",  "p50_lo",  "p50_hi",  "50th",  2.4],
+                    ["p97_5","p97_5_lo","p97_5_hi","97.5th",1.6]];
+    for (const [k, klo, khi, name, w] of series) {
+      const up = rows.map(r => `${x(r.age)},${y(r[khi])}`).join(" ");
+      const dn = rows.slice().reverse().map(r => `${x(r.age)},${y(r[klo])}`).join(" ");
+      svg.appendChild(el("polygon", { points: up + " " + dn, fill: col, opacity: .13 }));
+      svg.appendChild(el("polyline", { points: rows.map(r => `${x(r.age)},${y(r[k])}`).join(" "),
+                                       fill: "none", stroke: col, "stroke-width": w,
+                                       "stroke-linejoin": "round" }));
+      const last = rows[rows.length - 1];
+      svg.appendChild(el("text", { x: x(last.age) + 8, y: y(last[k]) + 4, "font-size": 11,
+                                   fill: col }, name));
+    }
+    const hair = el("line", { y1: padT, y2: H - padB, stroke: "var(--rule)",
+                              "stroke-width": 1, opacity: 0 });
+    svg.appendChild(hair);
+    const read = el("text", { x: padL, y: padT + 2, "font-size": 11, opacity: 0 });
+    svg.appendChild(read);
+    const hit = el("rect", { x: padL, y: padT, width: W - padL - padR,
+                             height: H - padT - padB, fill: "transparent" });
+    svg.appendChild(hit);
+    function move(ev) {
+      const box = svg.getBoundingClientRect();
+      const px = (ev.touches ? ev.touches[0].clientX : ev.clientX) - box.left;
+      const frac = (px / box.width * W - padL) / (W - padL - padR);
+      const a = Math.min(ages[ages.length - 1], Math.max(ages[0],
+                Math.round(ages[0] + frac * (ages[ages.length - 1] - ages[0]))));
+      const r = rows.find(q => q.age === a);
+      if (!r) return;
+      hair.setAttribute("x1", x(a)); hair.setAttribute("x2", x(a));
+      hair.setAttribute("opacity", 1);
+      read.setAttribute("opacity", 1);
+      read.textContent = `age ${a}:  ${fmt(r.p2_5)} – ${fmt(r.p97_5)}  (median ${fmt(r.p50)})`;
+    }
+    hit.addEventListener("mousemove", move);
+    hit.addEventListener("touchmove", move, { passive: true });
+    hit.addEventListener("mouseleave", () => {
+      hair.setAttribute("opacity", 0); read.setAttribute("opacity", 0);
+    });
+    figure(panel, svg,
+      "Shaded bands are pointwise 90% confidence intervals from the bootstrap " +
+      "implemented in the published GAMLSS pipeline.");
+
+    // sample size strip, which is what the band width tracks
+    const ss = DATA.sampleSize.filter(r => r.test === t).sort((a, b) => a.age - b.age);
+    const H2 = 96, p2T = 14, p2B = 40;
+    const maxN = Math.max(...ss.map(r => r.n));
+    const bw = (W - padL - padR) / ages.length * 0.62;
+    const svg2 = el("svg", { viewBox: `0 0 ${W} ${H2}`, role: "img",
+                             "aria-label": t + " number of results by age" });
+    for (const r of ss) {
+      const h = (r.n / maxN) * (H2 - p2T - p2B);
+      svg2.appendChild(el("rect", { x: x(r.age) - bw / 2, y: H2 - p2B - h,
+                                    width: bw, height: Math.max(1, h), rx: 1,
+                                    fill: "var(--muted)", opacity: .5 }));
+    }
+    svg2.appendChild(el("text", { x: padL - 8, y: p2T + 8, "text-anchor": "end",
+                                  "font-size": 11 }, num(maxN)));
+    svg2.appendChild(el("line", { x1: padL, x2: W - padR, y1: H2 - p2B, y2: H2 - p2B,
+                                  stroke: "var(--rule)", "stroke-width": 1 }));
+    axisLabels(svg2, ages, x, H2 - p2B, W, padL, padR);
+    const total = ss.reduce((a, r) => a + r.n, 0);
+    figure(panel, svg2,
+      "Number of results at each single year of age, " + num(total) + " in total. " +
+      "The confidence bands above widen where the data thin out.");
+  });
+})();
+
+/* ---------- 4. flagging ---------- */
+(function flagging() {
+  tabbed(document.getElementById("flag-charts"), TESTS, (panel, t) => {
+    const rows = DATA.flagAge.filter(r => r.test === t);
+    const names = ORDER.filter(n => rows.some(r => label(r.ri_source) === n));
+    const W = 760, H = 290, padT = 16, padB = 42, padL = 48, padR = 96;
+    let hi = 0;
+    for (const r of rows) hi = Math.max(hi, r.fp_rate);
+    hi = Math.ceil(hi / 5) * 5;
+    const ages = DATA.ages;
+    const x = a => padL + (a - ages[0]) / (ages[ages.length - 1] - ages[0]) * (W - padL - padR);
+    const y = v => H - padB - v / hi * (H - padT - padB);
+
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img",
+                            "aria-label": t + " out-of-RI flagging rate by age" });
+    const grid = el("g", { class: "grid" });
+    for (const v of nice(0, hi)) {
+      grid.appendChild(el("line", { x1: padL, x2: W - padR, y1: y(v), y2: y(v) }));
+      svg.appendChild(el("text", { x: padL - 8, y: y(v) + 4, "text-anchor": "end",
+                                   "font-size": 11 }, v + "%"));
+    }
+    svg.appendChild(grid);
+    axisLabels(svg, ages, x, H - padB, W, padL, padR);
+    svg.appendChild(el("line", { x1: padL, x2: W - padR, y1: y(5), y2: y(5),
+                                 stroke: "var(--ink)", "stroke-width": 1,
+                                 "stroke-dasharray": "2 4", opacity: .55 }));
+    svg.appendChild(el("text", { x: W - padR + 6, y: y(5) + 4, "font-size": 10 }, "5% nominal"));
+    for (const nm of names) {
+      const s = rows.filter(r => label(r.ri_source) === nm).sort((a, b) => a.age - b.age);
+      svg.appendChild(el("polyline", { points: s.map(r => `${x(r.age)},${y(r.fp_rate)}`).join(" "),
+                                       fill: "none", stroke: COLORS[nm], "stroke-width": 2,
+                                       "stroke-linejoin": "round" }));
+      const last = s[s.length - 1];
+      svg.appendChild(el("circle", { cx: x(last.age), cy: y(last.fp_rate), r: 2.6,
+                                     fill: COLORS[nm] }));
+    }
+
+    const tbl = tag("table");
+    const thead = tag("thead");
+    const hr = tag("tr");
+    for (const [h, c] of [["Reference interval source", ""], ["Flagged", "num"],
+                          ["of total", "num"], ["Rate (95% CI)", "num"]]) {
+      const th = tag("th", c, h); hr.appendChild(th);
+    }
+    thead.appendChild(hr); tbl.appendChild(thead);
+    const tb = tag("tbody");
+    for (const nm of names) {
+      const o = DATA.flagOverall.find(r => r.test === t && label(r.ri_source) === nm);
+      const c = DATA.flagCounts.find(r => r.test === t && label(r.ri_source) === nm);
+      const tr = tag("tr");
+      const c1 = tag("td");
+      const sw = tag("span", "swatch"); sw.style.background = COLORS[nm];
+      c1.appendChild(sw); c1.appendChild(document.createTextNode(nm));
+      tr.appendChild(c1);
+      tr.appendChild(tag("td", "num", c ? num(c.count) : "—"));
+      tr.appendChild(tag("td", "num", c ? num(c.n_total) : "—"));
+      tr.appendChild(tag("td", "num", o ? o.fp_label : "—"));
+      tb.appendChild(tr);
+    }
+    tbl.appendChild(tb);
+    const wrap = tag("div", "scroll"); wrap.appendChild(tbl);
+    figure(panel, svg,
+      "Counts are the number of results outside the limits over the whole age range. " +
+      "Rates carry 95% bootstrap confidence intervals from 1,000 resamples." +
+      (t === "Fibrinogen"
+        ? " Guven et al. did not report fibrinogen, so it is compared across the remaining sources."
+        : ""), wrap);
+  });
+})();
+
+/* ---------- 5. partitioning ---------- */
+(function partitioning() {
+  const box = document.getElementById("hb-box");
+  const p = tag("p", "sub",
+    "Harris–Boyd statistic at the candidate cut-point of 12 years, computed on " +
+    "the full data set. Partitioning is taken as justified above a threshold of 3.");
+  box.appendChild(p);
+  const tbl = tag("table");
+  const thead = tag("thead"); const hr = tag("tr");
+  for (const [h, c] of [["Analyte", ""], ["Cut-point", "num"], ["n below", "num"],
+                        ["n above", "num"], ["z", "num"], ["Partitioned", ""]])
+    hr.appendChild(tag("th", c, h));
+  thead.appendChild(hr); tbl.appendChild(thead);
+  const tb = tag("tbody");
+  for (const r of DATA.harrisBoyd) {
+    const tr = tag("tr");
+    tr.appendChild(tag("td", null, r.test));
+    tr.appendChild(tag("td", "num", r.cutpoint + " y"));
+    tr.appendChild(tag("td", "num", num(r.n_young)));
+    tr.appendChild(tag("td", "num", num(r.n_old)));
+    tr.appendChild(tag("td", "num", r.z_score.toFixed(2)));
+    tr.appendChild(tag("td", null, r.justified ? "Yes" : "No"));
+    tb.appendChild(tr);
+  }
+  tbl.appendChild(tb);
+  const wrap = tag("div", "scroll"); wrap.appendChild(tbl);
+  box.appendChild(wrap);
+
+  tabbed(document.getElementById("partition-charts"), TESTS, (panel, t) => {
+    const rows = DATA.sexLimits.filter(r => r.test === t);
+    const bands = DATA.bands.filter(r => r.test === t);
+    const groups = ["Female", "Male", "Combined"].filter(g => rows.some(r => r.sex === g));
+    const W = 760, H = 330, padT = 16, padB = 42, padL = 54, padR = 96;
+    let lo = Infinity, hi = -Infinity;
+    for (const r of rows) {
+      lo = Math.min(lo, r.lower_lo); hi = Math.max(hi, r.upper_hi);
+    }
+    for (const b of bands) {
+      lo = Math.min(lo, b.lower_lo); hi = Math.max(hi, b.upper_hi);
+    }
+    const pad = (hi - lo) * 0.06; lo -= pad; hi += pad;
+    const ages = DATA.ages;
+    const x = a => padL + (a - ages[0]) / (ages[ages.length - 1] - ages[0]) * (W - padL - padR);
+    const y = v => H - padB - (v - lo) / (hi - lo) * (H - padT - padB);
+    const off = g => groups.length === 1 ? 0 : (g === "Female" ? -4 : 4);
+    const half = (x(ages[1]) - x(ages[0])) / 2;
+
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img",
+                            "aria-label": t + " sex-specific reference limits by age" });
+    const grid = el("g", { class: "grid" });
+    for (const v of nice(lo, hi)) {
+      grid.appendChild(el("line", { x1: padL, x2: W - padR, y1: y(v), y2: y(v) }));
+      svg.appendChild(el("text", { x: padL - 8, y: y(v) + 4, "text-anchor": "end",
+                                   "font-size": 11 }, v));
+    }
+    svg.appendChild(grid);
+
+    // Sex-combined reference limits with their 90% confidence bands, one span
+    // per reported partition, drawn behind the sex-specific points.
+    const bcol = COLORS["Indirect (refineR)"];
+    for (const b of bands) {
+      const x0 = x(b.age_start) - half, x1 = x(b.age_end) + half;
+      for (const [pt, clo, chi] of [[b.lower, b.lower_lo, b.lower_hi],
+                                    [b.upper, b.upper_lo, b.upper_hi]]) {
+        svg.appendChild(el("rect", { x: x0, y: y(chi), width: Math.max(1, x1 - x0),
+                                     height: Math.max(1, y(clo) - y(chi)),
+                                     fill: bcol, opacity: .16 }));
+        svg.appendChild(el("line", { x1: x0, x2: x1, y1: y(pt), y2: y(pt),
+                                     stroke: bcol, "stroke-width": 1.1, opacity: .85 }));
+      }
+      // label each partition's limits at the right edge of its own span
+      const atEnd = b.age_end === ages[ages.length - 1];
+      if (atEnd) {
+        for (const pt of [b.upper, b.lower])
+          svg.appendChild(el("text", { x: x1 + 6, y: y(pt) + 4, "font-size": 10,
+                                       fill: bcol }, fmt(pt)));
+      }
+      svg.appendChild(el("text", { x: (x0 + x1) / 2, y: padT + 2,
+                                   "text-anchor": "middle", "font-size": 10,
+                                   fill: bcol }, b.age_group));
+    }
+
+    axisLabels(svg, ages, x, H - padB, W, padL, padR);
+    svg.appendChild(el("text", { x: 14, y: (padT + H - padB) / 2, "font-size": 11,
+                                 "text-anchor": "middle",
+                                 transform: `rotate(-90 14 ${(padT + H - padB) / 2})` },
+                       t + ", " + unitOf(t)));
+    for (const g of groups) {
+      const s = rows.filter(r => r.sex === g).sort((a, b) => a.age - b.age);
+      const col = COLORS[g];
+      for (const [k, klo, khi] of [["lower", "lower_lo", "lower_hi"],
+                                   ["upper", "upper_lo", "upper_hi"]]) {
+        for (const r of s) {
+          const cx = x(r.age) + off(g);
+          svg.appendChild(el("line", { x1: cx, x2: cx, y1: y(r[klo]), y2: y(r[khi]),
+                                       stroke: col, "stroke-width": 1.1, opacity: .65 }));
+          svg.appendChild(el("circle", { cx: cx, cy: y(r[k]), r: 2.3, fill: col }));
+        }
+      }
+    }
+    const leg = tag("div", "legend");
+    for (const g of groups) {
+      const s = tag("span");
+      const sw = tag("span", "swatch"); sw.style.background = COLORS[g];
+      s.appendChild(sw);
+      s.appendChild(document.createTextNode(
+        g === "Combined" ? "Both sexes combined" : g));
+      leg.appendChild(s);
+    }
+    const sb = tag("span");
+    const ssw = tag("span", "swatch"); ssw.style.background = bcol; ssw.style.opacity = ".55";
+    sb.appendChild(ssw);
+    sb.appendChild(document.createTextNode(
+      "Reported interval and its 90% CI" +
+      (bands.length > 1 ? ", one per age partition" : "")));
+    leg.appendChild(sb);
+
+    figure(panel, svg,
+      "Points are the reference limits at each single year of age with their 90% " +
+      "confidence intervals. The shaded spans are the intervals actually reported, " +
+      (bands.length > 1
+        ? "one for each age partition, split at 12 years. "
+        : "estimated across the whole 1 to <18 year range. ") +
+      (groups.length === 1
+        ? "Fibrinogen was reported for both sexes combined, because single-year strata " +
+          "held too few results to support stable sex-specific limits."
+        : "Confidence intervals overlap between the sexes at the great majority of " +
+          "ages, which is why a combined-sex interval is reported."), leg);
+  });
+})();
+
+/* ---------- 6. transferability ---------- */
+(function transferability() {
+  const tests = TESTS.filter(t => DATA.transfer.some(r => r.test === t));
+  tabbed(document.getElementById("transfer-charts"), tests, (panel, t) => {
+    const rows = DATA.transfer.filter(r => r.test === t).sort((a, b) => a.age - b.age);
+    const W = 760, H = 280, padT = 16, padB = 42, padL = 48, padR = 90;
+    const ages = DATA.ages;
+    const x = a => padL + (a - ages[0]) / (ages[ages.length - 1] - ages[0]) * (W - padL - padR);
+    const y = v => H - padB - v / 100 * (H - padT - padB);
+    const bw = (W - padL - padR) / ages.length * 0.6;
+
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img",
+                            "aria-label": t + " bootstrap pass rate by age" });
+    const grid = el("g", { class: "grid" });
+    for (const v of [0, 25, 50, 75, 100]) {
+      grid.appendChild(el("line", { x1: padL, x2: W - padR, y1: y(v), y2: y(v) }));
+      svg.appendChild(el("text", { x: padL - 8, y: y(v) + 4, "text-anchor": "end",
+                                   "font-size": 11 }, v + "%"));
+    }
+    svg.appendChild(grid);
+    axisLabels(svg, ages, x, H - padB, W, padL, padR);
+    for (const r of rows) {
+      const h = r.pass_rate / 100 * (H - padT - padB);
+      svg.appendChild(el("rect", { x: x(r.age) - bw / 2, y: y(r.pass_rate),
+                                   width: bw, height: Math.max(1, h), rx: 1,
+                                   fill: COLORS["Guven et al."], opacity: .75 }));
+    }
+    svg.appendChild(el("line", { x1: padL, x2: W - padR, y1: y(90), y2: y(90),
+                                 stroke: "var(--ink)", "stroke-width": 1,
+                                 "stroke-dasharray": "3 3", opacity: .7 }));
+    svg.appendChild(el("text", { x: W - padR + 6, y: y(90) + 4, "font-size": 10 },
+                       "90% required"));
+    const mean = rows.reduce((a, r) => a + r.pass_rate, 0) / rows.length;
+    const passed = rows.filter(r => r.pass_rate >= 90).length;
+    figure(panel, svg,
+      `No age group reached the threshold: ${passed} of ${rows.length} passed, ` +
+      `at a mean pass rate of ${mean.toFixed(1)}%. Each bar is the proportion of ` +
+      `200 bootstrap samples of 20 results in which at most 2 fell outside the ` +
+      `published interval for that age.`);
+  });
+})();
+
+/* ---------- 7. published intervals ---------- */
+(function published() {
+  const tb = document.querySelector("#pub-table tbody");
+  const rows = DATA.published.slice().sort((a, b) =>
+    (a.study + a.test).localeCompare(b.study + b.test));
+  for (const r of rows) {
+    const tr = tag("tr");
+    tr.appendChild(tag("td", null, r.study + (r.year ? " " + r.year : "") +
+                       (r.country ? ", " + r.country : "")));
+    tr.appendChild(tag("td", null, r.analyzer));
+    tr.appendChild(tag("td", null, r.method));
+    tr.appendChild(tag("td", null, r.test + "  " + r.age_group));
+    tr.appendChild(tag("td", "num", r.n ? num(r.n) : "—"));
+    tr.appendChild(tag("td", "num", String(r.lower)));
+    tr.appendChild(tag("td", "num", String(r.upper)));
+    tr.appendChild(tag("td", null, r.unit));
+    tb.appendChild(tr);
+  }
+})();
+
+/* ---------- sticky nav highlighting ---------- */
+(function navHighlight() {
+  if (!window.IntersectionObserver) return;
+  const links = {};
+  for (const a of document.querySelectorAll("#nav a"))
+    links[a.getAttribute("href").slice(1)] = a;
+  const seen = new Set();
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (e.isIntersecting) seen.add(e.target.id); else seen.delete(e.target.id);
+    }
+    for (const id in links) links[id].classList.remove("here");
+    for (const id in links) { if (seen.has(id)) { links[id].classList.add("here"); break; } }
+  }, { rootMargin: "-10% 0px -80% 0px" });
+  for (const id in links) {
+    const s = document.getElementById(id);
+    if (s) io.observe(s);
+  }
+})();
+</script>
+</body>
+</html>
+

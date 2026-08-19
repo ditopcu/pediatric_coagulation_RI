@@ -1,0 +1,9 @@
+table,test,variant,age_group,n,lower,lower_ci_lo,lower_ci_hi,upper,upper_ci_lo,upper_ci_hi,secs,note
+S7,PT,Manufacturer RI,1-18 y,11777,8.54,8.53,8.57,10.64,10.62,10.84,178.7,
+S7,PT,Direct RI,1-18 y,15169,8.58,8.56,8.59,10.81,10.65,10.87,159.2,
+S7,aPTT,Manufacturer RI,1-12 y,8681,24.41,23.43,24.61,35.01,34.39,35.05,191.8,
+S7,aPTT,Manufacturer RI,12-18 y,5699,23.29,22.87,23.71,33.56,32.81,33.68,213.3,
+S7,aPTT,Direct RI,1-12 y,9164,24.3,23.37,24.48,35.18,34.47,35.26,470.1,
+S7,aPTT,Direct RI,12-18 y,6153,22.94,22.82,23.88,33.28,33.01,33.83,215.7,
+S7,Fibrinogen,Manufacturer RI,1-18 y,2134,1.93,1.89,1.95,3.81,3.52,4.26,218.3,
+S7,Fibrinogen,Direct RI,1-18 y,2691,1.92,1.89,1.94,3.71,3.48,3.95,218.3,

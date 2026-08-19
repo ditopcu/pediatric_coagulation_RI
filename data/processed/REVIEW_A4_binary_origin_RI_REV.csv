@@ -1,0 +1,13 @@
+test,scenario,age_group,n,lower,median,upper,note
+Fibrinogen,S1_all,1-18 y,3166,1.89,2.68,3.79,
+Fibrinogen,S2_outpatient,1-18 y,2618,1.91,2.68,3.77,
+Fibrinogen,S3_inpatient,1-18 y,548,1.75,2.73,4.26,
+PT,S1_all,1-18 y,17000,8.56,9.65,10.87,
+PT,S2_outpatient,1-18 y,15127,8.57,9.64,10.84,
+PT,S3_inpatient,1-18 y,1870,8.47,9.71,11.13,
+aPTT,S1_all,1-12 y,10091,24.26,29.27,35.28,
+aPTT,S2_outpatient,1-12 y,8975,23.55,29.14,34.81,
+aPTT,S3_inpatient,1-12 y,1113,24.07,29.16,35.32,
+aPTT,S1_all,12-18 y,6910,23.27,28.23,33.88,
+aPTT,S2_outpatient,12-18 y,5925,23.19,28.2,33.77,
+aPTT,S3_inpatient,12-18 y,985,22.65,28.23,33.93,

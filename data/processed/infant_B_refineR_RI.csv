@@ -1,0 +1,4 @@
+test,n,lower,lower_ci_lo,lower_ci_hi,median,upper,upper_ci_lo,upper_ci_hi
+PT,1367,8.36,8.19,8.43,9.81,11.5,11.29,11.72
+aPTT,1365,23.75,23.25,24.26,31.27,40.78,39.3,41.56
+Fibrinogen,217,1.61,1.52,1.78,2.32,3.34,2.85,3.45

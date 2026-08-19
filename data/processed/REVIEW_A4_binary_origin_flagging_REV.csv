@@ -1,0 +1,15 @@
+grp,origin_lbl,n,flag_pct
+Fibrinogen 1-18 y,All,3166,20.75
+Fibrinogen 1-18 y,Inpatient,548,35.04
+Fibrinogen 1-18 y,Outpatient,2618,17.76
+PT 1-18 y,All,17000,13.62
+PT 1-18 y,Inpatient,1870,16.58
+PT 1-18 y,Outpatient,15127,13.25
+PT 1-18 y,Unclassified,3,0
+aPTT 1-12 y,All,10091,12.36
+aPTT 1-12 y,Inpatient,1113,19.14
+aPTT 1-12 y,Outpatient,8975,11.51
+aPTT 1-12 y,Unclassified,3,33.33
+aPTT 12-18 y,All,6910,10.19
+aPTT 12-18 y,Inpatient,985,10.36
+aPTT 12-18 y,Outpatient,5925,10.16

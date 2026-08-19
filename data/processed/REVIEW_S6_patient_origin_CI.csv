@@ -1,0 +1,9 @@
+table,test,variant,age_group,n,lower,lower_ci_lo,lower_ci_hi,upper,upper_ci_lo,upper_ci_hi,secs,note
+S6,PT,Outpatient,1-18 y,15127,8.57,8.55,8.59,10.84,10.7,10.9,354.5,
+S6,PT,Inpatient,1-18 y,1870,8.47,8.4,8.53,11.13,10.91,11.21,524.4,
+S6,aPTT,Outpatient,1-12 y,8975,23.55,23.36,24.39,34.81,34.56,35.36,201.1,
+S6,aPTT,Outpatient,12-18 y,5925,23.19,22.82,23.54,33.77,33.19,34.05,187.5,
+S6,aPTT,Inpatient,1-12 y,1113,24.07,22.75,24.88,35.32,33.88,35.52,254.5,
+S6,aPTT,Inpatient,12-18 y,985,22.65,22.59,24.49,33.93,32.61,34.32,289.5,
+S6,Fibrinogen,Outpatient,1-18 y,2618,1.91,1.88,1.94,3.77,3.53,3.97,208.5,
+S6,Fibrinogen,Inpatient,1-18 y,548,1.75,1.68,1.83,4.26,3.71,4.65,336.8,

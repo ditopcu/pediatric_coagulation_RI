@@ -1,0 +1,4 @@
+test,ri_label,lower,upper,n_infant,n_below,n_within,n_above,pct_below,pct_within,pct_above,pct_outside
+Fibrinogen,1-18 y pooled,1.89,3.79,217,31,174,12,14.3,80.2,5.5,19.8
+PT,1-18 y pooled,8.56,10.9,1367,30,1071,266,2.2,78.3,19.5,21.7
+aPTT,1-12 y partition,24.3,35.3,1365,68,1009,288,5,73.9,21.1,26.1

@@ -1,0 +1,13 @@
+test,variant,age_group,n,lower,median,upper,note
+Fibrinogen,V0_baseline,1-18 y,3166,1.89,2.68,3.79,
+Fibrinogen,V_Direct,1-18 y,2691,1.92,2.67,3.71,
+Fibrinogen,V_Manufacturer,1-18 y,2134,1.93,2.71,3.81,
+PT,V0_baseline,1-18 y,17000,8.56,9.65,10.87,
+PT,V_Direct,1-18 y,15169,8.58,9.63,10.81,
+PT,V_Manufacturer,1-18 y,11777,8.54,9.55,10.64,
+aPTT,V0_baseline,1-12 y,10091,24.26,29.27,35.28,
+aPTT,V_Direct,1-12 y,9164,24.3,29.28,35.18,
+aPTT,V_Manufacturer,1-12 y,8681,24.41,29.25,35.01,
+aPTT,V0_baseline,12-18 y,6910,23.27,28.23,33.88,
+aPTT,V_Direct,12-18 y,6153,22.94,28.11,33.28,
+aPTT,V_Manufacturer,12-18 y,5699,23.29,28.14,33.56,

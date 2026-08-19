@@ -1,0 +1,7 @@
+criterion,test,n_before,n_excluded,pct_excluded,n_after,due_to_1,due_to_2
+Direct,Fibrinogen,3166,475,15,2691,PT: 313,aPTT: 194
+Direct,PT,17000,1831,10.77,15169,aPTT: 1338,Fibrinogen: 534
+Direct,aPTT,17001,1684,9.91,15317,PT: 1319,Fibrinogen: 463
+Manufacturer,Fibrinogen,3166,1032,32.6,2134,PT: 467,aPTT: 705
+Manufacturer,PT,17000,5223,30.72,11777,aPTT: 4927,Fibrinogen: 380
+Manufacturer,aPTT,17001,2621,15.42,14380,PT: 2393,Fibrinogen: 323

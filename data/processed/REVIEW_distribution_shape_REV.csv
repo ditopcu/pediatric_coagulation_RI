@@ -1,0 +1,4 @@
+test,n,mean,sd,median,skewness,kurtosis,pct_below_lower_refineR_limit,pct_above_upper_refineR_limit
+PT,17000,10.052,2.513,9.77,26.973,1133.731,2.14,11.48
+aPTT,17001,28.788,4.545,28.7,16.78,943.171,7.26,4.21
+Fibrinogen,3166,3.08,0.976,2.85,1.573,7.284,2.78,17.97

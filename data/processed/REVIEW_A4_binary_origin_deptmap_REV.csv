@@ -1,0 +1,644 @@
+test,department,origin_rule,origin,n
+Fibrinogen,COCUK KLINIK SERVIS (MT1-8A),R4_servis_klinik,Inpatient,85
+Fibrinogen,COCUK NOROLOJI SERVISI (MT1-8B),R4_servis_klinik,Inpatient,84
+Fibrinogen,COCUK ENFEKSIYON SERVISI (MT1-6B),R4_servis_klinik,Inpatient,46
+Fibrinogen,COCUK GASTROENTROLOJI SERVISI (MT1-7B),R4_servis_klinik,Inpatient,44
+Fibrinogen,COCUK ROMATOLOJI SERVISI (MT1-7C),R4_servis_klinik,Inpatient,40
+Fibrinogen,KADIN HASTALIKLARI (KONSULTASYON),R1_konsultasyon,Inpatient,40
+Fibrinogen,COCUK KARDIYOLOJI SERVISI (MT1-7C),R4_servis_klinik,Inpatient,34
+Fibrinogen,COCUK KLINIK SERVIS (MT1-8C),R4_servis_klinik,Inpatient,24
+Fibrinogen,COCUK PALYATIF SERVISI (MT1-7B),R4_servis_klinik,Inpatient,15
+Fibrinogen,ORTOPEDI SERVISI (MT4-7C),R4_servis_klinik,Inpatient,15
+Fibrinogen,COCUK CERRAHI SERVISI -1 (MT1-6C),R4_servis_klinik,Inpatient,13
+Fibrinogen,COCUK CERRAHI SERVISI-2 (MT1-6A),R4_servis_klinik,Inpatient,12
+Fibrinogen,GOZ SERVISI (MT3-6SAG),R4_servis_klinik,Inpatient,11
+Fibrinogen,COCUK KARDIYOLOJI SERVISI (MT1-7B),R4_servis_klinik,Inpatient,10
+Fibrinogen,COCUK VE ERGEN PSIKIYATRI SERV (F1-2.KAT),R4_servis_klinik,Inpatient,9
+Fibrinogen,LDRP-1 SERVISI (MT1-2A),R4_servis_klinik,Inpatient,8
+Fibrinogen,GIRISIMSEL RADYOLOJI (KONSULTASYON),R1_konsultasyon,Inpatient,6
+Fibrinogen,KAPALI COCUK VE ERGEN PSIKIYATRI SERV (F4-2.KAT),R4_servis_klinik,Inpatient,5
+Fibrinogen,NOROSIRURJI SERVISI (MT4-10B),R4_servis_klinik,Inpatient,5
+Fibrinogen,ORTOPEDI SERVISI (MT4-7A),R4_servis_klinik,Inpatient,5
+Fibrinogen,KADIN HASTALIKLARI KLINIK SERVIS (MT1-9A),R4_servis_klinik,Inpatient,4
+Fibrinogen,KBB SERVIS-2 (MT4-9C),R4_servis_klinik,Inpatient,4
+Fibrinogen,NOROSIRURJI SERVISI (MT4-10A),R4_servis_klinik,Inpatient,4
+Fibrinogen,ANESTEZI (KONSULTASYON),R1_konsultasyon,Inpatient,3
+Fibrinogen,KADIN HASTALIKLARI KLINIK SERVIS (MT1-10A),R4_servis_klinik,Inpatient,3
+Fibrinogen,KADIN HASTALIKLARI KLINIK SERVIS (MT1-10B),R4_servis_klinik,Inpatient,3
+Fibrinogen,ORTOPEDI SERVISI (MT4-7B),R4_servis_klinik,Inpatient,3
+Fibrinogen,KADIN HASTALIKLARI KLINIK SERVIS (MT1-9C),R4_servis_klinik,Inpatient,2
+Fibrinogen,YGAP KAPALI PSIKIYATRI SERVISI - 3 (KADIN),R4_servis_klinik,Inpatient,2
+Fibrinogen,3.KAT R5 FIZIK TEDAVI SERVISI - 4,R4_servis_klinik,Inpatient,1
+Fibrinogen,COCUK ALERJI - IMMUNOLOJI SERVISI (MT1-8B),R4_servis_klinik,Inpatient,1
+Fibrinogen,COCUK ENFEKSIYON HASTALIKLARI (KONSULTASYON),R1_konsultasyon,Inpatient,1
+Fibrinogen,COCUK ROMATOLOJI (KONSULTASYON),R1_konsultasyon,Inpatient,1
+Fibrinogen,COCUK SAGLIGI VE HST. (KONSULTASYON),R1_konsultasyon,Inpatient,1
+Fibrinogen,ERKEK MAHKUM SERVISI (MT4-1A),R4_servis_klinik,Inpatient,1
+Fibrinogen,GOGUS HASTALIKLARI SERVISI (MT2-7A),R4_servis_klinik,Inpatient,1
+Fibrinogen,GOZ HASTALIKLARI (KONSULTASYON),R1_konsultasyon,Inpatient,1
+Fibrinogen,KBB SERVISI-1 (MT4-9A),R4_servis_klinik,Inpatient,1
+Fibrinogen,COCUK ACIL,R2_acil,Outpatient,763
+Fibrinogen,COCUK GASTROENTROLOJI POL. - 3 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,413
+Fibrinogen,COCUK GASTROENTROLOJI POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,295
+Fibrinogen,COCUK GASTROENTROLOJI POL. - 6 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,133
+Fibrinogen,COCUK ROMATOLOJI POL. - 2,R3_poliklinik_muayene,Outpatient,73
+Fibrinogen,COCUK SAGLIGI VE HAST POL. -15 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,63
+Fibrinogen,KADIN DOGUM ACIL,R2_acil,Outpatient,50
+Fibrinogen,KONTAKT LENS OKULOPLASTI(ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,47
+Fibrinogen,COCUK SAGLIGI VE HAST POL - 12 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,46
+Fibrinogen,COCUK SAGLIGI VE HAST. POL -2 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,46
+Fibrinogen,COCUK SAGLIGI VE HAST. POL -1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,45
+Fibrinogen,COCUK GASTROENTROLOJI POL. - 5 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,44
+Fibrinogen,COCUK SAGLIGI VE HAST. POL. -11 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,41
+Fibrinogen,SASILIK - 1,R5_numarali_brans_birimi,Outpatient,41
+Fibrinogen,COCUK SAGLIGI VE HAST. POL. -3 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,38
+Fibrinogen,COCUK GASTROENTROLOJI POL. - 2 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,35
+Fibrinogen,COCUK ACIL YESIL ALAN-2,R2_acil,Outpatient,34
+Fibrinogen,SOSYAL PEDIATRI POL.-2(KD 2.KAT),R3_poliklinik_muayene,Outpatient,34
+Fibrinogen,COCUK ACIL YESIL ALAN-1,R2_acil,Outpatient,27
+Fibrinogen,COCUK SAGLIGI VE HAST POL. -10 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,25
+Fibrinogen,COCUK ACIL TRAVMA,R2_acil,Outpatient,22
+Fibrinogen,COCUK SAGLIGI VE HAST. POL -8 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,21
+Fibrinogen,COCUK SAGLIGI VE HAST POL - 13 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,17
+Fibrinogen,COCUK SAGLIGI VE HAST POL -17 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,17
+Fibrinogen,COCUK ENFEKSIYON POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,14
+Fibrinogen,GIRISIMSEL RADYOLOJI POL.,R3_poliklinik_muayene,Outpatient,12
+Fibrinogen,COCUK ROMATOLOJI POL. - 1,R3_poliklinik_muayene,Outpatient,10
+Fibrinogen,COCUK GOGUS HASTALIKLARI-1,R5_numarali_brans_birimi,Outpatient,9
+Fibrinogen,COCUK GOGUS HASTALIKLARI-2,R5_numarali_brans_birimi,Outpatient,9
+Fibrinogen,COCUK ACIL GOZLEM ARENASI-2,R2_acil,Outpatient,8
+Fibrinogen,COCUK SAGLIGI VE HAST. POL. -9 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,8
+Fibrinogen,ANESTEZI POL. - 1 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,7
+Fibrinogen,COCUK SAGLIGI VE HAST POL -16 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,7
+Fibrinogen,GOZ HASTALIKLARI POL. - 11 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,7
+Fibrinogen,COCUK ACIL YESIL ALAN-4,R2_acil,Outpatient,6
+Fibrinogen,GOZ HASTALIKLARI POL. - 1 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,6
+Fibrinogen,COCUK ENFEKSIYON POL. - 2 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,5
+Fibrinogen,ORTOPEDI POL. - 1 (ONK),R3_poliklinik_muayene,Outpatient,5
+Fibrinogen,ORTOPEDI POL. - 6 (ONK),R3_poliklinik_muayene,Outpatient,5
+Fibrinogen,COCUK CERRAHI POL. - 3 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,4
+Fibrinogen,COCUK GASTROENTROLOJI POL. - 4 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,4
+Fibrinogen,COCUK IMMUNOLOJI VE ALERJI POL. - 3 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,4
+Fibrinogen,COCUK SAGLIGI VE HAST POL -4 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,4
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -6 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,4
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -7 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,4
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -9 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,4
+Fibrinogen,ORTOPEDI POL. - 5 (ONK),R3_poliklinik_muayene,Outpatient,4
+Fibrinogen,TIBBI RETINA -2 (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,4
+Fibrinogen,COCUK CERRAHI POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,3
+Fibrinogen,COCUK IBH (Inflamatuar Bagirsak Hastaligi) POLIKLI,R3_poliklinik_muayene,Outpatient,3
+Fibrinogen,COCUK NOROLOJI POL. -2 (2.KAT),R3_poliklinik_muayene,Outpatient,3
+Fibrinogen,DERMATOLOJI - 7,R5_numarali_brans_birimi,Outpatient,3
+Fibrinogen,ORTOPEDI POL. - 7 (ONK),R3_poliklinik_muayene,Outpatient,3
+Fibrinogen,ORTOPEDI POL. - 9 (ONK),R3_poliklinik_muayene,Outpatient,3
+Fibrinogen,TIBBI RETINA CERRAHI -5 (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,3
+Fibrinogen,COCUK NOROLOJI POL. -4 (2.KAT),R3_poliklinik_muayene,Outpatient,2
+Fibrinogen,GOZ HASTALIKLARI POL. - 3 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,2
+Fibrinogen,GOZ HASTALIKLARI POL. - 6 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,2
+Fibrinogen,GOZ HASTALIKLARI POL. -18(ONK 3. KAT),R3_poliklinik_muayene,Outpatient,2
+Fibrinogen,KORNEA (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,2
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -12 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,2
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -14 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,2
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -2 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,2
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -3 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,2
+Fibrinogen,UVEA NOROOFAL (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,2
+Fibrinogen,ACIL GOZLEM ODASI - 8,R2_acil,Outpatient,1
+Fibrinogen,ANESTEZI POL. - 2 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,ANESTEZI POL. - 4 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,ANESTEZI POL. -1 (ONK),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,BEYIN CERRAHI POL. - 4 (GNL),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK CERRAHI POL. - 2 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK GENETIK POL. - 1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK IMMUNOLOJI VE ALERJI POL. - 2 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK IMMUNOLOJI VE ALERJI POL. - 6 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK KARDIYOLOJI - 2,R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,COCUK NOROLOJI POL. -1 (2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK NOROLOJI POL. -3 (2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK NOROLOJI POL. -5 (2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK PSIKIYATRI POL. -11 (FTR),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK PSIKIYATRI POL. -8 (1.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK SAGLIGI VE HAST POL - 18 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK SAGLIGI VE HAST POL -14 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,COCUK SAGLIGI VE HAST. POL. -7 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,DAHILIYE - 10 (MH),R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,DERMATOLOJI - 16,R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,DERMATOLOJI - 18,R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,DERMATOLOJI - 5,R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,EL CERRAHISI POL. - 1 (ONK),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,FTR MUAYENE ODASI 2,R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GASTROENTOLOJI POL. - 1 (MH 1.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GOZ HASTALIKLARI POL. - 10 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GOZ HASTALIKLARI POL. - 12 (ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GOZ HASTALIKLARI POL. - 14 (ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GOZ HASTALIKLARI POL. - 4 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GOZ HASTALIKLARI POL. - 5 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GOZ HASTALIKLARI POL. - 7 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GOZ HASTALIKLARI POL. - 8 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GOZ HASTALIKLARI POL. - 9 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,GOZ HASTALIKLARI POL. -17(ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,INFERTILITE POL. - 1 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,JINEKOLOJIK ONK. CERRAHI POL. - 2 (ONK),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,KADIN HASTALIKLARI VE DOGUM POL. - 6 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,KADIN HASTALIKLARI VE DOGUM POL. - 8 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,KULAK BURUN BOGAZ (MESAI DISI POLIKLINIGI),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI - 15 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -11 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -16 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -17 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -4 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,KULAK BURUN BOGAZ HASTALIKLARI -5 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,ORTOPEDI POL. - 11 (ONK),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,ORTOPEDI POL. - 2 (ONK),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,ORTOPEDI POL. - 3 (ONK),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,ORTOPEDI POL. - 4 (ONK),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,SOSYAL PEDIATRI POL.-1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,1
+Fibrinogen,TIBBI RETINA (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,TIBBI RETINA -4 (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,1
+Fibrinogen,UROLOJI POL. -7 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,COCUK KARDIYOLOJI SERVISI (MT1-7C),R4_servis_klinik,Inpatient,669
+PT,COCUK NOROLOJI SERVISI (MT1-8B),R4_servis_klinik,Inpatient,154
+PT,COCUK KLINIK SERVIS (MT1-8A),R4_servis_klinik,Inpatient,132
+PT,COCUK CERRAHI SERVISI-2 (MT1-6A),R4_servis_klinik,Inpatient,114
+PT,COCUK CERRAHI SERVISI -1 (MT1-6C),R4_servis_klinik,Inpatient,103
+PT,KADIN HASTALIKLARI (KONSULTASYON),R1_konsultasyon,Inpatient,86
+PT,ANESTEZI (KONSULTASYON),R1_konsultasyon,Inpatient,84
+PT,COCUK ROMATOLOJI SERVISI (MT1-7C),R4_servis_klinik,Inpatient,72
+PT,COCUK ENFEKSIYON SERVISI (MT1-6B),R4_servis_klinik,Inpatient,62
+PT,ORTOPEDI SERVISI (MT4-7C),R4_servis_klinik,Inpatient,45
+PT,COCUK GASTROENTROLOJI SERVISI (MT1-7B),R4_servis_klinik,Inpatient,40
+PT,KBB SERVISI-1 (MT4-9A),R4_servis_klinik,Inpatient,36
+PT,ORTOPEDI SERVISI (MT4-7A),R4_servis_klinik,Inpatient,35
+PT,COCUK KLINIK SERVIS (MT1-8C),R4_servis_klinik,Inpatient,33
+PT,KBB SERVIS-2 (MT4-9C),R4_servis_klinik,Inpatient,24
+PT,NOROSIRURJI SERVISI (MT4-10A),R4_servis_klinik,Inpatient,20
+PT,KAPALI COCUK VE ERGEN PSIKIYATRI SERV (F4-2.KAT),R4_servis_klinik,Inpatient,16
+PT,COCUK VE ERGEN PSIKIYATRI SERV (F1-2.KAT),R4_servis_klinik,Inpatient,14
+PT,LDRP-1 SERVISI (MT1-2A),R4_servis_klinik,Inpatient,12
+PT,GOZ SERVISI (MT3-6SAG),R4_servis_klinik,Inpatient,11
+PT,COCUK CERRAHI (KONSULTASYON),R1_konsultasyon,Inpatient,9
+PT,COCUK NOROLOJI (KONSULTASYON),R1_konsultasyon,Inpatient,9
+PT,COCUK PALYATIF SERVISI (MT1-7B),R4_servis_klinik,Inpatient,9
+PT,KBB (KONSULTASYON),R1_konsultasyon,Inpatient,8
+PT,COCUK KARDIYOLOJI SERVISI (MT1-7B),R4_servis_klinik,Inpatient,6
+PT,GIRISIMSEL RADYOLOJI (KONSULTASYON),R1_konsultasyon,Inpatient,6
+PT,NOROSIRURJI SERVISI (MT4-10B),R4_servis_klinik,Inpatient,6
+PT,ORTOPEDI SERVISI (MT4-7B),R4_servis_klinik,Inpatient,6
+PT,BEYIN VE SINIR CERRAHISI (KONSULTASYON),R1_konsultasyon,Inpatient,4
+PT,KADIN HASTALIKLARI KLINIK SERVIS (MT1-10A),R4_servis_klinik,Inpatient,4
+PT,KADIN HASTALIKLARI KLINIK SERVIS (MT1-10B),R4_servis_klinik,Inpatient,4
+PT,COCUK SAGLIGI VE HST. (KONSULTASYON),R1_konsultasyon,Inpatient,3
+PT,ERKEK MAHKUM SERVISI (MT4-1A),R4_servis_klinik,Inpatient,3
+PT,GOZ HASTALIKLARI (KONSULTASYON),R1_konsultasyon,Inpatient,3
+PT,ORTOPEDI VE TRAVMATOLOJI (KONSULTASYON),R1_konsultasyon,Inpatient,3
+PT,3.KAT R1 FIZIK TEDAVI SERVISI - 1,R4_servis_klinik,Inpatient,2
+PT,COCUK ALERJI - IMMUNOLOJI SERVISI (MT1-8B),R4_servis_klinik,Inpatient,2
+PT,COCUK UROLOJI SERVISI (MT1-6A),R4_servis_klinik,Inpatient,2
+PT,GENEL CERRAHI SERV (MT4-8A),R4_servis_klinik,Inpatient,2
+PT,KADIN HASTALIKLARI KLINIK SERVIS (MT1-9A),R4_servis_klinik,Inpatient,2
+PT,PLASTIK CERRAHI (KONSULTASYON),R1_konsultasyon,Inpatient,2
+PT,PLASTIK REKONSTRIKTIF VE ESTETIK CER. (MT4-8B),R4_servis_klinik,Inpatient,2
+PT,YGAP KAPALI PSIKIYATRI SERVISI - 3 (KADIN),R4_servis_klinik,Inpatient,2
+PT,3.KAT R2 FIZIK TEDAVI SERVISI - 3,R4_servis_klinik,Inpatient,1
+PT,3.KAT R4 FIZIK TEDAVI SERVISI - 2,R4_servis_klinik,Inpatient,1
+PT,ANESTEZI PALYATIF KLINIGI (MT4-9B),R4_servis_klinik,Inpatient,1
+PT,COCUK ENFEKSIYON HASTALIKLARI (KONSULTASYON),R1_konsultasyon,Inpatient,1
+PT,GOGUS HASTALIKLARI SERVISI (MT2-7A),R4_servis_klinik,Inpatient,1
+PT,IC HASTALIKLARI SERVISI - 1 (MT2-10A),R4_servis_klinik,Inpatient,1
+PT,KADIN HASTALIKLARI SERVIS (MT1-10C),R4_servis_klinik,Inpatient,1
+PT,UROLOJI SERVISI (MT4-10C),R4_servis_klinik,Inpatient,1
+PT,UROLOJI SERVISI (MT4-11C),R4_servis_klinik,Inpatient,1
+PT,COCUK ACIL,R2_acil,Outpatient,6077
+PT,COCUK CERRAHI POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,941
+PT,COCUK GASTROENTROLOJI POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,930
+PT,COCUK GASTROENTROLOJI POL. - 2 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,754
+PT,COCUK GASTROENTROLOJI POL. - 6 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,507
+PT,COCUK GASTROENTROLOJI POL. - 4 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,435
+PT,COCUK GASTROENTROLOJI POL. - 3 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,426
+PT,COCUK CERRAHI POL. - 2 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,421
+PT,COCUK CERRAHI POL. - 3 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,359
+PT,COCUK GASTROENTROLOJI POL. - 5 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,304
+PT,COCUK ACIL TRAVMA,R2_acil,Outpatient,172
+PT,KULAK BURUN BOGAZ HASTALIKLARI -4 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,119
+PT,COCUK ACIL GOZLEM ARENASI-2,R2_acil,Outpatient,118
+PT,EL CERRAHISI POL. - 1 (ONK),R3_poliklinik_muayene,Outpatient,117
+PT,KULAK BURUN BOGAZ HASTALIKLARI -7 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,102
+PT,KULAK BURUN BOGAZ HASTALIKLARI -6 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,101
+PT,COCUK SAGLIGI VE HAST. POL -1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,97
+PT,KULAK BURUN BOGAZ HASTALIKLARI -12 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,90
+PT,KULAK BURUN BOGAZ HASTALIKLARI -14 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,90
+PT,COCUK SAGLIGI VE HAST POL. -15 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,83
+PT,KULAK BURUN BOGAZ HASTALIKLARI -5 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,82
+PT,KULAK BURUN BOGAZ HASTALIKLARI -9 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,79
+PT,ANESTEZI POL. - 1 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,78
+PT,SASILIK - 1,R5_numarali_brans_birimi,Outpatient,77
+PT,COCUK ACIL YESIL ALAN-1,R2_acil,Outpatient,76
+PT,COCUK SAGLIGI VE HAST POL - 12 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,74
+PT,COCUK SAGLIGI VE HAST POL - 13 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,71
+PT,COCUK ACIL YESIL ALAN-2,R2_acil,Outpatient,70
+PT,COCUK SAGLIGI VE HAST. POL. -9 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,69
+PT,KULAK BURUN BOGAZ HASTALIKLARI -2 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,69
+PT,COCUK SAGLIGI VE HAST. POL -2 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,67
+PT,COCUK SAGLIGI VE HAST. POL. -3 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,67
+PT,KULAK BURUN BOGAZ HASTALIKLARI -13 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,65
+PT,COCUK GOGUS HASTALIKLARI-2,R5_numarali_brans_birimi,Outpatient,61
+PT,COCUK SAGLIGI VE HAST POL -17 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,59
+PT,KADIN DOGUM ACIL,R2_acil,Outpatient,59
+PT,SOSYAL PEDIATRI POL.-2(KD 2.KAT),R3_poliklinik_muayene,Outpatient,56
+PT,KULAK BURUN BOGAZ HASTALIKLARI -16 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,55
+PT,COCUK SAGLIGI VE HAST. POL -8 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,54
+PT,COCUK SAGLIGI VE HAST POL -14 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,53
+PT,ORTOPEDI POL. - 6 (ONK),R3_poliklinik_muayene,Outpatient,52
+PT,COCUK ACIL YESIL ALAN-4,R2_acil,Outpatient,51
+PT,COCUK SAGLIGI VE HAST POL -16 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,50
+PT,KULAK BURUN BOGAZ HASTALIKLARI -17 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,49
+PT,COCUK SAGLIGI VE HAST. POL. -7 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,48
+PT,KONTAKT LENS OKULOPLASTI(ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,47
+PT,ANESTEZI POL. - 2 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,46
+PT,COCUK SAGLIGI VE HAST. POL. -11 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,44
+PT,ORTOPEDI POL. - 5 (ONK),R3_poliklinik_muayene,Outpatient,44
+PT,PLASTIK VE ESTETIK CERRAHI POL-1,R3_poliklinik_muayene,Outpatient,41
+PT,KULAK BURUN BOGAZ HASTALIKLARI -8 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,40
+PT,ORTOPEDI POL. - 1 (ONK),R3_poliklinik_muayene,Outpatient,37
+PT,COCUK SAGLIGI VE HAST POL. -10 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,35
+PT,KULAK BURUN BOGAZ HASTALIKLARI - 15 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,35
+PT,ANESTEZI POL. - 3 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,33
+PT,KULAK BURUN BOGAZ HASTALIKLARI -1 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,33
+PT,BEYIN CERRAHI POL. - 4 (GNL),R3_poliklinik_muayene,Outpatient,32
+PT,ORTOPEDI POL. - 4 (ONK),R3_poliklinik_muayene,Outpatient,32
+PT,ANESTEZI POL. - 4 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,30
+PT,KULAK BURUN BOGAZ HASTALIKLARI -3 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,30
+PT,COCUK NOROLOJI POL. -4 (2.KAT),R3_poliklinik_muayene,Outpatient,26
+PT,COCUK SAGLIGI VE HAST POL - 18 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,26
+PT,ORTOPEDI POL. - 2 (ONK),R3_poliklinik_muayene,Outpatient,25
+PT,COCUK SAGLIGI VE HAST POL -4 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,23
+PT,COCUK ENFEKSIYON POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,21
+PT,EL CERRAHISI POL. - 2 (ONK),R3_poliklinik_muayene,Outpatient,21
+PT,ORTOPEDI POL. - 8 (ONK),R3_poliklinik_muayene,Outpatient,21
+PT,COCUK NOROLOJI POL. -3 (2.KAT),R3_poliklinik_muayene,Outpatient,18
+PT,COCUK ROMATOLOJI POL. - 2,R3_poliklinik_muayene,Outpatient,18
+PT,COCUK UROLOJI POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,18
+PT,ORTOPEDI POL. - 9 (ONK),R3_poliklinik_muayene,Outpatient,17
+PT,SOSYAL PEDIATRI POL.-1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,17
+PT,COCUK GOGUS HASTALIKLARI-1,R5_numarali_brans_birimi,Outpatient,15
+PT,COCUK NOROLOJI POL. -5 (2.KAT),R3_poliklinik_muayene,Outpatient,15
+PT,BEYIN CERRAHI POL. - 3 (GNL),R3_poliklinik_muayene,Outpatient,14
+PT,KORNEA (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,14
+PT,COCUK IBH (Inflamatuar Bagirsak Hastaligi) POLIKLI,R3_poliklinik_muayene,Outpatient,13
+PT,FTR MUAYENE ODASI 3,R3_poliklinik_muayene,Outpatient,13
+PT,ORTOPEDI POL. - 3 (ONK),R3_poliklinik_muayene,Outpatient,13
+PT,GIRISIMSEL RADYOLOJI POL.,R3_poliklinik_muayene,Outpatient,12
+PT,ORTOPEDI POL. - 11 (ONK),R3_poliklinik_muayene,Outpatient,12
+PT,ANESTEZI POL. -1 (ONK),R3_poliklinik_muayene,Outpatient,11
+PT,COCUK CERRAHI POL. - 4 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,11
+PT,KULAK BURUN BOGAZ HASTALIKLARI -11 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,11
+PT,ORTOPEDI POL. - 7 (ONK),R3_poliklinik_muayene,Outpatient,11
+PT,COCUK KARDIYOLOJI - 1,R5_numarali_brans_birimi,Outpatient,10
+PT,GOGUS CERRAHISI - 1 (KD),R5_numarali_brans_birimi,Outpatient,10
+PT,BEYIN CERRAHI POL. - 1 (GNL),R3_poliklinik_muayene,Outpatient,9
+PT,COCUK IMMUNOLOJI VE ALERJI POL. - 6 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,9
+PT,GOZ HASTALIKLARI POL. - 11 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,9
+PT,UROLOJI POL. -3 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,9
+PT,GOZ HASTALIKLARI POL. - 1 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,8
+PT,KULAK BURUN BOGAZ HASTALIKLARI -10 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,8
+PT,KULAK BURUN BOGAZ HASTALIKLARI -18 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,8
+PT,COCUK ENFEKSIYON POL. - 2 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,7
+PT,COCUK IMMUNOLOJI VE ALERJI POL. - 2 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,7
+PT,COCUK NOROLOJI POL. -1 (2.KAT),R3_poliklinik_muayene,Outpatient,7
+PT,GOGUS CERRAHISI - 2 (KD),R5_numarali_brans_birimi,Outpatient,7
+PT,KULAK BURUN BOGAZ (MESAI DISI POLIKLINIGI),R3_poliklinik_muayene,Outpatient,7
+PT,YESIL ACIL MUAYENE-1,R2_acil,Outpatient,7
+PT,COCUK KARDIYOLOJI - 2,R5_numarali_brans_birimi,Outpatient,6
+PT,FTR MUAYENE ODASI 1,R3_poliklinik_muayene,Outpatient,6
+PT,UROLOJI POL. -2 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,6
+PT,COCUK ROMATOLOJI POL. - 1,R3_poliklinik_muayene,Outpatient,5
+PT,DERMATOLOJI - 6,R5_numarali_brans_birimi,Outpatient,5
+PT,ACIL KIRMIZI ALAN,R2_acil,Outpatient,4
+PT,COCUK NOROLOJI POL. -2 (2.KAT),R3_poliklinik_muayene,Outpatient,4
+PT,DERMATOLOJI - 7,R5_numarali_brans_birimi,Outpatient,4
+PT,FTR MUAYENE ODASI 2,R3_poliklinik_muayene,Outpatient,4
+PT,GOZ HASTALIKLARI POL. - 10 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,4
+PT,GOZ HASTALIKLARI POL. - 3 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,4
+PT,KADIN HASTALIKLARI VE DOGUM POL. - 6 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,4
+PT,KULAK BURUN BOGAZ HASTALIKLARI -19 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,4
+PT,UROLOJI POL. -1 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,4
+PT,UROLOJI POL. -6 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,4
+PT,ACIL GOZLEM ODASI - 5,R2_acil,Outpatient,3
+PT,ALGOLOJI POL. - 1 (MH 1.KAT),R3_poliklinik_muayene,Outpatient,3
+PT,BEYIN CERRAHI POL. - 5 (GNL),R3_poliklinik_muayene,Outpatient,3
+PT,BEYIN CERRAHI POL. - 6 (GNL),R3_poliklinik_muayene,Outpatient,3
+PT,COCUK IMMUNOLOJI VE ALERJI POL. - 3 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,3
+PT,DERMATOLOJI - 20,R5_numarali_brans_birimi,Outpatient,3
+PT,EVDE SAGLIK POLIKLINIGI,R3_poliklinik_muayene,Outpatient,3
+PT,GASTROENTOLOJI POL. - 2 (MH 1.KAT),R3_poliklinik_muayene,Outpatient,3
+PT,GENEL CERRAHI POL. - 1 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,3
+PT,GENEL CERRAHI POL. - 7 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,3
+PT,GOZ HASTALIKLARI POL. - 6 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,3
+PT,GOZ HASTALIKLARI POL. - 8 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,3
+PT,ACIL COCUK SAGLIGI VE HAST. POL,R2_acil,Outpatient,2
+PT,AILE HEKIMLIGI POL. - 3,R3_poliklinik_muayene,Outpatient,2
+PT,AILE HEKIMLIGI POL. - 4,R3_poliklinik_muayene,Outpatient,2
+PT,AILE HEKIMLIGI POL. -2,R3_poliklinik_muayene,Outpatient,2
+PT,BEYIN CERRAHI POL. -2 (GNL),R3_poliklinik_muayene,Outpatient,2
+PT,COCUK ACIL SARI MUAYENE,R2_acil,Outpatient,2
+PT,COCUK ADOLESEN POL. - 1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,2
+PT,COCUK IMMUNOLOJI VE ALERJI POL. - 5 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,2
+PT,DERMATOLOJI - 14,R5_numarali_brans_birimi,Outpatient,2
+PT,DERMATOLOJI - 15,R5_numarali_brans_birimi,Outpatient,2
+PT,DERMATOLOJI - 16,R5_numarali_brans_birimi,Outpatient,2
+PT,DERMATOLOJI - 17,R5_numarali_brans_birimi,Outpatient,2
+PT,DERMATOLOJI - 4,R5_numarali_brans_birimi,Outpatient,2
+PT,GASTROENTOLOJI POL. - 1 (MH 1.KAT),R3_poliklinik_muayene,Outpatient,2
+PT,GEBE POL 2(KD 1.KAT),R3_poliklinik_muayene,Outpatient,2
+PT,GENEL CERRAHI POL. - 6 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,2
+PT,GENEL CERRAHI POL. - 8 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,2
+PT,GOZ HASTALIKLARI POL. - 9 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,2
+PT,GOZ HASTALIKLARI POL. -18(ONK 3. KAT),R3_poliklinik_muayene,Outpatient,2
+PT,ORTOPEDI POL. - 12 (ONK),R3_poliklinik_muayene,Outpatient,2
+PT,TIBBI RETINA (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,2
+PT,TIBBI RETINA -2 (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,2
+PT,UROLOJI POL. -4 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,2
+PT,UROLOJI POL. -5 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,2
+PT,UROLOJI POL. -7 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,2
+PT,UROLOJI POL. 1 (MESAI DISI POLIKLINIGI),R3_poliklinik_muayene,Outpatient,2
+PT,UVEA NOROOFAL (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,2
+PT,ACIL GOZLEM ODASI - 7,R2_acil,Outpatient,1
+PT,ACIL TRAVMA,R2_acil,Outpatient,1
+PT,AILE HEKIMLIGI POL. - 5,R3_poliklinik_muayene,Outpatient,1
+PT,AILE HEKIMLIGI POL. -1,R3_poliklinik_muayene,Outpatient,1
+PT,AYAKTAN FIZIK TEDAVI POLIKLINIGI,R3_poliklinik_muayene,Outpatient,1
+PT,COCUK ACIL SARI MUAYENE - 2,R2_acil,Outpatient,1
+PT,COCUK ACIL YESIL ALAN-3,R2_acil,Outpatient,1
+PT,COCUK GENETIK POL. - 1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,COCUK PSIKIYATRI POL. -8 (1.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,DAHILIYE - 10 (MH),R5_numarali_brans_birimi,Outpatient,1
+PT,DAHILIYE - 13 (MH),R5_numarali_brans_birimi,Outpatient,1
+PT,DERMATOLOJI - 1,R5_numarali_brans_birimi,Outpatient,1
+PT,DERMATOLOJI - 18,R5_numarali_brans_birimi,Outpatient,1
+PT,ENFEKSIYON HASTALIKLARI POL. -3 (ZEMIN KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GASTROENTOLOJI POL. - 4 (MH 1.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GEBE POL 1 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GENEL CERRAHI POL. - 2 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GENEL CERRAHI POL. - 4 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GENEL CERRAHI POL. - 5 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GOGUS CERRAHISI - 4 (KD),R5_numarali_brans_birimi,Outpatient,1
+PT,GOZ HASTALIKLARI POL. - 12 (ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GOZ HASTALIKLARI POL. - 13 (ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GOZ HASTALIKLARI POL. - 14 (ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GOZ HASTALIKLARI POL. - 4 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GOZ HASTALIKLARI POL. - 5 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GOZ HASTALIKLARI POL. - 7 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+PT,GOZ HASTALIKLARI POL. -17(ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+PT,INFERTILITE POL. - 1 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,JINEKOLOJIK ONK. CERRAHI POL. - 2 (ONK),R3_poliklinik_muayene,Outpatient,1
+PT,KADIN HASTALIKLARI VE DOGUM POL. - 8 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,KARDIYOLOJI POL. - 3 (KD),R3_poliklinik_muayene,Outpatient,1
+PT,KATARAKT-2,R5_numarali_brans_birimi,Outpatient,1
+PT,LASER GLOKOM (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,1
+PT,ORTOPEDI POL. - 10 (ONK),R3_poliklinik_muayene,Outpatient,1
+PT,SES POLIKLINIGI (MP5.2.KAT),R3_poliklinik_muayene,Outpatient,1
+PT,STOMA VE KRONIK YARA POLIKLINIK,R3_poliklinik_muayene,Outpatient,1
+PT,TIBBI RETINA -4 (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,1
+PT,TIBBI RETINA CERRAHI -5 (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,1
+PT,COCUK NOROLOJI (SK),R0_unresolved_SK,Unclassified,3
+aPTT,COCUK KARDIYOLOJI SERVISI (MT1-7C),R4_servis_klinik,Inpatient,668
+aPTT,COCUK NOROLOJI SERVISI (MT1-8B),R4_servis_klinik,Inpatient,173
+aPTT,COCUK KLINIK SERVIS (MT1-8A),R4_servis_klinik,Inpatient,157
+aPTT,COCUK CERRAHI SERVISI-2 (MT1-6A),R4_servis_klinik,Inpatient,136
+aPTT,COCUK CERRAHI SERVISI -1 (MT1-6C),R4_servis_klinik,Inpatient,124
+aPTT,COCUK ENFEKSIYON SERVISI (MT1-6B),R4_servis_klinik,Inpatient,88
+aPTT,ANESTEZI (KONSULTASYON),R1_konsultasyon,Inpatient,84
+aPTT,KADIN HASTALIKLARI (KONSULTASYON),R1_konsultasyon,Inpatient,81
+aPTT,COCUK ROMATOLOJI SERVISI (MT1-7C),R4_servis_klinik,Inpatient,76
+aPTT,COCUK GASTROENTROLOJI SERVISI (MT1-7B),R4_servis_klinik,Inpatient,70
+aPTT,ORTOPEDI SERVISI (MT4-7C),R4_servis_klinik,Inpatient,62
+aPTT,KBB SERVISI-1 (MT4-9A),R4_servis_klinik,Inpatient,53
+aPTT,ORTOPEDI SERVISI (MT4-7A),R4_servis_klinik,Inpatient,49
+aPTT,COCUK KLINIK SERVIS (MT1-8C),R4_servis_klinik,Inpatient,40
+aPTT,KBB SERVIS-2 (MT4-9C),R4_servis_klinik,Inpatient,38
+aPTT,NOROSIRURJI SERVISI (MT4-10A),R4_servis_klinik,Inpatient,22
+aPTT,KAPALI COCUK VE ERGEN PSIKIYATRI SERV (F4-2.KAT),R4_servis_klinik,Inpatient,16
+aPTT,LDRP-1 SERVISI (MT1-2A),R4_servis_klinik,Inpatient,16
+aPTT,GOZ SERVISI (MT3-6SAG),R4_servis_klinik,Inpatient,15
+aPTT,COCUK VE ERGEN PSIKIYATRI SERV (F1-2.KAT),R4_servis_klinik,Inpatient,12
+aPTT,COCUK KARDIYOLOJI SERVISI (MT1-7B),R4_servis_klinik,Inpatient,10
+aPTT,COCUK PALYATIF SERVISI (MT1-7B),R4_servis_klinik,Inpatient,10
+aPTT,ORTOPEDI SERVISI (MT4-7B),R4_servis_klinik,Inpatient,10
+aPTT,COCUK CERRAHI (KONSULTASYON),R1_konsultasyon,Inpatient,8
+aPTT,NOROSIRURJI SERVISI (MT4-10B),R4_servis_klinik,Inpatient,8
+aPTT,GIRISIMSEL RADYOLOJI (KONSULTASYON),R1_konsultasyon,Inpatient,7
+aPTT,COCUK NOROLOJI (KONSULTASYON),R1_konsultasyon,Inpatient,6
+aPTT,KBB (KONSULTASYON),R1_konsultasyon,Inpatient,6
+aPTT,KADIN HASTALIKLARI KLINIK SERVIS (MT1-10A),R4_servis_klinik,Inpatient,4
+aPTT,KADIN HASTALIKLARI KLINIK SERVIS (MT1-10B),R4_servis_klinik,Inpatient,4
+aPTT,KADIN HASTALIKLARI KLINIK SERVIS (MT1-9A),R4_servis_klinik,Inpatient,4
+aPTT,COCUK ALERJI - IMMUNOLOJI SERVISI (MT1-8B),R4_servis_klinik,Inpatient,3
+aPTT,COCUK SAGLIGI VE HST. (KONSULTASYON),R1_konsultasyon,Inpatient,3
+aPTT,COCUK UROLOJI SERVISI (MT1-6A),R4_servis_klinik,Inpatient,3
+aPTT,ERKEK MAHKUM SERVISI (MT4-1A),R4_servis_klinik,Inpatient,3
+aPTT,GOZ HASTALIKLARI (KONSULTASYON),R1_konsultasyon,Inpatient,3
+aPTT,ORTOPEDI VE TRAVMATOLOJI (KONSULTASYON),R1_konsultasyon,Inpatient,3
+aPTT,PLASTIK REKONSTRIKTIF VE ESTETIK CER. (MT4-8B),R4_servis_klinik,Inpatient,3
+aPTT,3.KAT R2 FIZIK TEDAVI SERVISI - 3,R4_servis_klinik,Inpatient,2
+aPTT,3.KAT R4 FIZIK TEDAVI SERVISI - 2,R4_servis_klinik,Inpatient,2
+aPTT,BEYIN VE SINIR CERRAHISI (KONSULTASYON),R1_konsultasyon,Inpatient,2
+aPTT,PLASTIK CERRAHI (KONSULTASYON),R1_konsultasyon,Inpatient,2
+aPTT,YGAP KAPALI PSIKIYATRI SERVISI - 3 (KADIN),R4_servis_klinik,Inpatient,2
+aPTT,3.KAT R5 FIZIK TEDAVI SERVISI - 4,R4_servis_klinik,Inpatient,1
+aPTT,4.KAT R4 FIZIK TEDAVI SERVISI - 6,R4_servis_klinik,Inpatient,1
+aPTT,ANESTEZI PALYATIF KLINIGI (MT4-9B),R4_servis_klinik,Inpatient,1
+aPTT,COCUK ENFEKSIYON HASTALIKLARI (KONSULTASYON),R1_konsultasyon,Inpatient,1
+aPTT,COCUK GASTROENTEROLOJI (KONSULTASYON),R1_konsultasyon,Inpatient,1
+aPTT,GENEL CERRAHI SERV (MT4-8A),R4_servis_klinik,Inpatient,1
+aPTT,GOGUS HASTALIKLARI SERVISI (MT2-7A),R4_servis_klinik,Inpatient,1
+aPTT,KADIN HASTALIKLARI SERVIS (MT1-10C),R4_servis_klinik,Inpatient,1
+aPTT,UROLOJI SERVISI (MT4-10C),R4_servis_klinik,Inpatient,1
+aPTT,UROLOJI SERVISI (MT4-11C),R4_servis_klinik,Inpatient,1
+aPTT,COCUK ACIL,R2_acil,Outpatient,5961
+aPTT,COCUK CERRAHI POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,951
+aPTT,COCUK GASTROENTROLOJI POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,935
+aPTT,COCUK GASTROENTROLOJI POL. - 2 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,741
+aPTT,COCUK GASTROENTROLOJI POL. - 6 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,488
+aPTT,COCUK GASTROENTROLOJI POL. - 4 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,441
+aPTT,COCUK GASTROENTROLOJI POL. - 3 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,424
+aPTT,COCUK CERRAHI POL. - 2 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,398
+aPTT,COCUK CERRAHI POL. - 3 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,346
+aPTT,COCUK GASTROENTROLOJI POL. - 5 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,316
+aPTT,COCUK ACIL TRAVMA,R2_acil,Outpatient,170
+aPTT,COCUK ACIL GOZLEM ARENASI-2,R2_acil,Outpatient,124
+aPTT,EL CERRAHISI POL. - 1 (ONK),R3_poliklinik_muayene,Outpatient,119
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -4 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,118
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -7 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,99
+aPTT,COCUK SAGLIGI VE HAST. POL -1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,98
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -6 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,90
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -12 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,88
+aPTT,COCUK SAGLIGI VE HAST POL. -15 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,84
+aPTT,SASILIK - 1,R5_numarali_brans_birimi,Outpatient,80
+aPTT,ANESTEZI POL. - 1 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,79
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -14 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,79
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -5 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,78
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -9 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,77
+aPTT,COCUK ACIL YESIL ALAN-1,R2_acil,Outpatient,75
+aPTT,COCUK SAGLIGI VE HAST POL - 12 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,73
+aPTT,COCUK SAGLIGI VE HAST. POL -2 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,73
+aPTT,COCUK ACIL YESIL ALAN-2,R2_acil,Outpatient,72
+aPTT,COCUK SAGLIGI VE HAST POL - 13 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,72
+aPTT,COCUK SAGLIGI VE HAST. POL. -3 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,71
+aPTT,COCUK SAGLIGI VE HAST. POL. -9 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,67
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -2 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,67
+aPTT,COCUK GOGUS HASTALIKLARI-2,R5_numarali_brans_birimi,Outpatient,63
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -13 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,62
+aPTT,COCUK SAGLIGI VE HAST POL -17 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,61
+aPTT,SOSYAL PEDIATRI POL.-2(KD 2.KAT),R3_poliklinik_muayene,Outpatient,61
+aPTT,KADIN DOGUM ACIL,R2_acil,Outpatient,57
+aPTT,COCUK SAGLIGI VE HAST POL -14 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,53
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -17 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,53
+aPTT,COCUK SAGLIGI VE HAST POL -16 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,52
+aPTT,ANESTEZI POL. - 2 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,51
+aPTT,COCUK SAGLIGI VE HAST. POL -8 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,51
+aPTT,KONTAKT LENS OKULOPLASTI(ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,51
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -16 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,51
+aPTT,COCUK SAGLIGI VE HAST. POL. -7 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,47
+aPTT,COCUK ACIL YESIL ALAN-4,R2_acil,Outpatient,45
+aPTT,COCUK SAGLIGI VE HAST. POL. -11 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,44
+aPTT,ORTOPEDI POL. - 6 (ONK),R3_poliklinik_muayene,Outpatient,44
+aPTT,ORTOPEDI POL. - 5 (ONK),R3_poliklinik_muayene,Outpatient,41
+aPTT,PLASTIK VE ESTETIK CERRAHI POL-1,R3_poliklinik_muayene,Outpatient,40
+aPTT,ORTOPEDI POL. - 1 (ONK),R3_poliklinik_muayene,Outpatient,38
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -8 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,36
+aPTT,ANESTEZI POL. - 3 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,35
+aPTT,COCUK SAGLIGI VE HAST POL. -10 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,34
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI - 15 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,34
+aPTT,ANESTEZI POL. - 4 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,31
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -3 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,31
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -1 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,30
+aPTT,COCUK SAGLIGI VE HAST POL - 18 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,25
+aPTT,BEYIN CERRAHI POL. - 4 (GNL),R3_poliklinik_muayene,Outpatient,24
+aPTT,COCUK NOROLOJI POL. -4 (2.KAT),R3_poliklinik_muayene,Outpatient,24
+aPTT,COCUK SAGLIGI VE HAST POL -4 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,24
+aPTT,ORTOPEDI POL. - 4 (ONK),R3_poliklinik_muayene,Outpatient,23
+aPTT,EL CERRAHISI POL. - 2 (ONK),R3_poliklinik_muayene,Outpatient,22
+aPTT,COCUK ENFEKSIYON POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,21
+aPTT,ORTOPEDI POL. - 2 (ONK),R3_poliklinik_muayene,Outpatient,21
+aPTT,COCUK UROLOJI POL. - 1 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,20
+aPTT,COCUK IBH (Inflamatuar Bagirsak Hastaligi) POLIKLI,R3_poliklinik_muayene,Outpatient,19
+aPTT,ORTOPEDI POL. - 8 (ONK),R3_poliklinik_muayene,Outpatient,19
+aPTT,COCUK NOROLOJI POL. -3 (2.KAT),R3_poliklinik_muayene,Outpatient,18
+aPTT,ORTOPEDI POL. - 9 (ONK),R3_poliklinik_muayene,Outpatient,18
+aPTT,COCUK ROMATOLOJI POL. - 2,R3_poliklinik_muayene,Outpatient,17
+aPTT,SOSYAL PEDIATRI POL.-1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,17
+aPTT,COCUK NOROLOJI POL. -5 (2.KAT),R3_poliklinik_muayene,Outpatient,16
+aPTT,COCUK GOGUS HASTALIKLARI-1,R5_numarali_brans_birimi,Outpatient,14
+aPTT,FTR MUAYENE ODASI 3,R3_poliklinik_muayene,Outpatient,14
+aPTT,GOGUS CERRAHISI - 1 (KD),R5_numarali_brans_birimi,Outpatient,13
+aPTT,ANESTEZI POL. -1 (ONK),R3_poliklinik_muayene,Outpatient,12
+aPTT,KORNEA (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,12
+aPTT,ORTOPEDI POL. - 11 (ONK),R3_poliklinik_muayene,Outpatient,12
+aPTT,GIRISIMSEL RADYOLOJI POL.,R3_poliklinik_muayene,Outpatient,11
+aPTT,BEYIN CERRAHI POL. - 3 (GNL),R3_poliklinik_muayene,Outpatient,10
+aPTT,COCUK CERRAHI POL. - 4 (MH 2.KAT),R3_poliklinik_muayene,Outpatient,10
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -11 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,10
+aPTT,COCUK KARDIYOLOJI - 2,R5_numarali_brans_birimi,Outpatient,9
+aPTT,GOZ HASTALIKLARI POL. - 11 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,9
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -10 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,9
+aPTT,ORTOPEDI POL. - 3 (ONK),R3_poliklinik_muayene,Outpatient,9
+aPTT,UROLOJI POL. -3 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,9
+aPTT,COCUK ENFEKSIYON POL. - 2 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,8
+aPTT,COCUK IMMUNOLOJI VE ALERJI POL. - 6 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,8
+aPTT,GOZ HASTALIKLARI POL. - 1 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,8
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -18 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,8
+aPTT,COCUK KARDIYOLOJI - 1,R5_numarali_brans_birimi,Outpatient,7
+aPTT,KULAK BURUN BOGAZ (MESAI DISI POLIKLINIGI),R3_poliklinik_muayene,Outpatient,7
+aPTT,ORTOPEDI POL. - 7 (ONK),R3_poliklinik_muayene,Outpatient,7
+aPTT,YESIL ACIL MUAYENE-1,R2_acil,Outpatient,7
+aPTT,BEYIN CERRAHI POL. - 1 (GNL),R3_poliklinik_muayene,Outpatient,6
+aPTT,COCUK IMMUNOLOJI VE ALERJI POL. - 2 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,6
+aPTT,COCUK ROMATOLOJI POL. - 1,R3_poliklinik_muayene,Outpatient,6
+aPTT,GOGUS CERRAHISI - 2 (KD),R5_numarali_brans_birimi,Outpatient,6
+aPTT,UROLOJI POL. -2 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,6
+aPTT,COCUK NOROLOJI POL. -1 (2.KAT),R3_poliklinik_muayene,Outpatient,5
+aPTT,TIBBI RETINA CERRAHI -5 (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,5
+aPTT,UROLOJI POL. -6 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,5
+aPTT,ACIL KIRMIZI ALAN,R2_acil,Outpatient,4
+aPTT,BEYIN CERRAHI POL. - 5 (GNL),R3_poliklinik_muayene,Outpatient,4
+aPTT,DERMATOLOJI - 6,R5_numarali_brans_birimi,Outpatient,4
+aPTT,FTR MUAYENE ODASI 1,R3_poliklinik_muayene,Outpatient,4
+aPTT,GOZ HASTALIKLARI POL. - 3 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,4
+aPTT,KADIN HASTALIKLARI VE DOGUM POL. - 6 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,4
+aPTT,KULAK BURUN BOGAZ HASTALIKLARI -19 (GNL 2.KAT),R5_numarali_brans_birimi,Outpatient,4
+aPTT,UROLOJI POL. -1 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,4
+aPTT,BEYIN CERRAHI POL. - 6 (GNL),R3_poliklinik_muayene,Outpatient,3
+aPTT,COCUK IMMUNOLOJI VE ALERJI POL. - 3 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,3
+aPTT,COCUK NOROLOJI POL. -2 (2.KAT),R3_poliklinik_muayene,Outpatient,3
+aPTT,DERMATOLOJI - 7,R5_numarali_brans_birimi,Outpatient,3
+aPTT,EVDE SAGLIK POLIKLINIGI,R3_poliklinik_muayene,Outpatient,3
+aPTT,GASTROENTOLOJI POL. - 2 (MH 1.KAT),R3_poliklinik_muayene,Outpatient,3
+aPTT,GENEL CERRAHI POL. - 1 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,3
+aPTT,GENEL CERRAHI POL. - 7 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,3
+aPTT,GOZ HASTALIKLARI POL. - 10 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,3
+aPTT,GOZ HASTALIKLARI POL. - 6 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,3
+aPTT,TIBBI RETINA -2 (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,3
+aPTT,ACIL COCUK SAGLIGI VE HAST. POL,R2_acil,Outpatient,2
+aPTT,ACIL GOZLEM ODASI - 5,R2_acil,Outpatient,2
+aPTT,AILE HEKIMLIGI POL. - 4,R3_poliklinik_muayene,Outpatient,2
+aPTT,ALGOLOJI POL. - 1 (MH 1.KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,BEYIN CERRAHI POL. -2 (GNL),R3_poliklinik_muayene,Outpatient,2
+aPTT,COCUK ACIL SARI MUAYENE,R2_acil,Outpatient,2
+aPTT,COCUK ACIL YESIL ALAN-3,R2_acil,Outpatient,2
+aPTT,COCUK ADOLESEN POL. - 1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,COCUK IMMUNOLOJI VE ALERJI POL. - 5 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,DERMATOLOJI - 16,R5_numarali_brans_birimi,Outpatient,2
+aPTT,DERMATOLOJI - 4,R5_numarali_brans_birimi,Outpatient,2
+aPTT,FTR MUAYENE ODASI 2,R3_poliklinik_muayene,Outpatient,2
+aPTT,GASTROENTOLOJI POL. - 1 (MH 1.KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,GENEL CERRAHI POL. - 6 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,GENEL CERRAHI POL. - 8 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,GOZ HASTALIKLARI POL. - 5 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,GOZ HASTALIKLARI POL. - 8 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,GOZ HASTALIKLARI POL. - 9 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,GOZ HASTALIKLARI POL. -18(ONK 3. KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,ORTOPEDI POL. - 12 (ONK),R3_poliklinik_muayene,Outpatient,2
+aPTT,TIBBI RETINA (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,2
+aPTT,UROLOJI POL. -4 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,UROLOJI POL. -5 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,UROLOJI POL. -7 (ONK 2.KAT),R3_poliklinik_muayene,Outpatient,2
+aPTT,UROLOJI POL. 1 (MESAI DISI POLIKLINIGI),R3_poliklinik_muayene,Outpatient,2
+aPTT,ACIL GOZLEM ODASI - 7,R2_acil,Outpatient,1
+aPTT,ACIL TRAVMA,R2_acil,Outpatient,1
+aPTT,AILE HEKIMLIGI POL. - 3,R3_poliklinik_muayene,Outpatient,1
+aPTT,AILE HEKIMLIGI POL. - 5,R3_poliklinik_muayene,Outpatient,1
+aPTT,AILE HEKIMLIGI POL. -1,R3_poliklinik_muayene,Outpatient,1
+aPTT,AILE HEKIMLIGI POL. -2,R3_poliklinik_muayene,Outpatient,1
+aPTT,AYAKTAN FIZIK TEDAVI POLIKLINIGI,R3_poliklinik_muayene,Outpatient,1
+aPTT,COCUK ACIL SARI MUAYENE - 2,R2_acil,Outpatient,1
+aPTT,COCUK GENETIK POL. - 1 (KD 2.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,COCUK PSIKIYATRI POL. -11 (FTR),R3_poliklinik_muayene,Outpatient,1
+aPTT,COCUK PSIKIYATRI POL. -8 (1.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,DAHILIYE - 10 (MH),R5_numarali_brans_birimi,Outpatient,1
+aPTT,DAHILIYE - 13 (MH),R5_numarali_brans_birimi,Outpatient,1
+aPTT,DERMATOLOJI - 1,R5_numarali_brans_birimi,Outpatient,1
+aPTT,DERMATOLOJI - 14,R5_numarali_brans_birimi,Outpatient,1
+aPTT,DERMATOLOJI - 18,R5_numarali_brans_birimi,Outpatient,1
+aPTT,ENFEKSIYON HASTALIKLARI POL. -3 (ZEMIN KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GASTROENTOLOJI POL. - 4 (MH 1.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GEBE POL 1 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GEBE POL 2(KD 1.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GENEL CERRAHI POL. - 2 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GENEL CERRAHI POL. - 4 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GENEL CERRAHI POL. - 5 (GNL 1.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GOZ HASTALIKLARI POL. - 12 (ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GOZ HASTALIKLARI POL. - 13 (ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GOZ HASTALIKLARI POL. - 14 (ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GOZ HASTALIKLARI POL. - 4 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GOZ HASTALIKLARI POL. - 7 (ONK 1. KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,GOZ HASTALIKLARI POL. -17(ONK 3. KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,INFERTILITE POL. - 1 (KD 1.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,JINEKOLOJIK ONK. CERRAHI POL. - 2 (ONK),R3_poliklinik_muayene,Outpatient,1
+aPTT,KARDIYOLOJI POL. - 3 (KD),R3_poliklinik_muayene,Outpatient,1
+aPTT,KATARAKT-2,R5_numarali_brans_birimi,Outpatient,1
+aPTT,LASER GLOKOM (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,1
+aPTT,ORTOPEDI POL. - 10 (ONK),R3_poliklinik_muayene,Outpatient,1
+aPTT,SES POLIKLINIGI (MP5.2.KAT),R3_poliklinik_muayene,Outpatient,1
+aPTT,STOMA VE KRONIK YARA POLIKLINIK,R3_poliklinik_muayene,Outpatient,1
+aPTT,TIBBI RETINA -4 (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,1
+aPTT,UVEA NOROOFAL (ONK 1.KAT),R5_numarali_brans_birimi,Outpatient,1
+aPTT,COCUK NOROLOJI (SK),R0_unresolved_SK,Unclassified,3

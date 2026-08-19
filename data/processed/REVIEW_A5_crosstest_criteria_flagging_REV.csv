@@ -1,0 +1,13 @@
+grp,variant,n,flag_pct
+Fibrinogen 1-18 y,V0_baseline,3166,20.75
+Fibrinogen 1-18 y,V_Direct,2691,18.65
+Fibrinogen 1-18 y,V_Manufacturer,2134,19.82
+PT 1-18 y,V0_baseline,17000,13.62
+PT 1-18 y,V_Direct,15169,12.12
+PT 1-18 y,V_Manufacturer,11777,12.07
+aPTT 1-12 y,V0_baseline,10091,12.36
+aPTT 1-12 y,V_Direct,9164,11.22
+aPTT 1-12 y,V_Manufacturer,8681,10.94
+aPTT 12-18 y,V0_baseline,6910,10.19
+aPTT 12-18 y,V_Direct,6153,9.35
+aPTT 12-18 y,V_Manufacturer,5699,9.25

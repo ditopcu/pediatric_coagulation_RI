@@ -1,0 +1,31 @@
+2026-08-12 11:42:48 | === GAMLSS canonical run START === 
+2026-08-12 11:42:48 | [PATCH] local ids initialization injected into defineAgeGroupsWithTol and defineAgeGroupsWithTolBS. 
+2026-08-12 11:42:48 | [NOTE] mode_deneme.R not sourced (it overrides defineAgeGroupsWithTol with a debugging version). 
+2026-08-12 11:42:48 | R: R version 4.5.3 (2026-03-11 ucrt) | cores: 8 | NBootstrap: 100 
+2026-08-12 11:42:48 | cont_out/ is clear of PT/aPTT/Fib results -- starting fresh. 
+2026-08-12 11:42:48 | [PT] reading data/coa_results/gamlss_input/gamlss_input_PT.csv 
+2026-08-12 11:42:48 | [PT] input rows: 17000 (expected 17000) 
+2026-08-12 11:42:48 | [PT] point estimate START 
+2026-08-12 11:50:21 | [PT] point estimate DONE in 7.6 min 
+2026-08-12 11:50:21 | [PT] bootstrap START (100 iterations) 
+2026-08-12 12:40:21 | [PT] bootstrap DONE: 100 iterations (100 with a successful GAMLSS fit) in 50 min 
+2026-08-12 12:40:21 | [PT] TOTAL 57.6 min 
+2026-08-12 12:40:21 | [aPTT] reading data/coa_results/gamlss_input/gamlss_input_aPTT.csv 
+2026-08-12 12:40:21 | [aPTT] input rows: 17001 (expected 17001) 
+2026-08-12 12:40:21 | [aPTT] point estimate START 
+2026-08-12 12:44:22 | [aPTT] point estimate DONE in 4 min 
+2026-08-12 12:44:22 | [aPTT] bootstrap START (100 iterations) 
+2026-08-12 13:26:02 | [aPTT] bootstrap DONE: 100 iterations (100 with a successful GAMLSS fit) in 41.7 min 
+2026-08-12 13:26:02 | [aPTT] TOTAL 45.7 min 
+2026-08-12 13:26:02 | [Fib] reading data/coa_results/gamlss_input/gamlss_input_Fib.csv 
+2026-08-12 13:26:02 | [Fib] input rows: 3166 (expected 3166) 
+2026-08-12 13:26:02 | [Fib] point estimate START 
+2026-08-12 13:27:16 | [Fib] point estimate DONE in 1.2 min 
+2026-08-12 13:27:16 | [Fib] bootstrap START (100 iterations) 
+2026-08-12 14:11:19 | [Fib] bootstrap DONE: 100 iterations (100 with a successful GAMLSS fit) in 44 min 
+2026-08-12 14:11:19 | [Fib] TOTAL 45.3 min 
+2026-08-12 14:11:19 | --- replicate inventory --- 
+2026-08-12 14:11:19 |   PT: 100 bootstrap replicate files 
+2026-08-12 14:11:19 |   aPTT: 100 bootstrap replicate files 
+2026-08-12 14:11:19 |   Fib: 100 bootstrap replicate files 
+2026-08-12 14:11:19 | === GAMLSS canonical run END === 

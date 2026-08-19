@@ -1,0 +1,46 @@
+test,step_order,step_label,n,note
+PT,1,raw_total,38098,"raw LIS export rows, 21 monthly files Nov2023-23Jul2025; query already restricted to age 0-18 y (pediatric-only)"
+PT,2,excl_rejected,2395,"Rededildi=True, sample absent from processed data (flag total 2635; 240 rejected rows shared sample id with an accepted re-run)"
+PT,3,excl_invalid_result,36,"non-numeric result text (YETERSIZ NUMUNE, PIHTILI NUMUNE etc.) without rejected flag"
+PT,4,excl_no_patient_id,0,no such exclusion observed
+PT,5,excl_unresolved_raw,82,UNRESOLVED: numeric-result rows absent from processed layer
+PT,6,artifact_rows_added,0,none
+PT,7,valid_results,35585,"processed layer (output_coa_tuba PT.xlsx): numeric results, 0-18 y, all departments"
+PT,8,excl_departments,8858,"rows from 75 excluded departments (intensive care, neonatal, hematology-oncology, burn units etc.)"
+PT,9,excl_transition_unresolved,0,"not separable for PT (dedup done at intermediate layer, see step 10)"
+PT,10,excl_duplicates_at_intermediate,8165,one sample per patient applied at intermediate layer (naive first-occurrence simulation differs by 100 in / 45 out rows; selection order UNRESOLVED)
+PT,11,excl_dept_late_bonemarrow,18,COCUK KEMIK ILIGI SERVISI (MT4-4C) rows removed at final stage
+PT,12,excl_age_lt1,1544,age at sampling < 1 y
+PT,13,excl_age_unknown,0,age not computable (missing birth date)
+PT,14,excl_final_residual,0,exact reconciliation
+PT,15,final_included,17000,"tce 2026 1-18 file: 1 to <18 y, one sample per patient; 100% of sample ids found in raw archive"
+aPTT,1,raw_total,37880,"raw LIS export rows, 21 monthly files Nov2023-23Jul2025; query already restricted to age 0-18 y (pediatric-only)"
+aPTT,2,excl_rejected,2337,"Rededildi=True, sample absent from processed data (flag total 2637; 300 rejected rows shared sample id with an accepted re-run)"
+aPTT,3,excl_invalid_result,67,"non-numeric result text (YETERSIZ NUMUNE, PIHTILI NUMUNE etc.) without rejected flag"
+aPTT,4,excl_no_patient_id,0,no such exclusion observed
+aPTT,5,excl_unresolved_raw,69,UNRESOLVED: numeric-result rows absent from processed layer
+aPTT,6,artifact_rows_added,0,none
+aPTT,7,valid_results,35407,"processed layer (output_coa_tuba aPTT.xlsx): numeric results, 0-18 y, all departments"
+aPTT,8,excl_departments,8710,"rows from 64 excluded departments (intensive care, neonatal, hematology-oncology, burn units etc.)"
+aPTT,9,excl_transition_unresolved,221,UNRESOLVED small cleanup between dept-filter and archived intermediate (same-sample duplicate rows 850->639)
+aPTT,10,excl_duplicates,7969,"one sample per patient, first kept"
+aPTT,11,excl_dept_late_bonemarrow,18,COCUK KEMIK ILIGI SERVISI (MT4-4C) rows removed at final stage
+aPTT,12,excl_age_lt1,1488,age at sampling < 1 y
+aPTT,13,excl_age_unknown,0,age not computable (missing birth date)
+aPTT,14,excl_final_residual,0,exact reconciliation
+aPTT,15,final_included,17001,"tce 2026 1-18 file: 1 to <18 y, one sample per patient; 100% of sample ids found in raw archive"
+Fib,1,raw_total,11398,"raw LIS export rows, 21 monthly files Nov2023-23Jul2025; query already restricted to age 0-18 y (pediatric-only)"
+Fib,2,excl_rejected,827,"Rededildi=True, sample absent from processed data (flag total 948; 121 rejected rows shared sample id with an accepted re-run)"
+Fib,3,excl_invalid_result,79,"non-numeric result text (YETERSIZ NUMUNE, PIHTILI NUMUNE etc.) without rejected flag"
+Fib,4,excl_no_patient_id,281,raw rows without Dosya No / sex / birth date (unregistered samples)
+Fib,5,excl_unresolved_raw,23,UNRESOLVED: numeric-result rows absent from processed layer
+Fib,6,artifact_rows_added,-177,177 identity-less rows (no sample id/patient id/sex/age) present in processed layer but unmatchable to raw; likely import artifact of no-patient-id raw rows; all removed later by age filter
+Fib,7,valid_results,10365,"processed layer (output_coa_tuba Fib.xlsx): numeric results, 0-18 y, all departments"
+Fib,8,excl_departments,5421,"rows from 46 excluded departments (intensive care, neonatal, hematology-oncology, burn units etc.)"
+Fib,9,excl_transition_unresolved,47,UNRESOLVED small cleanup between dept-filter and archived intermediate
+Fib,10,excl_duplicates,1390,"one sample per patient, first kept"
+Fib,11,excl_dept_late_bonemarrow,69,COCUK KEMIK ILIGI SERVISI (MT4-4C) rows removed at final stage
+Fib,12,excl_age_lt1,267,age at sampling < 1 y
+Fib,13,excl_age_unknown,1,age not computable (missing birth date)
+Fib,14,excl_final_residual,4,UNRESOLVED patient-level drops (single patients from 4 departments)
+Fib,15,final_included,3166,"tce 2026 1-18 file: 1 to <18 y, one sample per patient; 100% of sample ids found in raw archive"

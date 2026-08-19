@@ -1,0 +1,13 @@
+grp,origin,n,flag_pct,ci_lo,ci_hi
+PT 1-18 y,All,17000,13.62,13.14,14.12
+PT 1-18 y,Outpatient,15127,13.25,12.74,13.82
+PT 1-18 y,Inpatient,1870,16.58,14.87,18.34
+aPTT 1-12 y,All,10091,12.36,11.69,13.02
+aPTT 1-12 y,Outpatient,8975,11.51,10.86,12.15
+aPTT 1-12 y,Inpatient,1113,19.14,16.71,21.47
+aPTT 12-18 y,All,6910,10.19,9.51,10.91
+aPTT 12-18 y,Outpatient,5925,10.16,9.43,10.94
+aPTT 12-18 y,Inpatient,985,10.36,8.32,12.39
+Fibrinogen 1-18 y,All,3166,20.75,19.14,22.11
+Fibrinogen 1-18 y,Outpatient,2618,17.76,16.2,19.14
+Fibrinogen 1-18 y,Inpatient,548,35.04,31.2,39.05

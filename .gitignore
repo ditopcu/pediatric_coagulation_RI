@@ -1,0 +1,125 @@
+# =============================================================================
+# Raw, identifiable patient data -- NEVER commit
+# =============================================================================
+data/coa_results/
+data_test/
+# Any Excel sitting directly under data/ (thesis dataset etc.)
+data/*.xlsx
+data/RI*.xlsx
+# refineR fit objects -- contain raw value vectors of patient measurements
+data/processed/*.RDS
+# Intermediate per-patient Excel under data/processed (contains identifiers)
+data/processed/*.xlsx
+# GAMLSS pipeline outputs -- 606 model objects, 1.7 GB, each carrying the
+# patient-level value vector of the data it was fitted to
+cont_out/*.RData
+
+# =============================================================================
+# Manuscript working drafts -- not public until acceptance
+# =============================================================================
+manu/
+manu_revise/
+article_update/
+docs/manuscript/
+
+# =============================================================================
+# Manuscript working files & temporary docx-to-text conversions
+# =============================================================================
+article_update/manuscript_v*.txt
+article_update/tables_v*.txt
+~$*.docx
+~$*.xlsx
+
+# =============================================================================
+# R session files
+# =============================================================================
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj.user/
+
+# =============================================================================
+# Backup files and legacy archives (kept locally only)
+# =============================================================================
+*.bak
+_archive/
+_audit/
+
+# =============================================================================
+# IDE / OS scratch files
+# =============================================================================
+.Rproj.user/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# =============================================================================
+# Python virtual environment (raw LIS parsing)
+# =============================================================================
+.venv/
+
+# =============================================================================
+# R package cache
+# =============================================================================
+renv/library/
+renv/python/
+renv/staging/
+
+# =============================================================================
+# Memory / harness internals (not part of the project itself)
+# =============================================================================
+memory/
+.claude/
+
+# =============================================================================
+# NEVER PUBLISH: submission packages and internal working notes
+# =============================================================================
+manu_2026.08.18/
+Response to Reviewers*.docx
+ÖNEMLİ.md
+veri_dosyalari_envanteri.csv
+CLAUDE.md
+HANDOFF.md
+STATUS.md
+REVIEW_RESPONSE_NUMBERS_REV.md
+
+# Stale / foreign-study leftovers under cont_out (see cont.xlsx, cont_out.zip)
+cont_out/*.xlsx
+cont_out/*.zip
+
+# Run log that captured a stray accession number from a malformed source row
+data/processed/infant_B_log.txt
+
+# Internal documentation kept alongside the interactive page but not published
+docs/PROVENANCE.md
+docs/figure_captions.md
+docs/table_captions.md
+docs/sessionInfo.txt
+docs/RESULTS.md
+
+# Superseded outputs: the 3SD display-subset variants (the manuscript uses the
+# _RAW ones), the thesis-era TEZ tables, and REVIEW analyses replaced by later
+# versions. The code still writes them; they are simply not published.
+data/processed/analysis1_fp_by_age.csv
+data/processed/analysis1_fp_summary.csv
+data/processed/analysis2_guven_transferability.csv
+data/processed/analysis3_fp_curves_data.csv
+data/processed/analysis6_fp_bootstrap_ci.csv
+data/processed/COMPARISON_*
+data/processed/tables/COMPARISON_*
+data/processed/tables/TEZ_tablo_*
+data/processed/REVIEW_A4_patient_origin_*
+data/processed/REVIEW_A5_crosstest_FP_REV.csv
+data/processed/REVIEW_A5_crosstest_RI_REV.csv
+data/processed/REVIEW_gamlss_rerun_log_REV.txt
+data/processed/tables/SUPPLEMENT_patient_origin_REV.xlsx
+
+# Superseded per-analyte runners: they read the pre-canonical input files and
+# NBootstrap = 200. The reported run is src/run_gamlss_canonical.R.
+src/RUNNER_Pipeline pt.R
+src/RUNNER_Pipeline aptt.R
+src/RUNNER_Pipeline fib.R
